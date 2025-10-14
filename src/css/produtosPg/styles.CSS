@@ -1,0 +1,193 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+.logo img {
+  height: 80px;
+}
+
+.search-bar {
+  display: flex;
+  flex: 1;
+  margin: 0 20px;
+  max-width: 500px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  border: none;
+  background: #00aaff;
+  color: white;
+  border-radius: 0 4px 4px 0;
+}
+
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Fica escondida fora da tela */
+  width: 260px;
+  height: 100%;
+  background: #4aa8e5;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 20;
+}
+
+.sidebar.active {
+  left: 0; /* Só aparece quando a classe active é ativada pelo JS */
+}
+
+
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar h3 {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 12px 0;
+  cursor: pointer;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  float: right;
+  cursor: pointer;
+}
+
+.product-container {
+  padding: 20px;
+}
+
+.product-info h2 {
+  margin: 0;
+  font-size: 50px;
+}
+
+.product-info p {
+  margin: 5px 0;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
+}
+
+.price {
+  color: green;
+}
+
+.pix-price {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.discount {
+  font-size: 28px;
+  color: #666;
+  display: block;
+}
+
+.installments {
+  font-size: 24px;
+  color: #000;
+  margin: 10px 0;
+}
+
+.buy-button {
+  background: #28a745;
+  color: white;
+  padding: 25px;
+  font-size: 20px;
+  border: none;
+  width: 25%;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+.reviews {
+  margin-top: 30px;
+  background: #e9f6ff;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.review {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 50px;
+  border-radius: 200px;
+  margin-right: 10px;
+}
+
+.review-content {
+  flex-grow: 1;
+}
+
+.stars {
+  color: #ffd700;
+}
+
+.filled {
+  color: #ffd700;
+}
+
+
+
+

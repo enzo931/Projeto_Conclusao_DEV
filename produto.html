@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto - AMD Ryzen 5 5500X3D</title>
+  <link rel="stylesheet" href="src/css/produtosPg/styles.CSS">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="menu-icon" id="openSidebar"><i class="fa fa-bars"></i></div>
+    <div class="logo">
+      <a href="index.html"><img src="src/imgs/logo/image.png" alt="Logo"></a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar produtos...">
+      <button><i class="fa fa-search"></i></button>
+    </div>
+    <div class="icons">
+      <a href="Login.html"><i class="fa fa-user"></i></a>
+      <i class="fa fa-cog"></i>
+      <a href="carrinho.html"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </header>
+
+  <!-- Sidebar (oculta por padrão) -->
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="closeSidebar"><i class="fa fa-times"></i></button>
+    <div class="sidebar-logo">
+      <img src="/src/imgs/logo/image.png" alt="Epic Hardware" width="150">
+    </div>
+    <h3>Categorias</h3>
+    <ul>
+      <li><i class="fa fa-desktop"></i> Computadores</li>
+      <li><i class="fa fa-tv"></i> Monitores</li>
+      <li><i class="fa fa-recycle"></i> Produtos Reutilizados</li>
+      <li><i class="fa fa-microchip"></i> Hardware</li>
+      <li><i class="fa fa-keyboard"></i> Periféricos</li>
+      <li><i class="fa fa-certificate"></i> Produtos Certificados</li>
+    </ul>
+    <h3>Ajuda</h3>
+    <ul>
+      <li><i class="fa fa-user-circle"></i> Seu perfil</li>
+      <li><i class="fa fa-headset"></i> Suporte</li>
+      <li><i class="fa fa-wrench"></i> Configurações</li>
+    </ul>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <main class="product-container">
+    <section class="product-info">
+      <h2>Processador AMD Ryzen 5 5500X3D</h2>
+      <p>6-Core, 12-Threads, 3GHz (4GHz Turbo), Cache 99MB, AM4, 100-100001504WOF</p>
+      <p><strong>Marca:</strong> AMD</p>
+      <img src="/img/img.png" alt="Produto escolhido" class="product-image" style="height: 300px; width: auto;">
+      <div class="price">
+        <p class="pix-price">R$ 1.389,99 <span class="discount">(À vista com 15% de desconto no PIX)</span></p>
+        <p class="installments">Em até 12x de <strong>R$ 136,27</strong> sem juros no cartão</p>
+      </div>
+      <button class="buy-button">🛒 ADICIONAR AO CARRINHO</button>
+    </section>
+
+    <section class="reviews">
+      <h3>Avaliações de Usuários</h3>
+      <div class="review">
+        <img src="src/imgs/foto-usuario/avaliacao.jpg" alt="Avatar da Larissa" class="avatar">
+        <div class="review-content">
+          <p><strong>Avaliação da Larissa:</strong></p>
+          <p>“Produto ótimo, recomendo para todo mundo!”</p>
+          <div class="stars">
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+  (() => {
+    // elementos (tenta vários nomes/seletores possíveis)
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const openBtn = document.getElementById('openSidebar')
+      || document.getElementById('menu-btn')
+      || document.querySelector('.menu-icon');
+    const closeBtn = document.getElementById('closeSidebar')
+      || (sidebar && sidebar.querySelector('.close-btn'));
+
+    // helpers
+    const isEl = el => el !== null && el !== undefined;
+
+    function openMenu() {
+      if (isEl(sidebar)) sidebar.classList.add('active');
+      if (isEl(overlay)) overlay.classList.add('active');
+    }
+
+    function closeMenu() {
+      if (isEl(sidebar)) sidebar.classList.remove('active');
+      if (isEl(overlay)) overlay.classList.remove('active');
+    }
+
+    function toggleMenu() {
+      if (isEl(sidebar)) sidebar.classList.toggle('active');
+      if (isEl(overlay)) overlay.classList.toggle('active');
+    }
+
+    // liga os eventos (só se os elementos existirem)
+    if (isEl(openBtn)) {
+      openBtn.addEventListener('click', (e) => {
+        openMenu();
+      });
+    } else {
+      console.warn('Botão de abrir menu não encontrado (procure por id="openSidebar" ou id="menu-btn" ou class="menu-icon").');
+    }
+
+    if (isEl(closeBtn)) {
+      closeBtn.addEventListener('click', closeMenu);
+    }
+
+    if (isEl(overlay)) {
+      overlay.addEventListener('click', closeMenu);
+    }
+
+    // fechar com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // sanity check no console para ajudar debug
+    console.log('Sidebar:', !!sidebar, 'Overlay:', !!overlay, 'OpenBtn:', !!openBtn, 'CloseBtn:', !!closeBtn);
+  })();
+
+  // Atualiza informações do produto na página
+  const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
+
+  if (produto) {
+    document.querySelector(".product-info h2").innerText = produto.nome;
+    document.querySelector(".product-info p").innerText = produto.descricao;
+    document.querySelector(".product-image").src = produto.imagem;
+
+    document.querySelector(".pix-price").innerHTML = `
+      R$ ${produto.preco.toFixed(2)} <span class="discount">(À vista com 15% de desconto no PIX)</span>
+    `;
+    document.querySelector(".installments").innerHTML = `
+      Em até 12x de <strong>R$ ${(produto.preco / 12).toFixed(2)}</strong> sem juros no cartão
+    `;
+  }
+
+  // Função para atualizar o carrinho no backend
+  function atualizarCarrinhoBackend(userId, carrinho) {
+    fetch(`http://localhost:3000/usuarios/${userId}/carrinho`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ carrinho })
+    });
+  }
+
+  // Adicionar ao carrinho ao clicar no botão
+  document.querySelector(".buy-button").addEventListener("click", function () {
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuario) {
+      alert("Você precisa estar logado para adicionar ao carrinho!");
+      window.location.href = "Login.html";
+      return;
+    }
+    if (!usuario.carrinho) usuario.carrinho = [];
+    if (!usuario.carrinho.includes(produto.id)) {
+      usuario.carrinho.push(produto.id);
+      localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+      atualizarCarrinhoBackend(usuario.id, usuario.carrinho);
+      alert("Produto adicionado ao carrinho!");
+    } else {
+      alert("Produto já está no carrinho!");
+    }
+  });
+
+  // Adapta o ícone/nome do usuário na topbar e o redirecionamento
+document.addEventListener("DOMContentLoaded", function () {
+  const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+  const userLink = document.querySelector(".icons a");
+  if (!userLink) return;
+
+  // Troca ícone pelo nome se logado
+  if (usuarioLogado) {
+    userLink.innerHTML = `<span class="user-nome">${usuarioLogado.nome.split(" ")[0]}</span>`;
+    userLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.location.href = "usuario.html";
+    });
+  } else {
+    userLink.innerHTML = `<i class="fa fa-user"></i>`;
+    // (opcional: pode deixar o link para Login.html)
+  }
+});
+</script>
+
+</html>

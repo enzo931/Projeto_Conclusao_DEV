@@ -1,0 +1,268 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        /* Topbar */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .logo img {
+            height: 80px;
+        }
+
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            margin: 0 20px;
+            max-width: 500px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-bar button {
+            padding: 8px 12px;
+            border: none;
+            background: #00aaff;
+            color: white;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .icons i {
+            margin-left: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            /* Fica escondida fora da tela */
+            width: 260px;
+            height: 100%;
+            background: #4aa8e5;
+            color: white;
+            padding: 20px;
+            transition: left 0.3s ease-in-out;
+            z-index: 20;
+        }
+
+        .sidebar.active {
+            left: 0;
+            /* Só aparece quando a classe active é ativada pelo JS */
+        }
+
+        .sidebar h3 {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 12px 0;
+            cursor: pointer;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            float: right;
+            cursor: pointer;
+        }
+
+        h2 {
+            padding: 32px 0 20px 0;
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .cart {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cart-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 5vw;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+        }
+
+        .cart-item .product-info {
+            display: flex;
+            align-items: center;
+            min-width: 250px;
+            flex: 2;
+        }
+
+        .cart-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item .details {
+            margin-left: 16px;
+        }
+
+        .cart-item .details h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cart-item .details p,
+        .cart-item .details span {
+            font-size: 15px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .cart-item .price {
+            text-align: right;
+            font-size: 16px;
+            color: #333;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .cart-item .price .discount {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .cart-item .price .installments {
+            color: #27ae60;
+            font-size: 14px;
+            display: block;
+        }
+
+        .cart-item .quantity {
+            display: flex;
+            align-items: center;
+            flex: 0 0 120px;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .cart-item .quantity input {
+            width: 40px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 24px 5vw;
+            background-color: #f1f1f1;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .clear-cart {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .finalize-order {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 900px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .cart-item .price,
+            .cart-item .quantity {
+                text-align: left;
+                min-width: unset;
+            }
+
+            .cart-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header,
+            .cart-item,
+            .cart-actions {
+                padding-left: 2vw;
+                padding-right: 2vw;
+            }
+
+            .cart-item img {
+                width: 80px;
+                height: 80px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }

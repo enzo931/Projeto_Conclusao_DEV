@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Epic Hardware</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      display: flex;
+      flex-direction: column; /* organiza logo em cima e container embaixo */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Logo */
+    .logo img {
+      width: 200px;
+      margin-bottom: 20px; /* espaço entre logo e container branco */
+    }
+
+    /* Container principal */
+    .container {
+      width: 800px;
+      background-color: #fff;
+      border-radius: 90px;
+      padding: 100px 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      text-align: center;
+      color: #000;
+    }
+
+    /* Card branco */
+    .card {
+      background: #fff;
+      border-radius: 30px;
+      padding: 25px 20px;
+      color: #000;
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+    }
+
+    /* Ícone usuário */
+    .Icon img {
+      width: 80px;
+      margin: 15px 0;
+    }
+
+    /* Campos */
+    .card input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      font-size: 14px;
+    }
+
+    /* Botão */
+    .card button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      background-color: #333;
+    }
+
+    /* Link inferior */
+    .card p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .card a {
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsividade */
+    @media (max-width: 480px) {
+      .container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo no fundo preto, centralizado acima do container -->
+  <div class="logo">
+    <img src="src/imgs/logo/image.png" alt="Epic Hardware">
+  </div>
+
+  <!-- Container branco -->
+  <div class="container">
+    <div class="card">
+      <h2>Login</h2>
+      <!-- Ícone do usuário logo abaixo do título -->
+      <div class="Icon">
+        <img src="src/imgs/icons/login.png" alt="Icone Usuário">
+      </div>
+
+      <form id="loginForm">
+        <input type="email" placeholder="E-mail" id="email" required>
+        <input type="password" placeholder="Digite sua senha" id="senha" required>
+        <button type="submit">Entrar</button>
+      </form>
+      <p>Ainda não possui uma conta? <a href="entrar.html">Crie agora.</a></p>
+    </div>
+  </div>
+</body>
+<script src="src/js/loginPg/script.js"></script>
+</html>

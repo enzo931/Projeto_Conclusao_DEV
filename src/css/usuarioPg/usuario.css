@@ -1,0 +1,222 @@
+/* General Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  /* Ensures the footer stays at the bottom */
+}
+
+/* Header styles */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+.logo img {
+  height: 80px;
+}
+
+
+.search-bar {
+  display: flex;
+  flex: 1;
+  margin: 0 20px;
+  max-width: 500px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  border: none;
+  background: #00aaff;
+  color: white;
+  border-radius: 0 4px 4px 0;
+}
+
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Fica escondida fora da tela */
+  width: 260px;
+  height: 100%;
+  background: #4aa8e5;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 20;
+}
+
+.sidebar.active {
+  left: 0; /* Só aparece quando a classe active é ativada pelo JS */
+}
+
+.sidebar h3 {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 12px 0;
+  cursor: pointer;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  float: right;
+  cursor: pointer;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+    flex-grow: 1;  /* Ensures the main content takes up available space */
+}
+
+.greeting {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;  /* Centers products */
+    gap: 20px;
+    flex-wrap: wrap;  /* Allows products to wrap on smaller screens */
+    margin-bottom: 40px;
+}
+
+.product {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgb(255, 255, 255);
+    width: 48%;
+    text-align: center;
+}
+
+.product img {
+    width: 30%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-info h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-info p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.price {
+    font-size: 16px;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.discount {
+    font-size: 14px;
+    color: #f39c12;
+}
+
+.installments {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* Footer styles */
+footer {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: auto;  /* Ensures the footer stays at the bottom */
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Footer icon styles */
+.footer-links a img {
+    width: 50px;
+    height: 50px;
+}
+
+.add-button {
+    background-color: #00AEEF;
+    padding: 30px;
+    border-radius: 70%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-button img {
+    width: 50px;
+    height: 50px;
+}
+
+/* ...adicione ao seu CSS... */
+.btn-favorito {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.card {
+  position: relative;
+}

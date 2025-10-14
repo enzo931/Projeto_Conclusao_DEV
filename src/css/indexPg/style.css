@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+.logo img {
+  height: 80px;
+}
+
+
+.search-bar {
+  display: flex;
+  flex: 1;
+  margin: 0 20px;
+  max-width: 500px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  border: none;
+  background: #00aaff;
+  color: white;
+  border-radius: 0 4px 4px 0;
+}
+
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Fica escondida fora da tela */
+  width: 260px;
+  height: 100%;
+  background: #4aa8e5;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 20;
+}
+
+.sidebar.active {
+  left: 0; /* Só aparece quando a classe active é ativada pelo JS */
+}
+
+.sidebar h3 {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 12px 0;
+  cursor: pointer;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  float: right;
+  cursor: pointer;
+}
+
+/* Banners */
+.banner img {
+  width: 90%;
+  display: block;
+  margin: 20px 0;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.banner img:hover {
+  transform: scale(1.01);
+}
+
+.sub-banners {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sub-banners img {
+  width: 44.5%;
+  border-radius: 8px;
+}
+
+.sub-banners img:hover {
+  transform: scale(1.01);
+}
+
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+/* Overlay escuro */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(156, 156, 156, 0.685); /* fundo preto transparente */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 15; /* abaixo da sidebar mas acima do conteúdo */
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 4 colunas fixas */
+  gap: 20px;
+  padding: 10px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 15px;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.card .preco {
+  font-size: 20px;
+  font-weight: bold;
+  color: #28a745;
+  margin: 10px 0;
+}
+
+.btn-comprar{
+  background-color: #0077cc;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  color: white;
+}
+
+.btn-favorito{
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+}

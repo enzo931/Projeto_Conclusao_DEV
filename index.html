@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Hardware</title>
+    <link rel="stylesheet" href="src/css/indexPg/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="menu-icon" id="openSidebar"><i class="fa fa-bars"></i></div>
+        <div class="logo">
+            <img src="src/imgs/logo/image.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar produtos...">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+        <div class="icons">
+            <a href="Login.html"><i class="fa fa-user"></i></a>
+            <i class="fa fa-cog"></i>
+            <a href="carrinho.html"><i class="fa fa-shopping-cart"></i></a>
+        </div>
+    </header>
+
+    <!-- Sidebar (oculta por padrão) -->
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeSidebar"><i class="fa fa-times"></i></button>
+        <div class="sidebar-logo">
+            <img src="src/imgs/logo/image.png" alt="Epic Hardware" width="150">
+        </div>
+        <h3>Categorias</h3>
+        <ul>
+            <li><i class="fa fa-desktop"></i> Computadores</li>
+            <li><i class="fa fa-tv"></i> Monitores</li>
+            <li><i class="fa fa-recycle"></i> Produtos Reutilizados</li>
+            <li><i class="fa fa-microchip"></i> Hardware</li>
+            <li><i class="fa fa-keyboard"></i> Periféricos</li>
+            <li><i class="fa fa-certificate"></i> Produtos Certificados</li>
+        </ul>
+        <h3>Ajuda</h3>
+        <ul>
+            <li><i class="fa fa-user-circle"></i> Seu perfil</li>
+            <li><i class="fa fa-headset"></i> Suporte</li>
+            <li><i class="fa fa-wrench"></i> Configurações</li>
+        </ul>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+
+    <!-- Banners -->
+    <section class="banner">
+        <img src="src/imgs/promocoes/WEB BANNER 11.png" alt="Promoção principal">
+    </section>
+
+    <section class="sub-banners">
+        <img src="src/imgs/promocoes/image 13.png" alt="Promoção 2">
+        <img src="src/imgs/promocoes/image 11.png" alt="Promoção 3">
+    </section>
+
+    <!-- Produtos -->
+        <h2>Principais Ofertas</h2>
+        <div id="produtos-ofertas" class="grid" data-ids="1,2,3,4,5,6,7,8,9,10"></div>
+        <h2>Mais vendidos</h2>
+        <div id="produtos-mais-vendidos" class="grid" data-ids="11,12,13,14,15,16,17,18,19,20"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Epic Hardware - Todos os direitos reservados</p>
+    </footer>
+</body>
+<script src="script.js"></script>
+
+</html>
