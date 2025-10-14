@@ -220,3 +220,25 @@ footer {
 .card {
   position: relative;
 }
+
+@media (max-width: 600px) {
+  .container {
+    width: 98%;
+    padding: 30px 5px;
+    border-radius: 30px;
+  }
+  .logo img {
+    width: 120px;
+  }
+  .card {
+    padding: 15px 5px;
+    border-radius: 18px;
+  }
+  .Icon img {
+    width: 50px;
+  }
+  .card button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

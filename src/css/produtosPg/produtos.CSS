@@ -125,7 +125,7 @@ body {
 }
 
 .price {
-  color: green;
+  color: #0077cc;
 }
 
 .pix-price {
@@ -135,13 +135,19 @@ body {
 
 .discount {
   font-size: 28px;
-  color: #666;
+  color: #27ae60;
   display: block;
 }
 
 .installments {
   font-size: 24px;
   color: #000;
+  margin: 10px 0;
+}
+
+.installments strong {
+  font-size: 24px;
+  color: #e74c3c;
   margin: 10px 0;
 }
 
@@ -188,6 +194,48 @@ body {
   color: #ffd700;
 }
 
+
+/* Adicione ao final de: src/css/produtosPg/produtos.CSS */
+@media (max-width: 600px) {
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 5px;
+  }
+  .logo img {
+    height: 45px;
+  }
+  .search-bar {
+    width: 100%;
+    margin: 0;
+    max-width: 100%;
+  }
+  .product-container {
+    padding: 8px;
+  }
+  .product-info h2 {
+    font-size: 1.3rem;
+  }
+  .product-image {
+    max-width: 100%;
+    height: auto;
+  }
+  .pix-price, .discount, .installments {
+    font-size: 16px;
+  }
+  .buy-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px 0;
+  }
+  .reviews {
+    padding: 8px;
+  }
+  .avatar {
+    width: 32px;
+  }
+}
 
 
 

@@ -1,0 +1,113 @@
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      display: flex;
+      flex-direction: column; /* organiza logo em cima e container embaixo */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Logo */
+    .logo img {
+      width: 200px;
+      margin-bottom: 20px; /* espaço entre logo e container branco */
+    }
+
+    /* Container principal */
+    .container {
+      width: 800px;
+      background-color: #fff;
+      border-radius: 90px;
+      padding: 100px 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      text-align: center;
+      color: #000;
+    }
+
+    /* Card branco */
+    .card {
+      background: #fff;
+      border-radius: 30px;
+      padding: 25px 20px;
+      color: #000;
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+    }
+
+    /* Ícone usuário */
+    .Icon img {
+      width: 80px;
+      margin: 15px 0;
+    }
+
+    /* Campos */
+    .card input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      font-size: 14px;
+    }
+
+    /* Botão */
+    .card button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      background-color: #333;
+    }
+
+    /* Link inferior */
+    .card p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .card a {
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+/* Adicione ao final de: src/css/loginpg/login.css */
+@media (max-width: 600px) {
+  .container {
+    width: 98%;
+    padding: 30px 5px;
+    border-radius: 30px;
+  }
+  .logo img {
+    width: 120px;
+  }
+  .card {
+    padding: 15px 5px;
+    border-radius: 18px;
+  }
+  .Icon img {
+    width: 50px;
+  }
+  .card button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

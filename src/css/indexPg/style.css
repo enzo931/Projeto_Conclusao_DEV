@@ -11,7 +11,6 @@ body {
   justify-content: space-between;
   background: #fff;
   padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -33,13 +32,15 @@ body {
   flex: 1;
   margin: 0 20px;
   max-width: 500px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
 }
 
 .search-bar input {
   flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
+  padding: 16px;
+  border: none;
+  border-radius: 20px 0 0 20px;
 }
 
 .search-bar button {
@@ -47,7 +48,8 @@ body {
   border: none;
   background: #00aaff;
   color: white;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
 }
 
 .icons i {
@@ -170,12 +172,15 @@ h1 {
 .card {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   padding: 15px;
   transition: transform 0.2s;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  position: relative; /* Necessário para posicionar o botão favorito */
+  cursor: pointer;    /* Para indicar que o card é clicável */
+
 }
 
 .card:hover {
@@ -186,39 +191,155 @@ h1 {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+  display: block;
 }
 
-.card h2 {
-  font-size: 18px;
-  margin: 10px 0;
+/* Botão de favorito no canto superior direito, só aparece no hover */
+.btn-favorito {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 26px;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 2;
+  cursor: pointer;
 }
 
-.card p {
-  font-size: 14px;
-  color: #555;
-  margin: 10px 0;
+.card:hover .btn-favorito {
+  opacity: 1;
 }
 
-.card .preco {
-  font-size: 20px;
-  font-weight: bold;
-  color: #28a745;
-  margin: 10px 0;
+/* Ícone de coração preenchido ou não */
+.btn-favorito .fa-heart {
+  transition: color 0.2s;
 }
 
-.btn-comprar{
+.btn-favorito .fas.fa-heart { /* Favoritado */
+  color: #e74c3c;
+}
+
+.btn-favorito .far.fa-heart { /* Não favoritado */
+  color: #bbb;
+}
+
+/* Centraliza o botão de ver produto no final do card */
+.card-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.btn-comprar {
   background-color: #0077cc;
   border: none;
   border-radius: 3px;
-  padding: 10px;
+  padding: 10px 24px;
   color: white;
+  font-size: 16px;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.btn-favorito{
-  background-color: red;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  margin: 10px;
-  padding: 10px;
+.btn-comprar:hover {
+  background-color: #005fa3;
+}
+
+/* Remove fundo e borda do botão favorito ao focar/clicar */
+.btn-favorito:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.descricao {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-top: auto; /* Isso faz a descrição ir para o rodapé junto com o botão */
+}
+
+.descricao p {
+  margin: 0 0 6px 0;
+  color: #444;
+  font-size: 15px;
+}
+
+.descricao .preco {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0077cc;
+  margin-bottom: 2px;
+}
+
+.descricao .pix-price {
+  font-size: 14px;
+  color: #27ae60;
+  margin-bottom: 2px;
+}
+
+.descricao .discount {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.descricao .installments {
+  font-size: 13px;
+  color: #555;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .topbar, .sidebar, .cart, .product-container, .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .search-bar input {
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .search-bar {
+    width: 100%;
+    margin: 0;
+  }
+  .logo img {
+    height: 50px;
+  }
+  .sidebar {
+    width: 80vw;
+  }
+  .product, .card {
+    min-width: 0;
+    width: 100%;
+    font-size: 15px;
+  }
+  .product-info h3, .card h2 {
+    font-size: 1.1rem;
+  }
+  .btn-comprar, .buy-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px 0;
+  }
 }
