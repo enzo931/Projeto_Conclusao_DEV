@@ -55,8 +55,18 @@
       5
     ],
     "carrinho": [
-      4,
-      1
+      {
+        "id": 1,
+        "quantidade": 5
+      },
+      {
+        "id": 6,
+        "quantidade": 5
+      },
+      {
+        "id": 14,
+        "quantidade": 1
+      }
     ]
   },
   {
@@ -64,24 +74,14 @@
     "ativo": true,
     "favoritos": [
       6,
-      13,
-      12
+      2,
+      3,
+      1
     ],
     "nome": "enzo",
     "email": "enzo@email.com",
     "cpf": "18263552136772",
     "senha": "1234",
-    "carrinho": [
-      {
-        "id": 1,
-        "quantidade": 1
-      },
-      {
-        "id": 2,
-        "quantidade": 1
-      },
-      2,
-      3
-    ]
+    "carrinho": []
   }
 ]

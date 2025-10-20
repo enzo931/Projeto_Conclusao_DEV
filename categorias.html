@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Epic Hardware - Monitores</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="src/css/categoriaPg/categoria.css">
+</head>
+</head>
+
+<body>
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="menu-icon" id="openSidebar"><i class="fa fa-bars"></i></div>
+    <div class="logo">
+      <a href="index.html"><img src="src/imgs/logo/image.png" alt="Logo"></a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar produtos...">
+      <button><i class="fa fa-search"></i></button>
+    </div>
+    <div class="icons">
+      <a href="Login.html"><i class="fa fa-user"></i></a>
+      <i class="fa fa-cog"></i>
+      <a href="carrinho.html"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </header>
+  <!-- Sidebar (oculta por padrão) -->
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="closeSidebar"><i class="fa fa-times"></i></button>
+    <div class="sidebar-logo">
+      <img src="src/imgs/logo/image.png" alt="Epic Hardware" width="150">
+    </div>
+    <h3>Categorias</h3>
+    <ul>
+      <li><a href="categorias.html?categoria=computadores"><i class="fa fa-desktop"></i> Computadores</a></li>
+      <li><a href="categorias.html?categoria=monitores"><i class="fa fa-tv"></i> Monitores</a></li>
+      <li><a href="categorias.html?categoria=reutilizados"><i class="fa fa-recycle"></i> Produtos Reutilizados</a></li>
+      <li><a href="categorias.html?categoria=hardware"><i class="fa fa-microchip"></i> Hardware</a></li>
+      <li><a href="categorias.html?categoria=perifericos"><i class="fa fa-keyboard"></i> Periféricos</a></li>
+      <li><a href="categorias.html?categoria=certificados"><i class="fa fa-certificate"></i> Produtos Certificados</a>
+      </li>
+    </ul>
+    <h3>Ajuda</h3>
+    <ul>
+      <li><i class="fa fa-user-circle"></i> Seu perfil</li>
+      <li><i class="fa fa-headset"></i> Suporte</li>
+      <li><i class="fa fa-wrench"></i> Configurações</li>
+    </ul>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- MENU DESKTOP -->
+  <div class="menu-bar text-center">
+    <a href="categorias.html?categoria=computadores">COMPUTADORES</a> |
+    <a href="categorias.html?categoria=monitores"> MONITORES</a> |
+    <a href="categorias.html?categoria=reutilizados"> PRODUTOS REUTILIZADOS</a> |
+    <a href="categorias.html?categoria=hardware"> HARDWARES</a> |
+    <a href="categorias.html?categoria=perifericos"> PERIFÉRICOS</a> |
+    <a href="categorias.html?categoria=certificados"> PRODUTOS CERTIFICADOS</a>
+
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <!-- FILTRO LATERAL -->
+      <div class="col-md-3">
+        <div class="filter-box">
+          <h5>Filtros</h5>
+          <hr />
+
+          <!-- Preço -->
+          <p><strong>Preço (até)</strong></p>
+          <input type="range" class="form-range" min="0" max="9000" value="9000" id="priceRange" />
+          <p>R$ 0 — R$ <span id="priceRangeValue">9000</span></p>
+          <hr />
+
+          <!-- Categoria -->
+          <p><strong>Categoria</strong></p>
+          <div><input type="checkbox" class="filter-category" value="Kit" id="catKit" /> <label for="catKit">Kit</label>
+          </div>
+          <div><input type="checkbox" class="filter-category" value="Monitores" id="catMonitores" /> <label
+              for="catMonitores">Monitores</label></div>
+          <div><input type="checkbox" class="filter-category" value="Outros" id="catOutros" /> <label
+              for="catOutros">Outros</label>
+            <hr />
+
+            <!-- Fabricante -->
+            <p><strong>Fabricante</strong></p>
+            <div><input type="checkbox" class="filter-manufacturer" value="Acer" id="fabAcer" /> <label
+                for="fabAcer">Acer</label></div>
+            <div><input type="checkbox" class="filter-manufacturer" value="Samsung" id="fabSamsung" /> <label
+                for="fabSamsung">Samsung</label></div>
+            <div><input type="checkbox" class="filter-manufacturer" value="AOC" id="fabAOC" /> <label
+                for="fabAOC">AOC</label></div>
+            <div><input type="checkbox" class="filter-manufacturer" value="LG" id="fabLG" /> <label
+                for="fabLG">LG</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="row" id="product-container">
+          <!-- Aqui os cards serão inseridos pelo JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+</body>
+<script src="src/js/categoriaPg/script.js"></script>
+
+</html>

@@ -7,6 +7,7 @@
     <title>Epic Hardware</title>
     <link rel="stylesheet" href="src/css/indexPg/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -27,21 +28,21 @@
         </div>
     </header>
 
-    <!-- Sidebar (oculta por padrão) -->
     <aside class="sidebar" id="sidebar">
         <button class="close-btn" id="closeSidebar"><i class="fa fa-times"></i></button>
         <div class="sidebar-logo">
             <img src="src/imgs/logo/image.png" alt="Epic Hardware" width="150">
         </div>
         <h3>Categorias</h3>
-        <ul>
-            <li><i class="fa fa-desktop"></i> Computadores</li>
-            <li><i class="fa fa-tv"></i> Monitores</li>
-            <li><i class="fa fa-recycle"></i> Produtos Reutilizados</li>
-            <li><i class="fa fa-microchip"></i> Hardware</li>
-            <li><i class="fa fa-keyboard"></i> Periféricos</li>
-            <li><i class="fa fa-certificate"></i> Produtos Certificados</li>
+        <ul id="lista-categorias">
+            <li data-categoria="Computadores"><i class="fa fa-desktop"></i> Computadores</li>
+            <li data-categoria="Monitores"><i class="fa fa-tv"></i> Monitores</li>
+            <li data-categoria="Produtos Reutilizados"><i class="fa fa-recycle"></i> Produtos Reutilizados</li>
+            <li data-categoria="Hardware"><i class="fa fa-microchip"></i> Hardware</li>
+            <li data-categoria="Periféricos"><i class="fa fa-keyboard"></i> Periféricos</li>
+            <li data-categoria="Produtos Certificados"><i class="fa fa-certificate"></i> Produtos Certificados</li>
         </ul>
+
         <h3>Ajuda</h3>
         <ul>
             <li><i class="fa fa-user-circle"></i> Seu perfil</li>
@@ -49,6 +50,7 @@
             <li><i class="fa fa-wrench"></i> Configurações</li>
         </ul>
     </aside>
+
 
     <!-- Overlay -->
     <div id="overlay" class="overlay"></div>
@@ -65,10 +67,13 @@
     </section>
 
     <!-- Produtos -->
-        <h2>Principais Ofertas</h2>
-        <div id="produtos-ofertas" class="grid" data-ids="1,2,3,4,5,6,7,8,9,10"></div>
-        <h2>Mais vendidos</h2>
-        <div id="produtos-mais-vendidos" class="grid" data-ids="11,12,13,14,15,16,17,18,19,20"></div>
+    <h2>Principais Ofertas</h2>
+    <div id="produtos-ofertas" class="grid" data-ids="1,2,3,4,5,6,7,8,9,10"></div>
+    <h2>Mais vendidos</h2>
+    <div id="produtos-mais-vendidos" class="grid" data-ids="11,12,13,14,15,16,17,18,19,20"></div>
+    <h2>Setups</h2>
+    <div id="Setups" class="grid" data-ids="21,22,23,24,25"></div>
+
 
     <!-- Footer -->
     <footer>
@@ -76,5 +81,19 @@
     </footer>
 </body>
 <script src="script.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // O Service Worker deve estar na raiz do seu site
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registrado com sucesso:', registration.scope);
+        })
+        .catch(error => {
+          console.error('Falha no registro do Service Worker:', error);
+        });
+    });
+  }
+</script>
 
 </html>

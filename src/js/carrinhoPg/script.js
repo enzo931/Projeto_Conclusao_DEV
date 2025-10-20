@@ -201,27 +201,6 @@
         preco: 250,
         descricao: "Roteador TP-Link Archer C6, Wi-Fi AC1200, ideal para conexões estáveis e rápidas em sua casa.",
         imagem: "src/imgs/produtos/roteador tplink.jpg"
-      },
-      {
-        id: 21,
-        nome: "Memória RAM Corsair Vengeance 32GB",
-        preco: 850,
-        descricao: "Memória RAM Corsair Vengeance 32GB, DDR4, ideal para tarefas pesadas e multitarefa.",
-        imagem: "src/imgs/produtos/ram corsair.jpg"
-      },
-      {
-        id: 22,
-        nome: "Placa de Vídeo GeForce GTX 1660",
-        preco: 2500,
-        descricao: "Placa de vídeo GeForce GTX 1660, 6GB GDDR5, excelente para jogos em 1080p.",
-        imagem: "src/imgs/produtos/placa de video gtx.jpg"
-      },
-      {
-        id: 23,
-        nome: "Processador Intel Core i7-10700K",
-        preco: 2300,
-        descricao: "Processador Intel Core i7-10700K, 8 núcleos, 16 threads, até 5.1GHz, ideal para overclocking.",
-        imagem: "src/imgs/produtos/processador i7.jpg"
       }
     ]; // Cole aqui o array de produtos
 

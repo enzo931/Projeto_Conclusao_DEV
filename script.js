@@ -53,168 +53,198 @@
   console.log('Sidebar:', !!sidebar, 'Overlay:', !!overlay, 'OpenBtn:', !!openBtn, 'CloseBtn:', !!closeBtn);
 })();
 
+// Detecta clique nas categorias da sidebar
+const categoriaLinks = document.querySelectorAll('#lista-categorias li');
+
+categoriaLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    const categoria = link.dataset.categoria;
+    // Redireciona para a página de categorias com a categoria na URL
+    window.location.href = `categorias.html?categoria=${encodeURIComponent(categoria)}`;
+  });
+});
+
 
 const produtos = [
   {
     id: 1,
     nome: "Placa de Vídeo RX 560 XT",
     preco: 1500,
-   // descricao: "Placa de vídeo Radeon RX 560 XT, 8GB GDDR5, excelente para jogos em Full HD.",
+    categoria: "Hardware",
     imagem: "src/imgs/produtos/placa de video.jpg"
   },
   {
     id: 2,
     nome: "Processador Ryzen 5 4500",
     preco: 950,
-   // descricao: "Processador AMD Ryzen 5 4500, 6 núcleos, 12 threads, até 4.1GHz, ideal para multitarefas.",
+    categoria: "Hardware",
     imagem: "src/imgs/produtos/ryzen5.jpg"
   },
   {
     id: 3,
     nome: "Memória RAM 16GB DDR4 3200MHz",
     preco: 420,
-   // descricao: "Kit 2x8GB DDR4 3200MHz, alto desempenho para jogos e produtividade.",
+    categoria: "Memória",
     imagem: "src/imgs/produtos/Memoria Ram kllisre.webp"
   },
   {
     id: 4,
     nome: "Placa-mãe ASUS TUF B450M",
     preco: 550,
-  //  descricao: "Placa-mãe ASUS TUF B450M, compatível com processadores Ryzen, robusta e durável.",
+    categoria: "Hardware",
     imagem: "src/imgs/produtos/Placa-mãe ASUS TUF B450M.jpg"
   },
   {
     id: 5,
     nome: "Fonte Corsair CV550 80 Plus Bronze",
     preco: 300,
-   // descricao: "Fonte Corsair CV550 de 550W, certificação 80 Plus Bronze, ideal para PCs intermediários.",
+    categoria: "Energia",
     imagem: "src/imgs/produtos/Fonte Corsair CV550 80 Plus Bronze.jpg"
   },
   {
     id: 6,
     nome: "SSD Kingston A2000 500GB",
     preco: 400,
-   // descricao: "SSD Kingston A2000 NVMe 500GB, velocidade de leitura até 2200MB/s, perfeito para boot rápido.",
+    categoria: "Armazenamento",
     imagem: "src/imgs/produtos/SSD Kingston A2000 500GB.jpg"
   },
   {
     id: 7,
     nome: "HD Seagate Barracuda 1TB",
     preco: 250,
-   // descricao: "HD Seagate Barracuda 1TB, 7200 RPM, confiável e com grande capacidade de armazenamento.",
+    categoria: "Armazenamento",
     imagem: "src/imgs/produtos/HD Seagate Barracuda 1TB.jpg"
   },
   {
     id: 8,
     nome: "Cooler Master Hyper 212 EVO",
     preco: 180,
-  //  descricao: "Cooler Master Hyper 212 EVO, sistema de refrigeração para processadores com excelente custo-benefício.",
+    categoria: "Refrigeração",
     imagem: "src/imgs/produtos/Cooler Master Hyper 212 EVO.jpg"
   },
   {
     id: 9,
     nome: "Gabinete NZXT H510",
     preco: 450,
-   // descricao: "Gabinete NZXT H510, design clean e excelente gerenciamento de cabos, ideal para setups modernos.",
+    categoria: "Gabinete",
     imagem: "src/imgs/produtos/Gabinete NZXT H510.jpg"
   },
   {
     id: 10,
     nome: "Teclado Mecânico Redragon K552",
     preco: 250,
-   // descricao: "Teclado mecânico Redragon K552 com switches Outemu Red, retroiluminação RGB e alta durabilidade.",
+    categoria: "Periférico",
     imagem: "src/imgs/produtos/Teclado Mecânico Redragon K552.jpg"
   },
   {
     id: 11,
     nome: "Mouse Gamer Logitech G203",
     preco: 130,
-  //  descricao: "Mouse gamer Logitech G203, 8000 DPI, ideal para jogos rápidos e de precisão.",
+    categoria: "Periférico",
     imagem: "src/imgs/produtos/mouse logitech.jpg"
   },
   {
     id: 12,
     nome: "Monitor LED 24\" AOC 75Hz",
     preco: 600,
-  //  descricao: "Monitor AOC de 24 polegadas, resolução Full HD e taxa de atualização de 75Hz.",
+    categoria: "Monitor",
     imagem: "src/imgs/produtos/monitor aoc.jpg"
   },
   {
     id: 13,
     nome: "Headset Razer Kraken X",
     preco: 350,
-   // descricao: "Headset Razer Kraken X, som imersivo e microfone ajustável para comunicação clara.",
+    categoria: "Periférico",
     imagem: "src/imgs/produtos/headset razer.jpg"
   },
   {
     id: 14,
     nome: "Placa de Áudio Creative Sound Blaster Z",
     preco: 450,
-   // descricao: "Placa de áudio Creative Sound Blaster Z, som de alta qualidade para gamers e profissionais.",
+    categoria: "Som",
     imagem: "src/imgs/produtos/placa de audio.jpg"
   },
   {
     id: 15,
     nome: "Webcam Logitech C920",
     preco: 400,
-   // descricao: "Webcam Logitech C920, Full HD 1080p, ideal para streaming e video",
+    categoria: "Acessório",
     imagem: "src/imgs/produtos/webcam logitech.jpg"
   },
   {
     id: 16,
     nome: "Leitor de Cartão SD Kingston 35MB/s",
     preco: 80,
-    //descricao: "Leitor de cartão SD Kingston, velocidade de leitura até 35MB/s, compacto e eficiente.",
+    categoria: "Acessório",
     imagem: "src/imgs/produtos/leitor de cartao.jpg"
   },
   {
     id: 17,
     nome: "Hub USB 3.0 4 Portas Anker",
     preco: 100,
-    //descricao: "Hub USB 3.0 Anker com 4 portas, compacto e ideal para expandir as conexões do seu PC.",
+    categoria: "Acessório",
     imagem: "src/imgs/produtos/hub usb.jpg"
   },
   {
     id: 18,
     nome: "Controlador de Jogos Xbox One",
     preco: 350,
-    //descricao: "Controle Xbox One, compatível com PC e consoles, design ergonômico e excelente para jogos.",
+    categoria: "Controle",
     imagem: "src/imgs/produtos/controlador xbox.jpg"
   },
   {
     id: 19,
     nome: "Placa de Captura Elgato HD60 S",
     preco: 1300,
-    descricao: "Placa de captura Elgato HD60 S, captura de vídeo em Full HD a 60fps, ideal para streamers.",
+    categoria: "Streaming",
     imagem: "src/imgs/produtos/placa de captura.jpg"
   },
   {
     id: 20,
     nome: "Roteador TP-Link Archer C6",
     preco: 250,
-    //descricao: "Roteador TP-Link Archer C6, Wi-Fi AC1200, ideal para conexões estáveis e rápidas em sua casa.",
+    categoria: "Rede",
     imagem: "src/imgs/produtos/roteador tplink.jpg"
   },
   {
-    id: 21,
-    nome: "Memória RAM Corsair Vengeance 32GB",
-    preco: 850,
-    //descricao: "Memória RAM Corsair Vengeance 32GB, DDR4, ideal para tarefas pesadas e multitarefa.",
-    imagem: "src/imgs/produtos/ram corsair.jpg"
+    "id": 21,
+    "nome": "PC Gamer Elite - RTX 4060",
+    "preco": 6800,
+    "categoria": "Computadores",
+    "descricao": "Máquina de alta performance para jogos em QHD. Inclui Core i5 de 13ª geração, RTX 4060 8GB, 16GB RAM DDR4 3200MHz e SSD NVMe de 1TB.",
+    "imagem": "src/imgs/produtos/pc_gamer_elite.jpg"
   },
   {
-    id: 22,
-    nome: "Placa de Vídeo GeForce GTX 1660",
-    preco: 2500,
-    //descricao: "Placa de vídeo GeForce GTX 1660, 6GB GDDR5, excelente para jogos em 1080p.",
-    imagem: "src/imgs/produtos/placa de video gtx.jpg"
+    "id": 22,
+    "nome": "Desktop Home Office Essencial",
+    "preco": 2100,
+    "categoria": "Computadores",
+    "descricao": "Ideal para estudos, trabalho e tarefas diárias. Equipado com Ryzen 3 4100, Gráficos Integrados, 8GB RAM e SSD SATA de 240GB.",
+    "imagem": "src/imgs/produtos/pc_home_office.jpg"
   },
   {
-    id: 23,
-    nome: "Processador Intel Core i7-10700K",
-    preco: 2300,
-    //descricao: "Processador Intel Core i7-10700K, 8 núcleos, 16 threads, até 5.1GHz, ideal para overclocking.",
-    imagem: "src/imgs/produtos/processador i7.jpg"
+    "id": 23,
+    "nome": "Workstation Profissional (Edição)",
+    "preco": 9500,
+    "categoria": "Computadores",
+    "descricao": "Construído para edição de vídeo 4K e renderização 3D. Possui Core i7 de 12ª geração, RTX A2000 6GB (Profissional), 32GB RAM e 2TB SSD NVMe de alta velocidade.",
+    "imagem": "src/imgs/produtos/pc_workstation.jpg"
+  },
+  {
+    "id": 24,
+    "nome": "Mini PC Compacto (HTPC)",
+    "preco": 1650,
+    "categoria": "Computadores",
+    "descricao": "Computador ultra-compacto e silencioso para centro de mídia (HTPC) ou uso discreto no escritório. APU Ryzen 5 5600G com Gráficos Vega, 16GB RAM e SSD de 500GB.",
+    "imagem": "src/imgs/produtos/pc_mini.jpg"
+  },
+  {
+    "id": 25,
+    "nome": "PC Gamer Custo-Benefício - RX 6600",
+    "preco": 4200,
+    "categoria": "Computadores",
+    "descricao": "Excelente entrada para o mundo gamer em Full HD. Combina Ryzen 5 5600, Radeon RX 6600 8GB, 16GB RAM DDR4 3200MHz e SSD NVMe de 500GB.",
+    "imagem": "src/imgs/produtos/pc_custo_beneficio.jpg"
   }
 ];
 
@@ -351,6 +381,7 @@ function atualizarFavoritosBackend(userId, favoritos) {
     body: JSON.stringify({ favoritos })
   });
 }
+
 
 
 

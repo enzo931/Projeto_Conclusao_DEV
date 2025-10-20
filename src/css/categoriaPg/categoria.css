@@ -1,0 +1,320 @@
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+  }
+
+  /* Topbar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .menu-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .logo img {
+    height: 80px;
+  }
+
+
+  .search-bar {
+    display: flex;
+    flex: 1;
+    margin: 0 20px;
+    max-width: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
+
+  .search-bar input {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+  }
+
+  .search-bar button {
+    padding: 8px 12px;
+    border: none;
+    background: #00aaff;
+    color: white;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+  }
+
+  .icons i {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    /* Fica escondida fora da tela */
+    width: 260px;
+    height: 100%;
+    background: #4aa8e5;
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    z-index: 20;
+  }
+
+  .sidebar.active {
+    left: 0;
+    /* Só aparece quando a classe active é ativada pelo JS */
+  }
+
+  .sidebar h3 {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar ul li {
+    margin: 12px 0;
+    cursor: pointer;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    float: right;
+    cursor: pointer;
+  }
+
+  /* ---------- MENU SUPERIOR DESKTOP (AZUL) ---------- */
+  .menu-bar {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 0;
+    font-weight: bold;
+  }
+
+  .menu-bar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+  }
+
+  .menu-bar a:hover {
+    text-decoration: underline;
+  }
+
+  /* ---------- CONTEÚDO PRINCIPAL ---------- */
+  .container-fluid {
+    margin-top: 30px;
+  }
+
+  .filter-box {
+    background-color: #e9f5ff;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%;
+  }
+
+  .product-card {
+    border: 1px solid #cce5ff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    transition: 0.3s;
+    background-color: white;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+
+  .price {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .old-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 14px;
+  }
+
+  .discount-badge {
+    background-color: #007BFF;
+    color: white;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .buy-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .buy-btn:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+  }
+
+  .card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative; /* Necessário para posicionar o botão favorito */
+  cursor: pointer;    /* Para indicar que o card é clicável */
+
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Botão de favorito no canto superior direito, só aparece no hover */
+.btn-favorito {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 26px;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.card:hover .btn-favorito {
+  opacity: 1;
+}
+
+/* Ícone de coração preenchido ou não */
+.btn-favorito .fa-heart {
+  transition: color 0.2s;
+}
+
+.btn-favorito .fas.fa-heart { /* Favoritado */
+  color: #e74c3c;
+}
+
+.btn-favorito .far.fa-heart { /* Não favoritado */
+  color: #bbb;
+}
+
+/* Centraliza o botão de ver produto no final do card */
+.card-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.btn-comprar {
+  background-color: #0077cc;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 24px;
+  color: white;
+  font-size: 16px;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-comprar:hover {
+  background-color: #005fa3;
+}
+
+/* Remove fundo e borda do botão favorito ao focar/clicar */
+.btn-favorito:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.descricao {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-top: auto; /* Isso faz a descrição ir para o rodapé junto com o botão */
+}
+
+.descricao p {
+  margin: 0 0 6px 0;
+  color: #444;
+  font-size: 15px;
+}
+
+.descricao .preco {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0077cc;
+  margin-bottom: 2px;
+}
+
+.descricao .pix-price {
+  font-size: 14px;
+  color: #27ae60;
+  margin-bottom: 2px;
+}
+
+.descricao .discount {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.descricao .installments {
+  font-size: 13px;
+  color: #555;
+}
