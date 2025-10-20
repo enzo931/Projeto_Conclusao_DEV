@@ -221,24 +221,44 @@ footer {
   position: relative;
 }
 
+/* Adicione ao final de: src/css/produtosPg/produtos.CSS */
 @media (max-width: 600px) {
-  .container {
-    width: 98%;
-    padding: 30px 5px;
-    border-radius: 30px;
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 5px;
   }
   .logo img {
-    width: 120px;
+    height: 45px;
   }
-  .card {
-    padding: 15px 5px;
-    border-radius: 18px;
+  .search-bar {
+    width: 100%;
+    margin: 0;
+    max-width: 100%;
   }
-  .Icon img {
-    width: 50px;
+  .product-container {
+    padding: 8px;
   }
-  .card button {
-    font-size: 15px;
-    padding: 10px;
+  .product-info h2 {
+    font-size: 1.3rem;
+  }
+  .product-image {
+    max-width: 100%;
+    height: auto;
+  }
+  .pix-price, .discount, .installments {
+    font-size: 16px;
+  }
+  .buy-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px 0;
+  }
+  .reviews {
+    padding: 8px;
+  }
+  .avatar {
+    width: 32px;
   }
 }

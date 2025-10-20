@@ -318,3 +318,45 @@
   font-size: 13px;
   color: #555;
 }
+
+/* Adicione ao final de: src/css/produtosPg/produtos.CSS */
+@media (max-width: 600px) {
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 5px;
+  }
+  .logo img {
+    height: 45px;
+  }
+  .search-bar {
+    width: 100%;
+    margin: 0;
+    max-width: 100%;
+  }
+  .product-container {
+    padding: 8px;
+  }
+  .product-info h2 {
+    font-size: 1.3rem;
+  }
+  .product-image {
+    max-width: 100%;
+    height: auto;
+  }
+  .pix-price, .discount, .installments {
+    font-size: 16px;
+  }
+  .buy-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px 0;
+  }
+  .reviews {
+    padding: 8px;
+  }
+  .avatar {
+    width: 32px;
+  }
+}

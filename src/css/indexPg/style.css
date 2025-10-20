@@ -295,51 +295,44 @@ h1 {
   color: #555;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .topbar, .sidebar, .cart, .product-container, .container {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .search-bar input {
-    font-size: 15px;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 300px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+/* Adicione ao final de: src/css/produtosPg/produtos.CSS */
+@media (max-width: 600px) {
   .topbar {
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
+    padding: 10px 5px;
+  }
+  .logo img {
+    height: 45px;
   }
   .search-bar {
     width: 100%;
     margin: 0;
+    max-width: 100%;
   }
-  .logo img {
-    height: 50px;
+  .product-container {
+    padding: 8px;
   }
-  .sidebar {
-    width: 80vw;
+  .product-info h2 {
+    font-size: 1.3rem;
   }
-  .product, .card {
-    min-width: 0;
-    width: 100%;
-    font-size: 15px;
+  .product-image {
+    max-width: 100%;
+    height: auto;
   }
-  .product-info h3, .card h2 {
-    font-size: 1.1rem;
+  .pix-price, .discount, .installments {
+    font-size: 16px;
   }
-  .btn-comprar, .buy-button {
+  .buy-button {
     width: 100%;
     font-size: 1rem;
-    padding: 12px 0;
+    padding: 14px 0;
+  }
+  .reviews {
+    padding: 8px;
+  }
+  .avatar {
+    width: 32px;
   }
 }
