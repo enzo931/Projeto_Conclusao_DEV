@@ -15,8 +15,8 @@ const urlsToCache = [
   
   // Arquivos .json e .js na raiz
   'usuarios.json',
-  './script.js',
-  './server.js', 
+  'script.js',
+  'server.js', 
 
   // Arquivos CSS (ajustei os caminhos com base na sua estrutura)
   'src/css/carrinhoPg/carrinho.css',
