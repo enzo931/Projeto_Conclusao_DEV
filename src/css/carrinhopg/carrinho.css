@@ -10,58 +10,59 @@
      min-height: 100vh;
  }
 
- /* Topbar */
  .topbar {
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     background: #fff;
-     padding: 10px 20px;
-     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-     position: sticky;
-     top: 0;
-     z-index: 10;
- }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
- .menu-icon {
-     cursor: pointer;
-     font-size: 20px;
-     color: #333;
- }
+.menu-icon {
+  cursor: pointer;
+  font-size: 35px;
+  color: #333;
+}
 
- .logo img {
-     height: 80px;
- }
+.logo img {
+  height: 80px;
+}
 
 
- .search-bar {
-     display: flex;
-     flex: 1;
-     margin: 0 20px;
-     max-width: 500px;
- }
+.search-bar {
+  display: flex;
+  flex: 1;
+  margin: 0 20px;
+  max-width: 500px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
 
- .search-bar input {
-     flex: 1;
-     padding: 8px;
-     border: 1px solid #ccc;
-     border-radius: 4px 0 0 4px;
- }
+.search-bar input {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  border-radius: 20px 0 0 20px;
+}
 
- .search-bar button {
-     padding: 8px 12px;
-     border: none;
-     background: #00aaff;
-     color: white;
-     border-radius: 0 4px 4px 0;
- }
+.search-bar button {
+  padding: 8px 12px;
+  border: none;
+  background: #00aaff;
+  color: white;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
 
- .icons i {
-     margin-left: 15px;
-     cursor: pointer;
-     font-size: 18px;
-     color: #333;
- }
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 30px;
+  color: #333;
+}
 
  /* Sidebar */
  .sidebar {
@@ -229,42 +230,86 @@
  }
 
 @media (max-width: 600px) {
+
   .topbar {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-    padding: 10px 5px;
+    /* Garante que o layout seja Flexbox (já estava, mas bom reforçar) */
+    display: flex;
+
+    /* OBRIGA que os elementos fiquem na mesma linha, mesmo que fiquem apertados */
+    flex-wrap: nowrap;
+
+    /* Centraliza os itens verticalmente */
+    align-items: center;
+
+    /* Distribui o espaço entre os elementos (Menu, Logo, Ícones) */
+    justify-content: space-between;
+
+    padding: 10px 10px;
+    /* Aumenta um pouco o padding lateral para respirar */
   }
+
   .logo img {
-    height: 45px;
+    height: 80px;
   }
+
   .search-bar {
-    width: 100%;
-    margin: 0;
-    max-width: 100%;
+    display: none;
+    max-width: 120px;
+    margin: 0 5px;
   }
+
   .product-container {
     padding: 8px;
   }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 cards por linha */
+    gap: 10px;
+    /* Reduz o espaçamento para caber mais */
+  }
+
   .product-info h2 {
     font-size: 1.3rem;
   }
+
   .product-image {
     max-width: 100%;
     height: auto;
   }
-  .pix-price, .discount, .installments {
+
+  .pix-price,
+  .discount,
+  .installments {
     font-size: 16px;
   }
+
   .buy-button {
     width: 100%;
     font-size: 1rem;
     padding: 14px 0;
   }
+
   .reviews {
     padding: 8px;
   }
+
   .avatar {
     width: 32px;
   }
+
+  .search-bar {
+    max-width: 50px;
+  }
+
+  .icons i {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  .menu-icon {
+        font-size: 20px; /* Tamanho do ícone de menu (hamburguer) */
+    }
+
+
 }
