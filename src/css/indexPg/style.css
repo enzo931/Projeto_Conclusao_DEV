@@ -104,17 +104,61 @@ body {
 }
 
 /* Banners */
-.banner img {
+/* Container que define a área do carrossel */
+.carousel-container {
+  position: relative;
   width: 90%;
-  display: block;
-  margin: 20px 0;
+  /* Mantém a largura de 90% que você já usa */
+  margin: 20px auto;
+  /* Centraliza vertical e horizontalmente */
+  overflow: hidden;
+  /* Importante para esconder as imagens que não estão ativas */
   border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
+  /* Mantém o border-radius */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.banner img:hover {
-  transform: scale(1.01);
+/* Container interno que segura as imagens */
+.carousel-inner {
+  display: flex;
+  /* Flexbox para alinhar os itens */
+  transition: transform 0.5s ease-in-out;
+  /* Adiciona transição para animação suave */
+}
+
+/* Cada imagem dentro do carrossel */
+.carousel-item {
+  width: 100%;
+  flex-shrink: 0;
+  /* Garante que as imagens não encolham */
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Indicadores (as bolinhas) */
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
+
+.indicator {
+  width: 15px;
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicator.active {
+  background-color: #00aaff;
+  /* Cor de destaque */
 }
 
 .sub-banners {
@@ -385,8 +429,9 @@ h1 {
   }
 
   .menu-icon {
-        font-size: 20px; /* Tamanho do ícone de menu (hamburguer) */
-    }
+    font-size: 20px;
+    /* Tamanho do ícone de menu (hamburguer) */
+  }
 
 
 }

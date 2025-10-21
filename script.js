@@ -71,7 +71,7 @@ const produtos = [
     nome: "Placa de Vídeo RX 560 XT",
     preco: 1500,
     categoria: "Hardware",
-    imagem: "src/imgs/produtos/placa de video.jpg"
+    imagem: "src/imgs/produtos/Placa de video.jpg"
   },
   {
     id: 2,
@@ -359,6 +359,67 @@ document.querySelectorAll('.grid').forEach(div => {
   mostrarProdutos(produtos, idsFiltrados, div.id);
 });
 
+// Função IIFE para não poluir o escopo global
+(() => {
+    const container = document.querySelector('.carousel-container');
+    const inner = document.querySelector('.carousel-inner');
+    const items = document.querySelectorAll('.carousel-item');
+    const indicatorsContainer = document.querySelector('.carousel-indicators');
+
+    if (!container || items.length === 0) return; // Sai se não encontrar o carrossel
+
+    const totalItems = items.length;
+    let currentIndex = 0;
+    const intervalTime = 5000; // Troca a cada 5 segundos
+
+    // 1. Cria os indicadores de navegação (bolinhas)
+    function createIndicators() {
+        items.forEach((item, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (index === 0) indicator.classList.add('active');
+
+            indicator.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            indicatorsContainer.appendChild(indicator);
+        });
+    }
+
+    // 2. Função para ir para um slide específico
+    function goToSlide(index) {
+        if (index < 0 || index >= totalItems) return;
+
+        currentIndex = index;
+        const offset = -currentIndex * 100; // Calcula o deslocamento em % (0%, -100%, -200%, etc.)
+        
+        // Aplica o deslocamento horizontal ao container interno
+        inner.style.transform = `translateX(${offset}%)`;
+
+        // Atualiza o estado ativo dos indicadores
+        document.querySelectorAll('.indicator').forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    // 3. Função para o próximo slide
+    function nextSlide() {
+        const newIndex = (currentIndex + 1) % totalItems;
+        goToSlide(newIndex);
+    }
+
+    // 4. Inicializa
+    createIndicators();
+    
+    // Inicia a troca automática
+    let interval = setInterval(nextSlide, intervalTime);
+
+    // Opcional: Pausa no hover para o usuário conseguir ler
+    container.addEventListener('mouseenter', () => clearInterval(interval));
+    container.addEventListener('mouseleave', () => {
+        interval = setInterval(nextSlide, intervalTime);
+    });
+})();
 
 
 if (usuarioLogado) {
