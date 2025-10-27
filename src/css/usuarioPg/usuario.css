@@ -81,6 +81,11 @@ body {
   z-index: 20;
 }
 
+.sidebar a {
+    color: white;
+    text-decoration: none;
+  }
+
 .sidebar.active {
   left: 0; /* Só aparece quando a classe active é ativada pelo JS */
 }

@@ -77,6 +77,11 @@ body {
   left: 0; /* Só aparece quando a classe active é ativada pelo JS */
 }
 
+.sidebar a {
+    color: white;
+    text-decoration: none;
+  }
+
 
 .sidebar-logo {
   text-align: center;

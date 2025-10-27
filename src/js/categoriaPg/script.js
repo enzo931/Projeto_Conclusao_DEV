@@ -58,7 +58,7 @@
 
     const produtos = [
         // Lista completa dos seus produtos (é crucial que esta lista esteja aqui)
-        { id: 1, nome: "Placa de Vídeo RX 560 XT", preco: 1500, categoria: "Hardware", imagem: "src/imgs/produtos/placa de video.jpg" },
+        { id: 1, nome: "Placa de Vídeo RX 560 XT", preco: 1500, categoria: "Hardware", imagem: "src/imgs/produtos/Placa de video.jpg" },
         { id: 2, nome: "Processador Ryzen 5 4500", preco: 950, categoria: "Hardware", imagem: "src/imgs/produtos/ryzen5.jpg" },
         { id: 3, nome: "Memória RAM 16GB DDR4 3200MHz", preco: 420, categoria: "Hardware", imagem: "src/imgs/produtos/Memoria Ram kllisre.webp" },
         { id: 4, nome: "Placa-mãe ASUS TUF B450M", preco: 550, categoria: "Hardware", imagem: "src/imgs/produtos/Placa-mãe ASUS TUF B450M.jpg" },

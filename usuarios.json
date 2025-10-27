@@ -76,12 +76,43 @@
       6,
       2,
       3,
-      1
+      1,
+      8
     ],
     "nome": "enzo",
     "email": "enzo@email.com",
     "cpf": "18263552136772",
     "senha": "1234",
     "carrinho": []
+  },
+  {
+    "id": 1761563880553,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [],
+    "nome": "ronaldo ",
+    "email": "ronaldo@email",
+    "cpf": "143214234",
+    "senha": "1234567"
+  },
+  {
+    "id": 1761564196688,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [],
+    "nome": "messi",
+    "email": "messi@email.com",
+    "cpf": "1232132131",
+    "senha": "12345"
+  },
+  {
+    "id": 1761564222311,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [],
+    "nome": "messi",
+    "email": "messi@email.com",
+    "cpf": "12321321",
+    "senha": "12345"
   }
 ]
