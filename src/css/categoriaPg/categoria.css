@@ -1,11 +1,13 @@
-  body {
+body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f4f4f4;
-  }
-
-  /* Topbar */
-  .topbar {
+    color: #333;
+}
+/* ========================================================== */
+/* ========================= TOPBAR ========================= */
+/* ========================================================== */
+.topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,57 +16,83 @@
     position: sticky;
     top: 0;
     z-index: 10;
-  }
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
 
-  .menu-icon {
+.menu-icon {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 35px;
     color: #333;
-  }
+    padding-right: 15px;
+}
 
-  .logo img {
-    height: 80px;
-  }
+.logo img {
+    height: 60px;
+}
 
-
-  .search-bar {
+/* --- Search Bar --- */
+.search-bar {
     display: flex;
     flex: 1;
     margin: 0 20px;
     max-width: 500px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-  }
+    border-radius: 25px;
+    overflow: hidden;
+}
 
-  .search-bar input {
+.search-bar input {
     flex: 1;
-    padding: 16px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 20px 0 0 20px;
-  }
+    font-size: 16px;
+    outline: none;
+}
 
-  .search-bar button {
-    padding: 8px 12px;
+.search-bar button {
+    padding: 10px 18px;
     border: none;
     background: #00aaff;
     color: white;
-    border-radius: 0 20px 20px 0;
     cursor: pointer;
-  }
+    transition: background 0.3s;
+}
+.search-bar button:hover {
+    background: #0088cc;
+}
 
-  .icons i {
+/* --- Icons e Navegação --- */
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #333;
+    /* Remover 'display: flex' daqui, pois o cart-container já lida com o alinhamento */
+}
+
+/* Estilos de ícones e nome de usuário, aplicados a todos os itens não-cart */
+.icons i, .icons .user-nome {
     margin-left: 15px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 24px;
     color: #333;
-  }
+}
+.icons .user-nome {
+    font-size: 16px;
+    font-weight: bold;
+}
 
-  /* Sidebar */
-  .sidebar {
+
+/* ========================================================== */
+/* ========================= SIDEBAR ======================== */
+/* ========================================================== */
+.sidebar {
     position: fixed;
     top: 0;
     left: -300px;
-    /* Fica escondida fora da tela */
     width: 260px;
     height: 100%;
     background: #4aa8e5;
@@ -72,41 +100,108 @@
     padding: 20px;
     transition: left 0.3s ease-in-out;
     z-index: 20;
-  }
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+}
 
-  .sidebar.active {
+.sidebar.active {
     left: 0;
-    /* Só aparece quando a classe active é ativada pelo JS */
-  }
+}
 
-  .sidebar h3 {
-    margin-top: 20px;
-    font-size: 16px;
-  }
+.sidebar h3 {
+    margin-top: 25px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
 
-  .sidebar a {
-    color: white;
-    text-decoration: none;
-  }
-
-  .sidebar ul {
+.sidebar ul {
     list-style: none;
     padding: 0;
-  }
+}
 
-  .sidebar ul li {
+.sidebar ul li {
     margin: 12px 0;
     cursor: pointer;
-  }
+    transition: background 0.2s;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
 
-  .close-btn {
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+.close-btn {
     background: none;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
     float: right;
     cursor: pointer;
-  }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    display: none;
+    transition: opacity 0.3s;
+}
+.overlay.active {
+    display: block;
+}
+
+/* ========================================================== */
+/* ========================= CARRINHO BADGE ================= */
+/* ========================================================== */
+
+/* 1. Contêiner para posicionamento relativo */
+.cart-container {
+    position: relative;
+    display: inline-block;
+    /* CRÍTICO: Usa a mesma margem do ícone normal para manter o espaçamento uniforme */
+    margin-left: 15px; 
+}
+
+/* CRÍTICO: Remove a margem extra do ícone fa-shopping-cart (que seria aplicada pelo .icons i) 
+   porque a margem está no .cart-container agora. */
+.cart-container .fa-shopping-cart { 
+    margin-left: 0; 
+}
+
+/* 2. Estilização e Posicionamento Absoluto do Badge */
+.badge {
+    position: absolute;
+    top: -5px; 
+    right: -10px;
+
+    /* Estilo visual */
+    background-color: #e74c3c;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    
+    /* Forma, tamanho e centralização */
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    padding: 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 5;
+    box-shadow: 0 0 0 2px white; /* Efeito de borda branca (3D sutil) */
+}
 
   /* ---------- MENU SUPERIOR DESKTOP (AZUL) ---------- */
   .menu-bar {

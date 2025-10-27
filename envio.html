@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="src/css/envioPg/envio.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="menu-icon" id="openSidebar"><i class="fa fa-bars"></i></div>
+    <div class="logo">
+      <img src="src/imgs/logo/image.png" alt="Logo">
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar produtos...">
+      <button><i class="fa fa-search"></i></button>
+    </div>
+    <div class="icons">
+      <a href="Login.html"><i class="fa fa-user"></i></a>
+      <i class="fa fa-cog"></i>
+
+      <div class="cart-container">
+        <a href="carrinho.html"><i class="fa fa-shopping-cart"></i></a>
+        <span id="cart-badge" class="badge"></span>
+      </div>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="closeSidebar"><i class="fa fa-times"></i></button>
+    <div class="sidebar-logo">
+      <img src="src/imgs/logo/image.png" alt="Epic Hardware" width="150">
+    </div>
+    <h3>Categorias</h3>
+    <ul id="lista-categorias">
+      <li data-categoria="Computadores"><i class="fa fa-desktop"></i> Computadores</li>
+      <li data-categoria="Monitores"><i class="fa fa-tv"></i> Monitores</li>
+      <li data-categoria="Produtos Reutilizados"><i class="fa fa-recycle"></i> Produtos Reutilizados</li>
+      <li data-categoria="Hardware"><i class="fa fa-microchip"></i> Hardware</li>
+      <li data-categoria="Periféricos"><i class="fa fa-keyboard"></i> Periféricos</li>
+      <li data-categoria="Produtos Certificados"><i class="fa fa-certificate"></i> Produtos Certificados</li>
+    </ul>
+
+    <h3>Ajuda</h3>
+    <ul>
+      <li><i class="fa fa-user-circle"></i> Seu perfil</li>
+      <li><i class="fa fa-headset"></i> Suporte</li>
+      <li><i class="fa fa-wrench"></i> Configurações</li>
+    </ul>
+  </aside>
+
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <main class="container">
+
+    <section class="progress-bar">
+      <div class="progress active"></div>
+      <div class="progress"></div>
+      <div class="progress"></div>
+    </section>
+
+    <section class="delivery-address">
+      <h2>Selecione o endereço de entrega</h2>
+
+      <div class="search-container">
+        <input type="text" id="address-input" placeholder="Digite seu endereço (Rua, Número, Bairro...)">
+        <div id="autocomplete-results" class="autocomplete-dropdown">
+        </div>
+      </div>
+
+      <button id="open-map-btn" class="map-open-button">
+        📍 Abrir Mapa e Selecionar Local
+      </button>
+
+      <div id="map-modal" class="map-modal" style="display: none;">
+        <div class="map-content">
+          <h3>Determine o Local no Mapa</h3>
+          <div id="map-canvas" style="height: 300px; width: 100%;"></div>
+          <button id="confirm-location-btn">Confirmar Local</button>
+          <button id="close-map-btn">Fechar</button>
+        </div>
+      </div>
+
+      <div class="card selected-address-card" style="margin-top: 15px;">
+        <div class="address-info">
+          <span class="icon">🏠</span>
+          <div>
+            <p class="subtitle">Endereço Selecionado</p>
+            <p id="selected-address-text">Nenhum endereço selecionado.</p>
+          </div>
+        </div>
+        <a href="#" class="change" id="change-address-btn">Alterar</a>
+      </div>
+    </section>
+
+    <section class="shipping-method">
+      <h2>Selecione a forma de envio</h2>
+
+      <div class="card shipping-summary-card" id="shipping-summary-card">
+        <div class="shipping-info">
+          <span class="icon">🚛</span>
+          <div>
+            <p class="title" id="selected-shipping-title">Envio Normal</p>
+            <p class="subtitle" id="selected-shipping-subtitle">R$ 12,50 • 5-7 Dias Úteis</p>
+          </div>
+        </div>
+        <a href="#" class="change" id="toggle-shipping-options">Alterar</a>
+      </div>
+
+      <div class="shipping-options-dropdown" id="shipping-options-dropdown" style="display: none;">
+
+        <label class="shipping-option-item" for="shipping-fast">
+          <input type="radio" id="shipping-fast" name="shipping-method" value="fast" data-price="25.00" data-days="2-3">
+          <div class="shipping-details">
+            <p class="method-name">Envio Rápido (Agência Rápida)</p>
+            <p class="method-days">2-3 Dias Úteis</p>
+          </div>
+          <span class="price-value">R$ 25,00</span>
+        </label>
+
+        <label class="shipping-option-item" for="shipping-medium">
+          <input type="radio" id="shipping-medium" name="shipping-method" value="medium" data-price="12.50"
+            data-days="5-7" checked>
+          <div class="shipping-details">
+            <p class="method-name">Envio Normal (Agência Meio Termo)</p>
+            <p class="method-days">5-7 Dias Úteis</p>
+          </div>
+          <span class="price-value">R$ 12,50</span>
+        </label>
+
+        <label class="shipping-option-item" for="shipping-slow">
+          <input type="radio" id="shipping-slow" name="shipping-method" value="slow" data-price="5.90"
+            data-days="10-15">
+          <div class="shipping-details">
+            <p class="method-name">Envio Econômico (Agência Lenta)</p>
+            <p class="method-days">10-15 Dias Úteis</p>
+          </div>
+          <span class="price-value">R$ 5,90</span>
+        </label>
+
+      </div>
+    </section>
+
+    <section class="summary">
+      <h2>Resumo</h2>
+
+      <div class="summary-item">
+        <span>Subtotal</span>
+        <span class="price" id="envio-subtotal">R$ 0,00</span>
+      </div>
+
+      <div class="summary-item">
+        <span>Frete</span>
+        <span class="price" id="envio-frete">R$ 0,00</span>
+      </div>
+
+      <div class="summary-item total">
+        <span>Total do pedido</span>
+        <span class="price" id="envio-total">R$ 0,00</span>
+      </div>
+    </section>
+
+    <button class="finalizar-compra-btn" id="finalizar-compra-btn">Continuar para pagamento</button>
+
+    <p class="envio-total-pix" id="envio-total-pix">Valor com desconto no Pix</p>
+
+  </main>
+</body>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE9nNi0o7YHUCELVdx4xdh3HUJwoloOz8&libraries=places&callback=initMap">
+  </script>
+<script src="src/js/envioPg/script.js"></script>
+
+</html>

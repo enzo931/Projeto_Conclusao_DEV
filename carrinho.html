@@ -21,10 +21,14 @@
       <button><i class="fa fa-search"></i></button>
     </div>
     <div class="icons">
-      <a href="Login.html"><i class="fa fa-user"></i></a>
-      <i class="fa fa-cog"></i>
-      <a href="carrinho.html"><i class="fa fa-shopping-cart"></i></a>
-    </div>
+            <a href="Login.html"><i class="fa fa-user"></i></a>
+            <i class="fa fa-cog"></i>
+
+            <div class="cart-container">
+                <a href="carrinho.html"><i class="fa fa-shopping-cart"></i></a>
+                <span id="cart-badge" class="badge"></span>
+            </div>
+        </div>
   </header>
 
   <!-- Sidebar (oculta por padrão) -->
@@ -64,5 +68,8 @@
   </section>
 </body>
 <script src="src/js/carrinhoPg/script.js"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE9nNi0o7YHUCELVdx4xdh3HUJwoloOz8&libraries=places&callback=initMap">
+</script>
 
 </html>

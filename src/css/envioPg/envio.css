@@ -1,0 +1,564 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+}
+
+/* ========================================================== */
+/* ========================= TOPBAR ========================= */
+/* ========================================================== */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.menu-icon {
+    cursor: pointer;
+    font-size: 35px;
+    color: #333;
+    padding-right: 15px;
+}
+
+.logo img {
+    height: 60px;
+}
+
+/* --- Search Bar --- */
+.search-bar {
+    display: flex;
+    flex: 1;
+    margin: 0 20px;
+    max-width: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 18px;
+    border: none;
+    background: #00aaff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.search-bar button:hover {
+    background: #0088cc;
+}
+
+/* --- Icons e Navegação --- */
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #333;
+    /* Remover 'display: flex' daqui, pois o cart-container já lida com o alinhamento */
+}
+
+/* Estilos de ícones e nome de usuário, aplicados a todos os itens não-cart */
+.icons i, .icons .user-nome {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+.icons .user-nome {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* ========================================================== */
+/* ========================= SIDEBAR ======================== */
+/* ========================================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 260px;
+    height: 100%;
+    background: #4aa8e5;
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    z-index: 20;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h3 {
+    margin-top: 25px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    float: right;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    display: none;
+    transition: opacity 0.3s;
+}
+.overlay.active {
+    display: block;
+}
+
+/* ========================================================== */
+/* ========================= CARRINHO BADGE ================= */
+/* ========================================================== */
+
+/* 1. Contêiner para posicionamento relativo */
+.cart-container {
+    position: relative;
+    display: inline-block;
+    /* CRÍTICO: Usa a mesma margem do ícone normal para manter o espaçamento uniforme */
+    margin-left: 15px; 
+}
+
+/* CRÍTICO: Remove a margem extra do ícone fa-shopping-cart (que seria aplicada pelo .icons i) 
+   porque a margem está no .cart-container agora. */
+.cart-container .fa-shopping-cart { 
+    margin-left: 0; 
+}
+
+/* 2. Estilização e Posicionamento Absoluto do Badge */
+.badge {
+    position: absolute;
+    top: -5px; 
+    right: -10px;
+
+    /* Estilo visual */
+    background-color: #e74c3c;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    
+    /* Forma, tamanho e centralização */
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    padding: 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 5;
+    box-shadow: 0 0 0 2px white; /* Efeito de borda branca (3D sutil) */
+}
+
+/* --- Container Principal --- */
+.container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+/* --- Barra de Progresso --- */
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.progress {
+    flex: 1;
+    height: 6px;
+    background: #ddd;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+.progress:last-child {
+    margin-right: 0;
+}
+
+.progress.active {
+    background: #3c47e7;
+}
+
+/* --- Títulos de Seção --- */
+h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+    border-left: 4px solid #3c47e7;
+    padding-left: 10px;
+}
+
+/* --- Cards Gerais --- */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.icon {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.address-info,
+.shipping-info {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    margin: 0;
+    font-size: 16px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+.change {
+    color: #3c47e7;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.change:hover {
+    color: #2b35c0;
+}
+
+/* --- Endereço --- */
+.delivery-address {
+    margin-bottom: 30px;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+#address-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+#address-input:focus {
+    border-color: #3c47e7;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(60, 71, 231, 0.2);
+}
+
+/* Autocomplete Dropdown (mantido) */
+.autocomplete-dropdown {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f9f9f9;
+    font-size: 14px;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover {
+    background: #f1f1f1;
+}
+
+.map-open-button {
+    background: #3c47e7;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.3s;
+}
+
+.map-open-button:hover {
+    background: #2b35c0;
+}
+
+.selected-address-card {
+    border: 1px solid #3c47e7; /* Destaque azul para o endereço selecionado */
+}
+
+#selected-address-text {
+    font-size: 15px;
+    color: #333;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* --- Modal do Mapa --- */
+.map-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Z-index alto para garantir que fique por cima de tudo */
+}
+
+.map-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.map-content h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 18px;
+}
+
+#map-canvas {
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+#confirm-location-btn,
+#close-map-btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 5px;
+    transition: background 0.3s;
+    font-weight: 600;
+}
+
+#confirm-location-btn {
+    background: #2ecc71;
+    color: white;
+    margin-right: 10px;
+}
+#confirm-location-btn:hover {
+    background: #27ae60;
+}
+
+#close-map-btn {
+    background: #e0e0e0;
+    color: #333;
+}
+#close-map-btn:hover {
+    background: #ccc;
+}
+
+
+/* --- Opções de Frete --- */
+.shipping-summary-card.active-dropdown {
+    border-radius: 10px 10px 0 0;
+    border-bottom: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-options-dropdown {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: -20px; /* Puxa para grudar no cartão */
+    padding: 5px 0;
+    border-top: 1px solid #ddd;
+    z-index: 5; /* Fica acima do background, mas abaixo do modal */
+}
+
+.shipping-option-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.shipping-option-item:last-child {
+    border-bottom: none;
+}
+
+.shipping-option-item:hover {
+    background: #f7f7f7;
+}
+
+.shipping-option-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.shipping-details {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.method-name {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.method-days {
+    font-size: 13px;
+    color: #777;
+    margin: 0;
+}
+
+.price-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #3c47e7; /* Destaque azul para preço */
+}
+
+/* Destaque para a opção selecionada */
+.shipping-option-item input[type="radio"]:checked ~ .shipping-details .method-name,
+.shipping-option-item input[type="radio"]:checked ~ .price-value {
+    color: #2ecc71; /* Cor de destaque verde */
+    font-weight: bold;
+}
+
+/* --- Resumo do Pedido --- */
+.summary {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.summary-item.total {
+    font-weight: bold;
+    font-size: 18px;
+    border-top: 1px dashed #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+/* --- Botão Finalizar e PIX --- */
+#finalizar-compra-btn { /* CORREÇÃO DO SELETOR: Usando o ID do HTML */
+    background: #3c47e7;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 16px;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#finalizar-compra-btn:hover {
+    background: #2b35c0;
+}
+
+#envio-total-pix { /* CORREÇÃO DO SELETOR: Usando o ID do HTML */
+    font-size: 14px;
+    color: #008000; /* Destaque verde para o desconto */
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+}

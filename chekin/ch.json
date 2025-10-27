@@ -1,0 +1,25 @@
+{
+  "page": "Método de pagamento",
+  "payment_methods": [
+    { "id": "pix", "label": "Pague via PIX" },
+    { "id": "boleto", "label": "Boleto Bancário" },
+    { "id": "credito", "label": "Cartão de Crédito" },
+    { "id": "nupay", "label": "NuPay - Até 15x s/ Juros ou 24x c/ Juros" }
+  ],
+  "summary": {
+    "subtotal": 599.97,
+    "frete": 0.73,
+    "total": 600.70
+  },
+  "button": {
+    "label": "Continuar para revisão",
+    "action": "goToReview"
+  },
+  "bottom_nav": [
+    { "name": "Home", "icon": "home", "link": "#" },
+    { "name": "Categorias", "icon": "grid", "link": "#" },
+    { "name": "Favoritos", "icon": "heart", "link": "#" },
+    { "name": "Carrinho", "icon": "cart", "link": "#" },
+    { "name": "Minha conta", "icon": "user", "link": "#" }
+  ]
+}
