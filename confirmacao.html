@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="src/css/confirmacaoPg/confirmacao.css">
+</head>
+<body>
+
+    <main class="confirmation-container">
+        <i class="fa fa-check-circle success-icon"></i>
+        
+        <h1>Pedido Realizado com Sucesso!</h1>
+        
+        <p class="main-message">
+            Uma mensagem com todos os detalhes do seu pedido e rastreamento foi enviada para o seu email:
+            <span id="user-email-display" class="highlight-email">carregando...</span>
+        </p>
+
+        <p class="sub-message">
+            Verifique sua caixa de entrada e, se necessário, a pasta de spam.
+        </p>
+
+        <button class="back-home-btn" onclick="window.location.href='index.html'">
+            Voltar para a Página Inicial
+        </button>
+    </main>
+
+    <script src="src/js/confirmacaoPg/script.js"></script>
+</body>
+</html>

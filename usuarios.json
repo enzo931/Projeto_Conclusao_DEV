@@ -128,5 +128,35 @@
     "email": "messi@email.com",
     "cpf": "12321321",
     "senha": "12345"
+  },
+  {
+    "id": 1761593654288,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [
+      {
+        "id": 1,
+        "quantidade": 1
+      }
+    ],
+    "nome": "teste",
+    "email": "testar8161@gmail.com",
+    "cpf": "12121212342",
+    "senha": "teste1234."
+  },
+  {
+    "id": 1761650801434,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [
+      {
+        "id": 7,
+        "quantidade": 1
+      }
+    ],
+    "nome": "bryan",
+    "email": "bryan.rosendo@aluno.senai.br",
+    "cpf": "13214543534",
+    "senha": "123"
   }
 ]

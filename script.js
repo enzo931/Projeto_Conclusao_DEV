@@ -71,7 +71,7 @@ const produtos = [{
   nome: "Placa de Vídeo RX 560 XT",
   preco: 1500,
   descricao: "Placa de vídeo Radeon RX 560 XT, 8GB GDDR5, excelente para jogos em Full HD.",
-  imagem: "src/imgs/produtos/placa de video.jpg"
+  imagem: "src/imgs/produtos/Placa de video.jpg"
 },
 {
   id: 2,

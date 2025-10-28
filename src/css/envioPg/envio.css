@@ -231,7 +231,7 @@ body {
 }
 
 .progress.active {
-    background: #3c47e7;
+    background: #00aaff;
 }
 
 /* --- Títulos de Seção --- */
@@ -240,7 +240,7 @@ h2 {
     color: #333;
     margin-bottom: 15px;
     font-weight: 600;
-    border-left: 4px solid #3c47e7;
+    border-left: 4px solid #00aaff;
     padding-left: 10px;
 }
 
@@ -281,14 +281,14 @@ h2 {
 }
 
 .change {
-    color: #3c47e7;
+    color: #00aaff;
     font-size: 14px;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s;
 }
 .change:hover {
-    color: #2b35c0;
+    color: #0086c9;
 }
 
 /* --- Endereço --- */
@@ -312,7 +312,7 @@ h2 {
 }
 
 #address-input:focus {
-    border-color: #3c47e7;
+    border-color: #00aaff;
     outline: none;
     box-shadow: 0 0 0 2px rgba(60, 71, 231, 0.2);
 }
@@ -347,7 +347,7 @@ h2 {
 }
 
 .map-open-button {
-    background: #3c47e7;
+    background: #00aaff;
     color: white;
     border: none;
     width: 100%;
@@ -360,11 +360,11 @@ h2 {
 }
 
 .map-open-button:hover {
-    background: #2b35c0;
+    background: #0089ce;
 }
 
 .selected-address-card {
-    border: 1px solid #3c47e7; /* Destaque azul para o endereço selecionado */
+    border: 1px solid #00aaff; /* Destaque azul para o endereço selecionado */
 }
 
 #selected-address-text {
@@ -502,7 +502,7 @@ h2 {
 .price-value {
     font-size: 15px;
     font-weight: 600;
-    color: #3c47e7; /* Destaque azul para preço */
+    color: #00aaff; /* Destaque azul para preço */
 }
 
 /* Destaque para a opção selecionada */
@@ -538,7 +538,7 @@ h2 {
 
 /* --- Botão Finalizar e PIX --- */
 #finalizar-compra-btn { /* CORREÇÃO DO SELETOR: Usando o ID do HTML */
-    background: #3c47e7;
+    background: #00aaff;
     color: white;
     border: none;
     width: 100%;
@@ -552,7 +552,7 @@ h2 {
 }
 
 #finalizar-compra-btn:hover {
-    background: #2b35c0;
+    background: #0089ce;
 }
 
 #envio-total-pix { /* CORREÇÃO DO SELETOR: Usando o ID do HTML */
