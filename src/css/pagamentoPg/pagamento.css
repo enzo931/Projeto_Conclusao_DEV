@@ -192,6 +192,19 @@ body {
     display: block;
 }
 
+.sidebar li i a {
+    color: white;
+    text-decoration: none;
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-weight: normal;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 /* ========================================================== */
 /* =================== TELA DE PAGAMENTO ==================== */
 /* ========================================================== */

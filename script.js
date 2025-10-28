@@ -246,44 +246,84 @@ const produtos = [{
   "imagem": "src/imgs/produtos/pc_custo_beneficio.jpg"
 },
 {
-  "id": 21,
-  "nome": "PC Gamer Elite - RTX 4060",
-  "preco": 6800,
-  "categoria": "Computadores",
-  "descricao": "Máquina de alta performance para jogos em QHD. Inclui Core i5 de 13ª geração, RTX 4060 8GB, 16GB RAM DDR4 3200MHz e SSD NVMe de 1TB.",
-  "imagem": "src/imgs/produtos/pc_gamer_elite.jpg"
+  id: 26,
+  nome: "PC Gamer de Entrada (USADO) - GTX 1060",
+  preco: 2100,
+  categoria: "Produtos Reutilizados",
+  imagem: "src/imgs/produtos/usado_pc_gtx1060.jpg",
+  condicao: "Utilizado"
 },
 {
-  "id": 22,
-  "nome": "Desktop Home Office Essencial",
-  "preco": 2100,
-  "categoria": "Computadores",
-  "descricao": "Ideal para estudos, trabalho e tarefas diárias. Equipado com Ryzen 3 4100, Gráficos Integrados, 8GB RAM e SSD SATA de 240GB.",
-  "imagem": "src/imgs/produtos/pc_home_office.jpg"
+  id: 27,
+  nome: "Monitor Gamer Curvo 27' - 144Hz (USADO)",
+  preco: 1450,
+  categoria: "Monitores",
+  imagem: "src/imgs/produtos/usado_monitor_curvo.jpg",
+  condicao: "Utilizado"
 },
 {
-  "id": 23,
-  "nome": "Workstation Profissional (Edição)",
-  "preco": 9500,
-  "categoria": "Computadores",
-  "descricao": "Construído para edição de vídeo 4K e renderização 3D. Possui Core i7 de 12ª geração, RTX A2000 6GB (Profissional), 32GB RAM e 2TB SSD NVMe de alta velocidade.",
-  "imagem": "src/imgs/produtos/pc_workstation.jpg"
+  id: 28,
+  nome: "Placa de Vídeo RTX 2070 Super - Founders Edition (USADA)",
+  preco: 2550,
+  categoria: "Hardware",
+  imagem: "src/imgs/produtos/usado_rtx2070s.jpg",
+  condicao: "Utilizado"
 },
 {
-  "id": 24,
-  "nome": "Mini PC Compacto (HTPC)",
-  "preco": 1650,
-  "categoria": "Computadores",
-  "descricao": "Computador ultra-compacto e silencioso para centro de mídia (HTPC) ou uso discreto no escritório. APU Ryzen 5 5600G com Gráficos Vega, 16GB RAM e SSD de 500GB.",
-  "imagem": "src/imgs/produtos/pc_mini.jpg"
+  id: 29,
+  nome: "Kit Memória RAM 16GB (2x8) DDR4 3200MHz (USADO)",
+  preco: 380,
+  categoria: "Hardware",
+  imagem: "src/imgs/produtos/usado_ram_16gb.jpg",
+  condicao: "Utilizado"
 },
 {
-  "id": 25,
-  "nome": "PC Gamer Custo-Benefício - RX 6600",
-  "preco": 4200,
-  "categoria": "Computadores",
-  "descricao": "Excelente entrada para o mundo gamer em Full HD. Combina Ryzen 5 5600, Radeon RX 6600 8GB, 16GB RAM DDR4 3200MHz e SSD NVMe de 500GB.",
-  "imagem": "src/imgs/produtos/pc_custo_beneficio.jpg"
+  id: 30,
+  nome: "Teclado Mecânico HyperX Alloy FPS (USADO)",
+  preco: 310,
+  categoria: "Periféricos",
+  imagem: "src/imgs/produtos/usado_teclado_mecanico.jpg",
+  condicao: "Utilizado"
+},
+{
+  id: 31,
+  nome: "Mouse Gamer Logitech G502 HERO (USADO, Certificado)",
+  preco: 200,
+  categoria: "Produtos Certificados",
+  imagem: "src/imgs/produtos/usado_mouse_g502.jpg",
+  condicao: "Utilizado"
+},
+{
+  id: 32,
+  nome: "Processador Core i5-9400F (USADO)",
+  preco: 620,
+  categoria: "Hardware",
+  imagem: "src/imgs/produtos/usado_i5_9400f.jpg",
+  condicao: "Utilizado"
+},
+{
+  id: 33,
+  nome: "Notebook Acer Nitro 5 (USADO) - Core i7 e GTX 1650",
+  preco: 3700,
+  categoria: "Computadores",
+  imagem: "src/imgs/produtos/usado_notebook_nitro.jpg",
+  condicao: "Utilizado"
+},
+{
+  id: 34,
+  nome: "SSD SATA 3 Kingston 480GB (USADO)",
+  preco: 180,
+  categoria: "Hardware",
+  imagem: "src/imgs/produtos/usado_ssd_sata.jpg",
+  condicao: "Utilizado"
+},
+{
+  id: 35,
+  nome: "PC Escritório Básico (USADO) - Core i3 + 8GB RAM",
+  preco: 1250,
+  categoria: "Produtos Reutilizados",
+  imagem: "src/imgs/produtos/usado_pc_escritorio.jpg",
+  condicao: "Utilizado"
 }];
 
 
@@ -461,32 +501,32 @@ document.querySelectorAll('.grid').forEach(div => {
 
 // Função para atualizar o Badge do Carrinho com base nos dados do LocalStorage
 function updateCartBadge() {
-    // 1. Tenta obter o usuário logado e o carrinho
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    
-    let totalItems = 0;
-    
-    // 2. Verifica se o usuário existe e se possui um carrinho válido
-    if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
-        // 3. Soma a quantidade de CADA item no carrinho
-        // O .reduce() percorre a array e soma todos os valores de 'quantidade'
-        totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
-    }
-    
-    const badge = document.getElementById('cart-badge');
+  // 1. Tenta obter o usuário logado e o carrinho
+  const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    if (badge) {
-        // 4. INSERE o valor no HTML
-        if (totalItems > 0) {
-            // Exibe a bolha e seta o valor
-            badge.style.display = 'flex'; 
-            badge.textContent = totalItems > 99 ? '99+' : totalItems; 
-        } else {
-            // Se o carrinho estiver vazio ou a soma for 0
-            badge.style.display = 'none'; 
-            badge.textContent = '';
-        }
+  let totalItems = 0;
+
+  // 2. Verifica se o usuário existe e se possui um carrinho válido
+  if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
+    // 3. Soma a quantidade de CADA item no carrinho
+    // O .reduce() percorre a array e soma todos os valores de 'quantidade'
+    totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
+  }
+
+  const badge = document.getElementById('cart-badge');
+
+  if (badge) {
+    // 4. INSERE o valor no HTML
+    if (totalItems > 0) {
+      // Exibe a bolha e seta o valor
+      badge.style.display = 'flex';
+      badge.textContent = totalItems > 99 ? '99+' : totalItems;
+    } else {
+      // Se o carrinho estiver vazio ou a soma for 0
+      badge.style.display = 'none';
+      badge.textContent = '';
     }
+  }
 }
 
 // CRÍTICO: Executa a função assim que a página estiver totalmente carregada

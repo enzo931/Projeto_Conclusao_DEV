@@ -78,7 +78,8 @@
       3,
       1,
       8,
-      18
+      18,
+      23
     ],
     "nome": "enzo",
     "email": "enzo@email.com",
@@ -135,7 +136,11 @@
     "favoritos": [],
     "carrinho": [
       {
-        "id": 1,
+        "id": 6,
+        "quantidade": 1
+      },
+      {
+        "id": 5,
         "quantidade": 1
       }
     ],
@@ -157,6 +162,40 @@
     "nome": "bryan",
     "email": "bryan.rosendo@aluno.senai.br",
     "cpf": "13214543534",
+    "senha": "123"
+  },
+  {
+    "id": 1761659896774,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [
+      {
+        "id": 4,
+        "quantidade": 1
+      },
+      {
+        "id": 10,
+        "quantidade": 1
+      }
+    ],
+    "nome": "kauany",
+    "email": "kauany.s.lima@aluno.senai.br",
+    "cpf": "23635645623",
+    "senha": "123"
+  },
+  {
+    "id": 1761662562704,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [
+      {
+        "id": 4,
+        "quantidade": 1
+      }
+    ],
+    "nome": "stremel",
+    "email": "stremel2008@gmail.com",
+    "cpf": "23532532523",
     "senha": "123"
   }
 ]

@@ -44,10 +44,10 @@
     if (userLink) {
         if (usuarioLogado) {
             userLink.innerHTML = `<span class="user-nome">${usuarioLogado.nome.split(" ")[0]}</span>`;
-            userLink.href = "usuario.html"; 
+            userLink.href = "usuario.html";
         } else {
             userLink.innerHTML = `<i class="fa fa-user"></i>`;
-            userLink.href = "Login.html"; 
+            userLink.href = "Login.html";
         }
     }
 
@@ -82,7 +82,17 @@
         { id: 22, nome: "Desktop Home Office Essencial", preco: 2100, categoria: "Computadores", imagem: "src/imgs/produtos/pc_home_office.jpg" },
         { id: 23, nome: "Workstation Profissional (Edição)", preco: 9500, categoria: "Computadores", imagem: "src/imgs/produtos/pc_workstation.jpg" },
         { id: 24, nome: "Mini PC Compacto (HTPC)", preco: 1650, categoria: "Computadores", imagem: "src/imgs/produtos/pc_mini.jpg" },
-        { id: 25, nome: "PC Gamer Custo-Benefício - RX 6600", preco: 4200, categoria: "Computadores", imagem: "src/imgs/produtos/pc_custo_beneficio.jpg" }
+        { id: 25, nome: "PC Gamer Custo-Benefício - RX 6600", preco: 4200, categoria: "Computadores", imagem: "src/imgs/produtos/pc_custo_beneficio.jpg" },
+        { id: 26, nome: "PC Gamer de Entrada (USADO) - GTX 1060", preco: 2100, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_pc_gtx1060.jpg" },
+        { id: 27, nome: "Monitor Gamer Curvo 27' - 144Hz (USADO)", preco: 1450, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_monitor_curvo.jpg" },
+        { id: 28, nome: "Placa de Vídeo RTX 2070 Super - Founders Edition (USADA)", preco: 2550, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_rtx2070s.jpg" },
+        { id: 29, nome: "Kit Memória RAM 16GB (2x8) DDR4 3200MHz (USADO)", preco: 380, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_ram_16gb.jpg" },
+        { id: 30, nome: "Teclado Mecânico HyperX Alloy FPS (USADO)", preco: 310, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_teclado_mecanico.jpg" },
+        { id: 31, nome: "Mouse Gamer Logitech G502 HERO (USADO, Certificado)", preco: 200, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_mouse_g502.jpg" },
+        { id: 32, nome: "Processador Core i5-9400F (USADO)", preco: 620, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_i5_9400f.jpg" },
+        { id: 33, nome: "Notebook Acer Nitro 5 (USADO) - Core i7 e GTX 1650", preco: 3700, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_notebook_nitro.jpg" },
+        { id: 34, nome: "SSD SATA 3 Kingston 480GB (USADO)", preco: 180, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_ssd_sata.jpg" },
+        { id: 35, nome: "PC Escritório Básico (USADO) - Core i3 + 8GB RAM", preco: 1250, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_pc_escritorio.jpg" }
     ];
 
     // Mapeamento de URL para nome real da Categoria
@@ -91,7 +101,7 @@
         "monitores": "Monitores",
         "hardware": "Hardware",
         "perifericos": "Periférico",
-        "reutilizados": "Produtos Reutilizados",
+        "reutilizados": "Reutilizados",
         "certificados": "Produtos Certificados",
         "todos": "Todos os Produtos" // Adicione uma categoria "todos" se necessário
     };
@@ -109,7 +119,7 @@
             console.error(`Container com id "${containerId}" não encontrado.`);
             return;
         }
-        container.innerHTML = ""; 
+        container.innerHTML = "";
 
         if (listaDeProdutos.length === 0) {
             container.innerHTML = `
@@ -118,15 +128,15 @@
                 </div>`;
             return;
         }
-        
+
         let favoritos = (usuarioLogado && usuarioLogado.favoritos) ? usuarioLogado.favoritos : [];
 
         listaDeProdutos.forEach(produto => {
             const col = document.createElement("div");
-            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4"; 
+            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
 
             const card = document.createElement("div");
-            card.className = "card"; 
+            card.className = "card";
 
             let favoritoBtn = "";
             if (usuarioLogado) {
@@ -153,13 +163,13 @@
             `;
 
             // Event Listeners (Ver Produto)
-            card.addEventListener("click", function(e) {
+            card.addEventListener("click", function (e) {
                 if (e.target.closest(".btn-favorito") || e.target.closest(".btn-comprar")) return;
                 localStorage.setItem("produtoSelecionado", JSON.stringify(produto));
                 window.location.href = "produto.html";
             });
 
-            card.querySelector(".btn-comprar").addEventListener("click", function(e) {
+            card.querySelector(".btn-comprar").addEventListener("click", function (e) {
                 e.stopPropagation();
                 localStorage.setItem("produtoSelecionado", JSON.stringify(produto));
                 window.location.href = "produto.html";
@@ -167,11 +177,11 @@
 
             // Event Listener (Favoritar)
             if (usuarioLogado) {
-                card.querySelector(".btn-favorito").addEventListener("click", function(e) {
+                card.querySelector(".btn-favorito").addEventListener("click", function (e) {
                     e.stopPropagation();
                     let usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
                     if (!usuario.favoritos) usuario.favoritos = [];
-                    
+
                     const idx = usuario.favoritos.indexOf(produto.id);
                     if (idx === -1) {
                         usuario.favoritos.push(produto.id);
@@ -186,7 +196,7 @@
                     atualizarFavoritosBackend(usuario.id, usuario.favoritos);
                 });
             }
-            
+
             col.appendChild(card);
             container.appendChild(col);
         });
@@ -205,7 +215,7 @@
         const categoriaURLKey = params.get("categoria");
         // Converte a chave da URL (ex: 'hardware') para o nome real da categoria (ex: 'Hardware')
         const categoriaReal = categoriaURLKey ? mapCategoria[categoriaURLKey.toLowerCase()] : null;
-        
+
         let listaFiltrada = produtos;
         let maxPrice = Infinity; // Valor padrão para preço (todos os produtos)
 
@@ -221,15 +231,15 @@
             // Aplica o filtro de preço
             listaFiltrada = listaFiltrada.filter(p => p.preco <= maxPrice);
         }
-        
+
         // 3. ATUALIZAÇÃO DO TÍTULO
         let tituloH2 = "TODOS OS PRODUTOS";
         if (categoriaReal) {
             tituloH2 = categoriaReal.toUpperCase();
         }
-        
+
         // Formata o preço para o título
-        const displayPrice = (maxPrice === Infinity || maxPrice > 9000) ? 9000 : maxPrice; 
+        const displayPrice = (maxPrice === Infinity || maxPrice > 9000) ? 9000 : maxPrice;
         tituloH2 += ` (Até R$ ${displayPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2 })})`;
 
         let h2Element = document.querySelector(".menu-bar").nextElementSibling;
@@ -241,9 +251,9 @@
                 `<h2 class="text-center mt-4">${tituloH2}</h2>`
             );
         }
-        
+
         // 4. Exibe os resultados
-        mostrarProdutos(listaFiltrada, 'product-container'); 
+        mostrarProdutos(listaFiltrada, 'product-container');
     }
 
 
@@ -261,21 +271,21 @@
                 const formattedValue = parseFloat(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
                 priceRangeValue.textContent = formattedValue;
             };
-            
+
             // Atualiza o valor do texto em tempo real (input)
-            priceRange.addEventListener('input', function() {
+            priceRange.addEventListener('input', function () {
                 updatePriceText(this.value);
             });
 
             // Aplica o filtro quando o usuário solta o slider (change)
             priceRange.addEventListener('change', aplicarFiltros);
-            
+
             // Inicializa o texto do preço
             updatePriceText(priceRange.value);
         }
 
         // 2. Chamada Inicial: Garante que os produtos sejam exibidos
-        aplicarFiltros(); 
+        aplicarFiltros();
     });
 
 })();
@@ -284,27 +294,27 @@
 function updateCartBadge() {
     // 1. Tenta obter o usuário logado e o carrinho
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    
+
     let totalItems = 0;
-    
+
     // 2. Verifica se o usuário existe e se possui um carrinho válido
     if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
         // 3. Soma a quantidade de CADA item no carrinho
         // O .reduce() percorre a array e soma todos os valores de 'quantidade'
         totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
     }
-    
+
     const badge = document.getElementById('cart-badge');
 
     if (badge) {
         // 4. INSERE o valor no HTML
         if (totalItems > 0) {
             // Exibe a bolha e seta o valor
-            badge.style.display = 'flex'; 
-            badge.textContent = totalItems > 99 ? '99+' : totalItems; 
+            badge.style.display = 'flex';
+            badge.textContent = totalItems > 99 ? '99+' : totalItems;
         } else {
             // Se o carrinho estiver vazio ou a soma for 0
-            badge.style.display = 'none'; 
+            badge.style.display = 'none';
             badge.textContent = '';
         }
     }

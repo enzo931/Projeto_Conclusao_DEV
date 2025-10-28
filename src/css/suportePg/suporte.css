@@ -1,0 +1,407 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f4; /* Fundo cinza claro padrão */
+    color: #333;
+}
+
+/* ========================================================== */
+/* ========================= TOPBAR ========================= */
+/* ========================================================== */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.menu-icon {
+    cursor: pointer;
+    font-size: 35px;
+    color: #333;
+    padding-right: 15px;
+}
+
+.logo img {
+    height: 60px;
+}
+
+/* --- Search Bar --- */
+.search-bar {
+    display: flex;
+    flex: 1;
+    margin: 0 20px;
+    max-width: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 18px;
+    border: none;
+    background: #00aaff; /* Cor do botão de busca */
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.search-bar button:hover {
+    background: #0088cc;
+}
+
+/* --- Icons e Navegação --- */
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #333;
+}
+
+.icons i, .icons .user-nome {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+.icons .user-nome {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* --- Carrinho Badge --- */
+.cart-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px; 
+}
+.cart-container .fa-shopping-cart { 
+    margin-left: 0; 
+}
+
+.badge {
+    position: absolute;
+    top: -5px; 
+    right: -10px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    padding: 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    box-shadow: 0 0 0 2px white;
+}
+
+
+/* ========================================================== */
+/* ========================= SIDEBAR ======================== */
+/* ========================================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 260px;
+    height: 100%;
+    background: #4aa8e5; /* Cor da Sidebar */
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    z-index: 20;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h3 {
+    margin-top: 25px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    float: right;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    display: none;
+    transition: opacity 0.3s;
+}
+.overlay.active {
+    display: block;
+}
+
+.sidebar li i a {
+    color: white;
+    text-decoration: none;
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-weight: normal;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ========================================================== */
+/* =================== SEÇÃO HERO (SUPORTE) ================= */
+/* ========================================================== */
+.hero-section {
+    background-color: #00aaff; /* Azul principal do seu tema */
+    color: white;
+    padding: 60px 20px; 
+    text-align: center;
+}
+
+.hero-section .row {
+    justify-content: center;
+}
+
+.hero-section h1 {
+    font-weight: 700;
+    font-size: 2.5rem; 
+    margin-bottom: 20px;
+}
+
+.search-box {
+    max-width: 600px; 
+    margin: 20px auto 30px; 
+}
+
+/* ESTILO DA BARRA DE PESQUISA DENTRO DO HERO (diferente da Topbar) */
+.search-box input.form-control { 
+    border-radius: 25px; 
+    padding: 12px 20px;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    width: 100%; /* Garante que o input preencha o search-box */
+}
+.search-box input.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4); 
+}
+
+/* ========================================================== */
+/* =================== CARDS DE OPÇÃO (SUPORTE) ============== */
+/* ========================================================== */
+.card-option {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 25px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%; 
+    margin-bottom: 20px; 
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.card-option:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.card-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.card-option i {
+    font-size: 2.2rem;
+    color: #00aaff; 
+    margin-right: 20px;
+    margin-top: 5px; 
+    width: 40px; 
+}
+
+.card-option h5 {
+    font-weight: 600; 
+    color: #333; 
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.card-option p {
+    margin: 0;
+    color: #666; 
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+/* ========================================================== */
+/* ============== BASE DE CONHECIMENTO (SUPORTE) ============ */
+/* ========================================================== */
+.knowledge-section {
+    text-align: center;
+    padding: 40px 0; 
+    background-color: #fff; 
+    margin-top: 40px;
+}
+
+.knowledge-section h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.knowledge-section .card { 
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 30px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #fff;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.knowledge-section .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.knowledge-section .card i {
+    font-size: 2.5rem; 
+    color: #00aaff; 
+    margin-bottom: 15px;
+}
+
+.knowledge-section .card h5 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.knowledge-section .card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* ========================================================== */
+/* ==================== AJUSTES DE GRID ===================== */
+/* ========================================================== */
+/* O HTML está usando classes de layout Bootstrap (row, col-md-4). 
+   Para que o layout funcione, o CSS precisa de alguma forma simular 
+   ou o container e o row/col. */
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1140px; /* Largura padrão de container Bootstrap */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px; /* Compensa o padding dos cols */
+    margin-left: -15px;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.row.justify-content-center {
+    justify-content: center;
+}
+
+/* Define o padding (gutter) padrão para todas as colunas */
+[class*="col-"] {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Larguras para dispositivos pequenos (col-sm-6) */
+@media (min-width: 576px) {
+    .col-sm-6 { 
+        flex: 0 0 50%; 
+        max-width: 50%; 
+    }
+}
+
+/* Larguras para dispositivos médios (col-md-4 e col-md-3) */
+@media (min-width: 768px) { 
+    .col-md-4 { 
+        flex: 0 0 33.3333%; 
+        max-width: 33.3333%; 
+    }
+    .col-md-3 { 
+        flex: 0 0 25%; 
+        max-width: 25%; 
+    }
+}
+

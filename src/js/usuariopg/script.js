@@ -242,47 +242,9 @@ document.addEventListener("DOMContentLoaded", function () {
         "categoria": "Computadores",
         "descricao": "Excelente entrada para o mundo gamer em Full HD. Combina Ryzen 5 5600, Radeon RX 6600 8GB, 16GB RAM DDR4 3200MHz e SSD NVMe de 500GB.",
         "imagem": "src/imgs/produtos/pc_custo_beneficio.jpg"
-    },
-    {
-        "id": 21,
-        "nome": "PC Gamer Elite - RTX 4060",
-        "preco": 6800,
-        "categoria": "Computadores",
-        "descricao": "Máquina de alta performance para jogos em QHD. Inclui Core i5 de 13ª geração, RTX 4060 8GB, 16GB RAM DDR4 3200MHz e SSD NVMe de 1TB.",
-        "imagem": "src/imgs/produtos/pc_gamer_elite.jpg"
-    },
-    {
-        "id": 22,
-        "nome": "Desktop Home Office Essencial",
-        "preco": 2100,
-        "categoria": "Computadores",
-        "descricao": "Ideal para estudos, trabalho e tarefas diárias. Equipado com Ryzen 3 4100, Gráficos Integrados, 8GB RAM e SSD SATA de 240GB.",
-        "imagem": "src/imgs/produtos/pc_home_office.jpg"
-    },
-    {
-        "id": 23,
-        "nome": "Workstation Profissional (Edição)",
-        "preco": 9500,
-        "categoria": "Computadores",
-        "descricao": "Construído para edição de vídeo 4K e renderização 3D. Possui Core i7 de 12ª geração, RTX A2000 6GB (Profissional), 32GB RAM e 2TB SSD NVMe de alta velocidade.",
-        "imagem": "src/imgs/produtos/pc_workstation.jpg"
-    },
-    {
-        "id": 24,
-        "nome": "Mini PC Compacto (HTPC)",
-        "preco": 1650,
-        "categoria": "Computadores",
-        "descricao": "Computador ultra-compacto e silencioso para centro de mídia (HTPC) ou uso discreto no escritório. APU Ryzen 5 5600G com Gráficos Vega, 16GB RAM e SSD de 500GB.",
-        "imagem": "src/imgs/produtos/pc_mini.jpg"
-    },
-    {
-        "id": 25,
-        "nome": "PC Gamer Custo-Benefício - RX 6600",
-        "preco": 4200,
-        "categoria": "Computadores",
-        "descricao": "Excelente entrada para o mundo gamer em Full HD. Combina Ryzen 5 5600, Radeon RX 6600 8GB, 16GB RAM DDR4 3200MHz e SSD NVMe de 500GB.",
-        "imagem": "src/imgs/produtos/pc_custo_beneficio.jpg"
     }];
+
+    
     const favoritos = usuario.favoritos || [];
     const favoritosProdutos = produtos.filter(p => favoritos.includes(p.id));
 

@@ -34,7 +34,12 @@ let produtos = [
     { id: 17, nome: "Hub USB 3.0 4 Portas Anker", preco: 100, descricao: "Hub USB 3.0 Anker com 4 portas, compacto e ideal para expandir as conexões do seu PC.", imagem: "src/imgs/produtos/hub usb.jpg" },
     { id: 18, nome: "Controlador de Jogos Xbox One", preco: 350, descricao: "Controle Xbox One, compatível com PC e consoles, design ergonômico e excelente para jogos.", imagem: "src/imgs/produtos/controlador xbox.jpg" },
     { id: 19, nome: "Placa de Captura Elgato HD60 S", preco: 1300, descricao: "Placa de captura Elgato HD60 S, captura de vídeo em Full HD a 60fps, ideal para streamers.", imagem: "src/imgs/produtos/placa de captura.jpg" },
-    { id: 20, nome: "Roteador TP-Link Archer C6", preco: 250, descricao: "Roteador TP-Link Archer C6, Wi-Fi AC1200, ideal para conexões estáveis e rápidas em sua casa.", imagem: "src/imgs/produtos/roteador tplink.jpg" }
+    { id: 20, nome: "Roteador TP-Link Archer C6", preco: 250, descricao: "Roteador TP-Link Archer C6, Wi-Fi AC1200, ideal para conexões estáveis e rápidas em sua casa.", imagem: "src/imgs/produtos/roteador tplink.jpg" },
+    { id: 21, nome: "PC Gamer Elite - RTX 4060", preco: 6800, categoria: "Computadores", imagem: "src/imgs/produtos/pc_gamer_elite.jpg" },
+    { id: 22, nome: "Desktop Home Office Essencial", preco: 2100, categoria: "Computadores", imagem: "src/imgs/produtos/pc_home_office.jpg" },
+    { id: 23, nome: "Workstation Profissional (Edição)", preco: 9500, categoria: "Computadores", imagem: "src/imgs/produtos/pc_workstation.jpg" },
+    { id: 24, nome: "Mini PC Compacto (HTPC)", preco: 1650, categoria: "Computadores", imagem: "src/imgs/produtos/pc_mini.jpg" },
+    { id: 25, nome: "PC Gamer Custo-Benefício - RX 6600", preco: 4200, categoria: "Computadores", imagem: "src/imgs/produtos/pc_custo_beneficio.jpg" }
 ];
 let cartItemsData = []; // O carrinho real (dados para renderização)
 
@@ -68,7 +73,7 @@ function calculateDistanceFactor(targetLatLng) {
 // ==================== MÓDULO 1: RESUMO E CÁLCULO ====================
 // ====================================================================
 
-const SummaryModule = (function() {
+const SummaryModule = (function () {
     // Módulos mantidos, sem alterações necessárias aqui
     const subtotalPriceEl = document.getElementById('subtotal-price');
     const shippingPriceEl = document.getElementById('shipping-price');
@@ -112,7 +117,7 @@ const SummaryModule = (function() {
 // ===================== MÓDULO 2: ENVIO (FRETE) ======================
 // ====================================================================
 
-const ShippingModule = (function() {
+const ShippingModule = (function () {
     // Módulos mantidos, sem alterações necessárias aqui
     const toggleShippingOptions = document.getElementById('toggle-shipping-options');
     const shippingOptionsDropdown = document.getElementById('shipping-options-dropdown');
@@ -189,7 +194,7 @@ const ShippingModule = (function() {
     }
 
     return {
-        init: function() {
+        init: function () {
             setupEventListeners();
             recalculateAndDisplayOptions();
         },
@@ -201,7 +206,7 @@ const ShippingModule = (function() {
 // ================= MÓDULO 3: LOCALIZAÇÃO (GOOGLE MAPS) ==============
 // ====================================================================
 // O MapModule está mantido. A única correção seria garantir que 'google' esteja carregado
-const MapModule = (function() {
+const MapModule = (function () {
     let mapInstance;
     let markerInstance;
     let geocoderInstance;
@@ -249,13 +254,13 @@ const MapModule = (function() {
                     : initialLocation;
 
                 mapInstance.setCenter(centerLocation);
-                if(markerInstance) markerInstance.setPosition(centerLocation);
+                if (markerInstance) markerInstance.setPosition(centerLocation);
                 mapInstance.setZoom((status === 'OK' && results[0]) ? 16 : 12);
             });
         } else {
-            if(mapInstance) mapInstance.setCenter(initialLocation);
-            if(markerInstance) markerInstance.setPosition(initialLocation);
-            if(mapInstance) mapInstance.setZoom(12);
+            if (mapInstance) mapInstance.setCenter(initialLocation);
+            if (markerInstance) markerInstance.setPosition(initialLocation);
+            if (mapInstance) mapInstance.setZoom(12);
         }
     }
 
@@ -286,7 +291,7 @@ const MapModule = (function() {
         });
     }
 
-    window.initMap = function() {
+    window.initMap = function () {
         if (typeof google === 'undefined' || typeof google.maps === 'undefined') return;
         geocoderInstance = new google.maps.Geocoder();
 
@@ -409,7 +414,7 @@ function renderCarrinho() {
         const div = document.createElement("div");
         div.className = "cart-item";
         // CRÍTICO: Usamos o ID do produto, não o índice, para garantir que o listener aponte para o item correto.
-        div.setAttribute('data-product-id', item.id); 
+        div.setAttribute('data-product-id', item.id);
         div.setAttribute('data-index', idx); // Mantido o índice para debug e referência rápida, mas o ID é mais seguro.
 
         div.innerHTML = `
@@ -434,11 +439,11 @@ function renderCarrinho() {
         `;
         cartItemsEl.appendChild(div);
     });
-    
+
     // ANEXA OS LISTENERS APÓS A RENDERIZAÇÃO
     // É crucial que esta parte não seja chamada múltiplas vezes, mas apenas uma vez na inicialização.
     // Vamos movê-la para a inicialização e usar Event Delegation (que já está sendo usada, mas precisa ser limpa).
-    
+
     ShippingModule.recalculateFreights();
 }
 
@@ -451,7 +456,7 @@ function setupCartItemListeners() {
     // Esta é a forma mais segura de garantir que o listener seja único
     const oldClickListener = cartItemsEl.onclick;
     const oldChangeListener = cartItemsEl.onchange;
-    
+
     if (oldClickListener) cartItemsEl.removeEventListener('click', oldClickListener);
     if (oldChangeListener) cartItemsEl.removeEventListener('change', oldChangeListener);
 
@@ -493,7 +498,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!usuario.carrinho) {
         usuario.carrinho = [];
     }
-    
+
     // Converte carrinho antigo (mantida para robustez)
     if (usuario.carrinho.length > 0 && typeof usuario.carrinho[0] === "number") {
         usuario.carrinho = usuario.carrinho.reduce((acc, id) => {
@@ -553,9 +558,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- 3. Inicialização dos Módulos ---
     ShippingModule.init();
     MapModule.init();
-    
+
     // CRÍTICO: Configura os listeners de botões/input APENAS uma vez na inicialização.
-    setupCartItemListeners(); 
+    setupCartItemListeners();
 
     // --- 4. Renderização Inicial ---
     renderCarrinho();
@@ -602,27 +607,27 @@ document.addEventListener("DOMContentLoaded", function () {
 function updateCartBadge() {
     // 1. Tenta obter o usuário logado e o carrinho
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    
+
     let totalItems = 0;
-    
+
     // 2. Verifica se o usuário existe e se possui um carrinho válido
     if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
         // 3. Soma a quantidade de CADA item no carrinho
         // O .reduce() percorre a array e soma todos os valores de 'quantidade'
         totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
     }
-    
+
     const badge = document.getElementById('cart-badge');
 
     if (badge) {
         // 4. INSERE o valor no HTML
         if (totalItems > 0) {
             // Exibe a bolha e seta o valor
-            badge.style.display = 'flex'; 
-            badge.textContent = totalItems > 99 ? '99+' : totalItems; 
+            badge.style.display = 'flex';
+            badge.textContent = totalItems > 99 ? '99+' : totalItems;
         } else {
             // Se o carrinho estiver vazio ou a soma for 0
-            badge.style.display = 'none'; 
+            badge.style.display = 'none';
             badge.textContent = '';
         }
     }
