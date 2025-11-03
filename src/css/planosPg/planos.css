@@ -4,6 +4,7 @@ body {
     background: #f4f4f4;
     color: #333;
 }
+
 /* ========================================================== */
 /* ========================= TOPBAR ========================= */
 /* ========================================================== */
@@ -57,6 +58,7 @@ body {
     cursor: pointer;
     transition: background 0.3s;
 }
+
 .search-bar button:hover {
     background: #0088cc;
 }
@@ -74,12 +76,14 @@ body {
 }
 
 /* Estilos de ícones e nome de usuário, aplicados a todos os itens não-cart */
-.icons i, .icons .user-nome {
+.icons i,
+.icons .user-nome {
     margin-left: 15px;
     cursor: pointer;
     font-size: 24px;
     color: #333;
 }
+
 .icons .user-nome {
     font-size: 16px;
     font-weight: bold;
@@ -128,6 +132,7 @@ body {
     border-radius: 4px;
     font-size: 15px;
 }
+
 .sidebar ul li:hover {
     background: rgba(255, 255, 255, 0.1);
 }
@@ -149,6 +154,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
 .close-btn {
     background: none;
     border: none;
@@ -169,6 +175,7 @@ body {
     display: none;
     transition: opacity 0.3s;
 }
+
 .overlay.active {
     display: block;
 }
@@ -182,19 +189,19 @@ body {
     position: relative;
     display: inline-block;
     /* CRÍTICO: Usa a mesma margem do ícone normal para manter o espaçamento uniforme */
-    margin-left: 15px; 
+    margin-left: 15px;
 }
 
 /* CRÍTICO: Remove a margem extra do ícone fa-shopping-cart (que seria aplicada pelo .icons i) 
    porque a margem está no .cart-container agora. */
-.cart-container .fa-shopping-cart { 
-    margin-left: 0; 
+.cart-container .fa-shopping-cart {
+    margin-left: 0;
 }
 
 /* 2. Estilização e Posicionamento Absoluto do Badge */
 .badge {
     position: absolute;
-    top: -5px; 
+    top: -5px;
     right: -10px;
 
     /* Estilo visual */
@@ -202,7 +209,7 @@ body {
     color: white;
     font-size: 10px;
     font-weight: bold;
-    
+
     /* Forma, tamanho e centralização */
     min-width: 18px;
     height: 18px;
@@ -211,233 +218,110 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     z-index: 5;
-    box-shadow: 0 0 0 2px white; /* Efeito de borda branca (3D sutil) */
+    box-shadow: 0 0 0 2px white;
+    /* Efeito de borda branca (3D sutil) */
 }
 
-  /* ---------- MENU SUPERIOR DESKTOP (AZUL) ---------- */
-  .menu-bar {
-    background-color: #0056b3;
-    color: white;
-    padding: 10px 0;
-    font-weight: bold;
-  }
+.container {
+    max-width: 1200px;
+}
 
-  .menu-bar a {
-    color: white;
-    text-decoration: none;
-    margin: 0 20px;
-  }
-
-  .menu-bar a:hover {
-    text-decoration: underline;
-  }
-
-  /* ---------- CONTEÚDO PRINCIPAL ---------- */
-  .container-fluid {
+.row {
     margin-top: 30px;
-  }
+}
 
-  .filter-box {
-    background-color: #e9f5ff;
-    border-radius: 10px;
-    padding: 20px;
-    height: 100%;
-  }
-
-  .product-card {
-    border: 1px solid #cce5ff;
-    border-radius: 10px;
-    text-align: center;
-    padding: 10px;
-    transition: 0.3s;
-    background-color: white;
-  }
-
-  .product-card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-
-  .product-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    border-radius: 10px;
-  }
-
-  .price {
-    color: #28a745;
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  .old-price {
-    text-decoration: line-through;
-    color: #888;
-    font-size: 14px;
-  }
-
-  .discount-badge {
-    background-color: #007BFF;
-    color: white;
-    font-size: 12px;
-    padding: 3px 6px;
-    border-radius: 4px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-
-  .buy-btn {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    display: inline-block;
-    margin-top: 10px;
-  }
-
-  .buy-btn:hover {
-    background-color: #0056b3;
-    text-decoration: none;
-  }
-
-  .card {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    transition: transform 0.2s;
+.plan-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    /* Necessário para posicionar o botão favorito */
-    cursor: pointer;
-    /* Para indicar que o card é clicável */
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    /* Garante que todos os cards ocupem a mesma altura */
+}
 
-  }
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
-  .card:hover {
-    transform: scale(1.05);
-  }
+.plan-header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
 
-  .card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-  }
+.plan-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #16a085;
+}
 
-  /* Botão de favorito no canto superior direito, só aparece no hover */
-  .btn-favorito {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: none;
-    border: none;
-    color: #e74c3c;
-    font-size: 26px;
+.plan-description {
+    font-size: 16px;
+    color: #34495e;
+    margin-top: 10px;
+}
+
+.plan-benefits {
+    list-style: none;
     padding: 0;
-    opacity: 0;
-    transition: opacity 0.2s;
-    z-index: 2;
-    cursor: pointer;
-  }
+    margin-top: 20px;
+    flex-grow: 1;
+    /* Permite que a lista de benefícios ocupe o espaço disponível */
+}
 
-  .card:hover .btn-favorito {
-    opacity: 1;
-  }
+.plan-benefits li {
+    font-size: 16px;
+    color: #34495e;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
 
-  /* Ícone de coração preenchido ou não */
-  .btn-favorito .fa-heart {
-    transition: color 0.2s;
-  }
+.plan-benefits li::before {
+    content: "✔";
+    color: #16a085;
+    margin-right: 10px;
+}
 
-  .btn-favorito .fas.fa-heart {
-    /* Favoritado */
-    color: #e74c3c;
-  }
+.plan-footer {
+    margin-top: 20px;
+    text-align: center;
+}
 
-  .btn-favorito .far.fa-heart {
-    /* Não favoritado */
-    color: #bbb;
-  }
+.btn-custom {
+    background-color: #16a085;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
 
-  /* Centraliza o botão de ver produto no final do card */
-  .card-actions {
-    width: 100%;
+.btn-custom:hover {
+    background-color: #1abc9c;
+}
+
+/* Garantir que os cards no layout grid tenham a mesma altura */
+.col-lg-4,
+.col-md-6 {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: auto;
-  }
+}
 
-  .btn-comprar {
-    background-color: #0077cc;
-    border: none;
-    border-radius: 3px;
-    padding: 10px 24px;
-    color: white;
-    font-size: 16px;
-    margin: 0 auto;
-    display: block;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-
-  .btn-comprar:hover {
-    background-color: #005fa3;
-  }
-
-  /* Remove fundo e borda do botão favorito ao focar/clicar */
-  .btn-favorito:focus {
-    outline: none;
-    box-shadow: none;
-  }
-
-  .descricao {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 10px;
-    margin-top: auto;
-    /* Isso faz a descrição ir para o rodapé junto com o botão */
-  }
-
-  .descricao p {
-    margin: 0 0 6px 0;
-    color: #444;
-    font-size: 15px;
-  }
-
-  .descricao .preco {
-    font-size: 18px;
-    font-weight: bold;
-    color: #0077cc;
-    margin-bottom: 2px;
-  }
-
-  .descricao .pix-price {
-    font-size: 14px;
-    color: #27ae60;
-    margin-bottom: 2px;
-  }
-
-  .descricao .discount {
-    color: #e74c3c;
-    font-weight: bold;
-  }
-
-  .descricao .installments {
-    font-size: 13px;
-    color: #555;
-  }
-
-  /* 1. Estilo do Rodapé Principal */
+/* 1. Estilo do Rodapé Principal */
 .footer-wrapper {
     background-color: #1f2937; /* Cinza Escuro */
     color: #d1d5db; /* Texto Cinza Claro */
@@ -623,138 +507,3 @@ body {
         margin-bottom: 2.5rem;
     }
 }
-
-  /* Adicione ao final de: src/css/produtosPg/produtos.CSS */
-  @media (max-width: 600px) {
-
-    .topbar {
-      /* Garante que o layout seja Flexbox (já estava, mas bom reforçar) */
-      display: flex;
-
-      /* OBRIGA que os elementos fiquem na mesma linha, mesmo que fiquem apertados */
-      flex-wrap: nowrap;
-
-      /* Centraliza os itens verticalmente */
-      align-items: center;
-
-      /* Distribui o espaço entre os elementos (Menu, Logo, Ícones) */
-      justify-content: space-between;
-
-      padding: 10px 10px;
-      /* Aumenta um pouco o padding lateral para respirar */
-    }
-
-    .logo img {
-      height: 80px;
-    }
-
-    .search-bar {
-      display: none;
-      max-width: 120px;
-      margin: 0 5px;
-    }
-
-    .product-container {
-      padding: 8px;
-    }
-
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-      /* 2 cards por linha */
-      gap: 10px;
-      /* Reduz o espaçamento para caber mais */
-    }
-
-    .product-info h2 {
-      font-size: 1.3rem;
-    }
-
-    .product-image {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .pix-price,
-    .discount,
-    .installments {
-      font-size: 16px;
-    }
-
-    .buy-button {
-      width: 100%;
-      font-size: 1rem;
-      padding: 14px 0;
-    }
-
-    .reviews {
-      padding: 8px;
-    }
-
-    .avatar {
-      width: 32px;
-    }
-
-    .search-bar {
-      max-width: 50px;
-    }
-
-    .icons i {
-      font-size: 20px;
-      margin-left: 10px;
-    }
-
-    .topbar {
-        display: flex;
-        flex-wrap: nowrap; /* A Topbar (Menu Icon, Logo, Icons) fica em uma linha só */
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 10px;
-    }
-
-    .logo img {
-        height: 40px; /* Sugestão: Reduzir para caber melhor na Topbar */
-    }
-
-    /* 2. MENU PRINCIPAL (QUEBRA DE LINHA E CENTRALIZAÇÃO) */
-    .menu-bar {
-        /* Torna o contêiner flexível */
-        display: flex; 
-        
-        /* MUITO IMPORTANTE: Permite que os itens quebrem para a linha de baixo */
-        flex-wrap: wrap; 
-        
-        /* CENTRALIZA os links horizontalmente */
-        justify-content: center; 
-        
-        /* Centraliza o próprio menu-bar na Topbar se ele for um item Flex */
-        width: 100%; 
-        padding: 5px 0; /* Um pequeno padding vertical */
-    }
-
-    .menu-bar a {
-        color: white;
-        text-decoration: none;
-        
-        /* Reduza a margem para caber mais itens por linha antes de quebrar */
-        margin: 5px 8px; 
-        
-        /* Garante que o texto seja legível e quebre a linha corretamente */
-        font-size: 14px; 
-    }
-
-    /* ... Seu restante do CSS mobile ... */
-    .search-bar {
-        display: none;
-    }
-    
-    .icons i {
-        font-size: 20px;
-        margin-left: 10px;
-    }
-
-    .menu-icon {
-        font-size: 20px;
-    }
-
-
-  }

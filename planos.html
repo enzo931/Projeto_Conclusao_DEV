@@ -2,13 +2,14 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Epic Hardware - Monitores</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="src/css/categoriaPg/categoria.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planos de Assinatura</title>
+  <!-- Importando o Bootstrap 5.0 e fontes do Google -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="src/css/planosPg/planos.css">
 </head>
 
 <body>
@@ -17,7 +18,7 @@
   <header class="topbar">
     <div class="menu-icon" id="openSidebar"><i class="fa fa-bars"></i></div>
     <div class="logo">
-      <a href="index.html"><img src="src/imgs/logo/image.png" alt="Logo"></a>
+      <img src="src/imgs/logo/image.png" alt="Logo">
     </div>
     <div class="search-bar">
       <input type="text" placeholder="Buscar produtos...">
@@ -33,62 +34,103 @@
       </div>
     </div>
   </header>
-  <!-- Sidebar (oculta por padrão) -->
+
   <aside class="sidebar" id="sidebar">
     <button class="close-btn" id="closeSidebar"><i class="fa fa-times"></i></button>
     <div class="sidebar-logo">
       <img src="src/imgs/logo/image.png" alt="Epic Hardware" width="150">
     </div>
     <h3>Categorias</h3>
-    <ul>
-      <li><a href="categorias.html?categoria=computadores"><i class="fa fa-desktop"></i> Computadores</a></li>
-      <li><a href="categorias.html?categoria=monitores"><i class="fa fa-tv"></i> Monitores</a></li>
-      <li><a href="categorias.html?categoria=reutilizados"><i class="fa fa-recycle"></i> Produtos Reutilizados</a></li>
-      <li><a href="categorias.html?categoria=hardware"><i class="fa fa-microchip"></i> Hardware</a></li>
-      <li><a href="categorias.html?categoria=perifericos"><i class="fa fa-keyboard"></i> Periféricos</a></li>
-      <li><a href="categorias.html?categoria=certificados"><i class="fa fa-certificate"></i> Produtos Certificados</a>
-      </li>
+    <ul id="lista-categorias">
+      <li data-categoria="Computadores"><i class="fa fa-desktop"></i> Computadores</li>
+      <li data-categoria="Monitores"><i class="fa fa-tv"></i> Monitores</li>
+      <li data-categoria="Produtos Reutilizados"><i class="fa fa-recycle"></i> Produtos Reutilizados</li>
+      <li data-categoria="Hardware"><i class="fa fa-microchip"></i> Hardware</li>
+      <li data-categoria="Periféricos"><i class="fa fa-keyboard"></i> Periféricos</li>
+      <li data-categoria="Produtos Certificados"><i class="fa fa-certificate"></i> Produtos Certificados</li>
     </ul>
+
     <h3>Ajuda</h3>
     <ul>
       <li><i class="fa fa-user-circle"></i> Seu perfil</li>
-       <li><i class="fa fa-headset"><a href="suporte.html">Suporte</a></i></li>
+      <li><i class="fa fa-headset"><a href="suporte.html">Suporte</a></i></li>
       <li><i class="fa fa-wrench"></i> Configurações</li>
     </ul>
   </aside>
 
+
   <!-- Overlay -->
   <div id="overlay" class="overlay"></div>
 
-  <!-- MENU DESKTOP -->
-  <div class="menu-bar text-center">
-    <a href="categorias.html?categoria=computadores">COMPUTADORES</a> |
-    <a href="categorias.html?categoria=monitores"> MONITORES</a> |
-    <a href="categorias.html?categoria=reutilizados"> PRODUTOS REUTILIZADOS</a> |
-    <a href="categorias.html?categoria=hardware"> HARDWARES</a> |
-    <a href="categorias.html?categoria=perifericos"> PERIFÉRICOS</a> |
-    <a href="categorias.html?categoria=certificados"> PRODUTOS CERTIFICADOS</a>
-  </div>
 
-  <!-- CONTEÚDO -->
-  <div class="container-fluid mt-4">
+  <div class="container mt-5">
     <div class="row">
-      <!-- FILTRO LATERAL -->
-      <div class="col-md-3">
-        <div class="filter-box">
-          <h5>Filtros</h5>
-          <p><strong>Preço (até)</strong></p>
-          <input type="range" class="form-range" min="0" max="7000" value="7000" id="priceRange" />
-          <p>R$ 0 — R$ <span id="priceRangeValue">7000</span></p>
+      <!-- Starter Tech Plan -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="plan-card">
+          <div class="plan-header">
+            <h3>Plano Básico – Starter Tech</h3>
+            <p class="plan-price">R$ 99,90 / mês</p>
+          </div>
+          <div>
+            <p class="plan-description"><strong>Ideal para quem está começando a montar o setup e quer receber peças de
+                forma gradual.</strong></p>
+            <ul class="plan-benefits">
+              <li>Receba 1 componente ou periférico a cada mês</li>
+              <li>Inclui itens como mouse, teclado, headset ou memória RAM</li>
+              <li>Renovação automática mensal</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button class="btn-custom">Assine Agora</button>
+          </div>
         </div>
       </div>
-      <div class="col-md-9">
-        <div class="row" id="product-container">
-          <!-- Aqui os cards serão inseridos pelo JS -->
+
+      <!-- Gamer Upgrade Plan -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="plan-card">
+          <div class="plan-header">
+            <h3>Plano Pro – Gamer Upgrade</h3>
+            <p class="plan-price">R$ 199,90 / mês</p>
+          </div>
+          <div>
+            <p class="plan-description"><strong>Perfeito para quem quer atualizar o setup com mais frequência e
+                variedade.</strong></p>
+            <ul class="plan-benefits">
+              <li>Receba 2 a 3 componentes ou periféricos a cada 2 meses</li>
+              <li>Itens variados, como SSDs, fontes e periféricos gamer</li>
+              <li>Renovação automática bimestral</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button class="btn-custom">Assine Agora</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master Build Plan -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="plan-card">
+          <div class="plan-header">
+            <h3>Plano Premium – Master Build</h3>
+            <p class="plan-price">R$ 349,90 / mês</p>
+          </div>
+          <div>
+            <p class="plan-description"><strong>Para quem busca evoluir o setup rapidamente e com componentes de alto
+                desempenho.</strong></p>
+            <ul class="plan-benefits">
+              <li>Receba 3 a 4 componentes ou periféricos a cada 3 meses</li>
+              <li>Inclui upgrades maiores, como placa de vídeo, monitor, gabinete e peças de performance</li>
+              <li>Renovação automática trimestral</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button class="btn-custom">Assine Agora</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <footer class="footer-wrapper">
@@ -237,9 +279,7 @@
         </div>
     </footer>
 
-
-
+  <script src="src/js/planosPg/script.js"></script>
 </body>
-<script src="src/js/categoriaPg/script.js"></script>
 
 </html>
