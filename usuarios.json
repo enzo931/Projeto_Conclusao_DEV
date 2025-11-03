@@ -29,5 +29,45 @@
         "quantidade": 1
       }
     ]
+  },
+  {
+    "id": 1762186146239,
+    "ativo": true,
+    "favoritos": [
+      3,
+      2,
+      4
+    ],
+    "carrinho": [
+      {
+        "id": 8,
+        "quantidade": 1
+      }
+    ],
+    "nome": "ronaldo ",
+    "email": "fenomeno@email.com",
+    "cpf": "12312321321",
+    "senha": "123",
+    "plano": "sem-plano"
+  },
+  {
+    "id": 1762190143561,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [
+      {
+        "id": 5,
+        "quantidade": 1
+      },
+      {
+        "id": 3,
+        "quantidade": 1
+      }
+    ],
+    "nome": "gabi",
+    "email": "glabradadev@gmail.com",
+    "cpf": "53454353453",
+    "senha": "123",
+    "plano": "sem-plano"
   }
 ]

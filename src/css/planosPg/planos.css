@@ -17,7 +17,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.075);
 }
 
 .menu-icon {
@@ -224,102 +224,251 @@ body {
     /* Efeito de borda branca (3D sutil) */
 }
 
-.container {
-    max-width: 1200px;
-}
+ .plan-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-.row {
-    margin-top: 30px;
-}
+        /* Hover effect */
+        .plan-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
 
-.plan-card {
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    /* Garante que todos os cards ocupem a mesma altura */
-}
+        .plan-header h3 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #343a40;
+            margin-bottom: 0;
+        }
 
-.plan-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
+        .plan-price {
+            font-size: 2.5rem; /* Preço maior e mais impactante */
+            font-weight: 800;
+            color: #007bff; /* Azul primário */
+            margin: 10px 0 20px 0;
+            line-height: 1;
+        }
+        
+        .plan-price small {
+            font-size: 0.5em;
+            font-weight: 400;
+            color: #6c757d;
+        }
 
-.plan-header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-}
+        .plan-description {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
 
-.plan-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: #16a085;
-}
+        .plan-benefits {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
 
-.plan-description {
-    font-size: 16px;
-    color: #34495e;
-    margin-top: 10px;
-}
+        .plan-benefits li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #495057;
+        }
+        
+        .plan-benefits li:last-child {
+            border-bottom: none;
+        }
 
-.plan-benefits {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-    flex-grow: 1;
-    /* Permite que a lista de benefícios ocupe o espaço disponível */
-}
+        .plan-benefits li::before {
+            content: "\f00c"; /* Ícone de checkmark do Font Awesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #198754; /* Cor verde para benefícios */
+            margin-right: 10px;
+        }
+        
+        /* --- ESTILO DOS BOTÕES --- */
+        .btn-custom {
+            background-color: #198754; /* Verde forte para CTA */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
 
-.plan-benefits li {
-    font-size: 16px;
-    color: #34495e;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-}
+        .btn-custom:hover:not(:disabled) {
+            background-color: #146c43;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(25, 135, 84, 0.4);
+        }
 
-.plan-benefits li::before {
-    content: "✔";
-    color: #16a085;
-    margin-right: 10px;
-}
+        /* --- DESTAQUE DO PLANO RECOMENDADO (Plano Pro - Gamer Upgrade) --- */
+        .plan-card[data-plan-id="gamer-upgrade"] {
+            position: relative;
+            background: linear-gradient(145deg, #007bff, #0056b3); /* Fundo com gradiente azul */
+            color: white;
+            transform: scale(1.05); /* Ligeiramente maior */
+            box-shadow: 0 10px 30px rgba(0, 50, 150, 0.3);
+            border: 4px solid #447fff; /* Borda amarela para contraste */
+            z-index: 10;
+        }
+        
+        .plan-card[data-plan-id="gamer-upgrade"] .plan-header h3,
+        .plan-card[data-plan-id="gamer-upgrade"] .plan-price,
+        .plan-card[data-plan-id="gamer-upgrade"] .plan-description,
+        .plan-card[data-plan-id="gamer-upgrade"] .plan-benefits li {
+            color: white; /* Garante que todo o texto interno seja branco */
+        }
+        
+        .plan-card[data-plan-id="gamer-upgrade"] .plan-benefits li::before {
+            color: #447fff; /* Checkmark amarelo */
+        }
+        
+        .plan-card[data-plan-id="gamer-upgrade"] .plan-benefits li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Divisor mais suave */
+        }
 
-.plan-footer {
-    margin-top: 20px;
-    text-align: center;
-}
+        .plan-card[data-plan-id="gamer-upgrade"] .btn-custom {
+            background-color: #447fff; /* Botão amarelo/laranja forte */
+            color: #212529; /* Texto escuro no botão */
+        }
+        
+        .plan-card[data-plan-id="gamer-upgrade"] .btn-custom:hover:not(:disabled) {
+             transform: translateY(-2px);
+        }
+        
+        /* Badge de Recomendação */
+        .plan-card[data-plan-id="gamer-upgrade"] .plan-header::before {
+            content: " MAIS POPULAR ";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #dc3545; /* Vermelho/Destaque */
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+        }
 
-.btn-custom {
-    background-color: #16a085;
-    color: white;
-    font-weight: 600;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
+        /* --- ESTILOS DE PLANO ATIVO E MODAL (Mantidos e aprimorados) --- */
+        .plan-card.active-plan {
+            border: 4px solid #198754; 
+            box-shadow: 0 0 25px rgba(25, 135, 84, 0.6);
+            transform: scale(1.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 15;
+        }
 
-.btn-custom:hover {
-    background-color: #1abc9c;
-}
+        .plan-card.active-plan .plan-header h3::after {
+            content: " (Plano Atual)";
+            color: #198754;
+            font-size: 0.9em;
+            display: block; /* Quebra de linha para plano atual */
+            font-weight: 400;
+        }
 
-/* Garantir que os cards no layout grid tenham a mesma altura */
-.col-lg-4,
-.col-md-6 {
-    display: flex;
-    justify-content: center;
-}
+        .plan-card.active-plan[data-plan-id="gamer-upgrade"] .plan-header h3::after {
+            color: #447fff; /* Corrigir cor do texto se for o plano recomendado ativo */
+        }
+
+        .plan-card .btn-custom.btn-active {
+            background-color: #6c757d;
+            cursor: default;
+        }
+        
+        .plan-card .btn-custom.btn-active:hover {
+            background-color: #6c757d;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .plan-card .btn-custom.btn-change {
+            background-color: #447fff;
+            color: #212529;
+        }
+
+        /* Estilos do Modal */
+        .custom-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo mais escuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1050;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s linear;
+        }
+
+        .custom-modal-backdrop.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .custom-modal {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Efeito "pop" */
+        }
+        
+        .custom-modal-backdrop.show .custom-modal {
+            transform: scale(1);
+        }
+
+        .modal-buttons button {
+            margin: 10px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .modal-buttons .confirm-btn {
+            background-color: #007bff; /* Azul primário */
+            color: white;
+        }
+
+        .modal-buttons .confirm-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .modal-buttons .cancel-btn {
+            background-color: #6c757d; /* Cinza */
+            color: white;
+        }
+
+        .modal-buttons .cancel-btn:hover {
+            background-color: #5a6268;
+        }
 
 /* 1. Estilo do Rodapé Principal */
 .footer-wrapper {
