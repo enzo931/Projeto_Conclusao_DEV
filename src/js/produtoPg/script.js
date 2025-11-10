@@ -89,9 +89,7 @@ document.querySelector(".buy-button").addEventListener("click", function () {
   }
 
   // Garante que o carrinho exista e esteja na nova estrutura (Array de objetos)
-  // Se ainda for um array de IDs, podemos convertê-lo ou forçar a nova estrutura vazia.
   if (!usuario.carrinho || typeof usuario.carrinho[0] === "number") {
-    // Inicializa ou converte para a estrutura de objetos, se necessário
     usuario.carrinho = [];
   }
 
@@ -103,10 +101,14 @@ document.querySelector(".buy-button").addEventListener("click", function () {
     itemExistente.quantidade += 1;
     alert(`Mais um ${produto.nome} adicionado! Total: ${itemExistente.quantidade}`);
   } else {
-    // 4. Se o produto NÃO ESTIVER no carrinho, adiciona o NOVO objeto com quantidade 1
+    // 4. Se o produto NÃO ESTIVER no carrinho, adiciona o NOVO objeto com as informações completas
     usuario.carrinho.push({
       id: produto.id,
-      quantidade: 1
+      quantidade: 1,
+      // ⭐️ CORREÇÃO AQUI: Adicionando nome, preço e imagem.
+      nome: produto.nome,
+      preco_unitario: produto.preco, // Usando preco_unitario para maior clareza
+      imagem: produto.imagem
     });
     alert("Produto adicionado ao carrinho!");
   }
@@ -114,6 +116,9 @@ document.querySelector(".buy-button").addEventListener("click", function () {
   // 5. Salva localmente e no backend
   localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
   atualizarCarrinhoBackend(usuario.id, usuario.carrinho);
+
+  // Atualiza o badge do carrinho após a adição
+  updateCartBadge();
 });
 
 // Adapta o ícone/nome do usuário na topbar e o redirecionamento
@@ -137,32 +142,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Função para atualizar o Badge do Carrinho com base nos dados do LocalStorage
 function updateCartBadge() {
-    // 1. Tenta obter o usuário logado e o carrinho
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    
-    let totalItems = 0;
-    
-    // 2. Verifica se o usuário existe e se possui um carrinho válido
-    if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
-        // 3. Soma a quantidade de CADA item no carrinho
-        // O .reduce() percorre a array e soma todos os valores de 'quantidade'
-        totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
-    }
-    
-    const badge = document.getElementById('cart-badge');
+  // 1. Tenta obter o usuário logado e o carrinho
+  const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    if (badge) {
-        // 4. INSERE o valor no HTML
-        if (totalItems > 0) {
-            // Exibe a bolha e seta o valor
-            badge.style.display = 'flex'; 
-            badge.textContent = totalItems > 99 ? '99+' : totalItems; 
-        } else {
-            // Se o carrinho estiver vazio ou a soma for 0
-            badge.style.display = 'none'; 
-            badge.textContent = '';
-        }
+  let totalItems = 0;
+
+  // 2. Verifica se o usuário existe e se possui um carrinho válido
+  if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
+    // 3. Soma a quantidade de CADA item no carrinho
+    // O .reduce() percorre a array e soma todos os valores de 'quantidade'
+    totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
+  }
+
+  const badge = document.getElementById('cart-badge');
+
+  if (badge) {
+    // 4. INSERE o valor no HTML
+    if (totalItems > 0) {
+      // Exibe a bolha e seta o valor
+      badge.style.display = 'flex';
+      badge.textContent = totalItems > 99 ? '99+' : totalItems;
+    } else {
+      // Se o carrinho estiver vazio ou a soma for 0
+      badge.style.display = 'none';
+      badge.textContent = '';
     }
+  }
 }
 
 // CRÍTICO: Executa a função assim que a página estiver totalmente carregada

@@ -53,11 +53,32 @@ function formatCurrency(value) {
 function generateEmailDetails(carrinho) {
     if (!carrinho || carrinho.length === 0) return "Nenhum item.";
     
-    // Idealmente, buscaria nomes/preços dos produtos. Usando ID/Qtd por enquanto.
-    let details = "<ul>";
+    // MUDANÇA AQUI: Removido o estilo 'list-style-type: none'
+    // E o padding-left foi definido para permitir o marcador
+    let details = "<ul style='padding-left: 20px;'>"; 
+    
     carrinho.forEach(item => {
-        details += `<li>Produto ID: ${item.id} (Qtd: ${item.quantidade})</li>`;
+        // Assume que 'nome' e 'preco_unitario' estão no objeto (conforme corrigimos no script anterior)
+        const nomeProduto = item.nome || `Produto ID: ${item.id} (Nome Indisponível)`;
+        
+        // Tenta obter o preço de 'preco_unitario' ou 'preco' e garante que é um número
+        const precoUnitario = parseFloat(item.preco_unitario || item.preco || 0); 
+        const quantidade = parseInt(item.quantidade, 10);
+        
+        let linhaDetalhe = "";
+
+        if (precoUnitario > 0 && quantidade > 0) {
+            const subtotalItem = precoUnitario * quantidade;
+            
+            // MUDANÇA AQUI: Removido o ponto manual "• "
+            linhaDetalhe = `<li>${nomeProduto} | (Qtd: ${quantidade}) | Preço Total: ${formatCurrency(subtotalItem)}</li>`;
+        } else {
+            linhaDetalhe = `<li>${nomeProduto} | (Qtd: ${quantidade}) | Preço Total: **INCOMPLETO**</li>`;
+        }
+        
+        details += linhaDetalhe;
     });
+    
     details += "</ul>";
     return details;
 }

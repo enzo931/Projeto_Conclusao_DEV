@@ -69,5 +69,74 @@
     "cpf": "53454353453",
     "senha": "123",
     "plano": "sem-plano"
+  },
+  {
+    "id": 1762774459307,
+    "ativo": true,
+    "favoritos": [],
+    "carrinho": [
+      {
+        "id": 4,
+        "quantidade": 1,
+        "nome": "Placa-mãe ASUS TUF B450M",
+        "preco_unitario": 550,
+        "imagem": "src/imgs/produtos/Placa-mãe ASUS TUF B450M.jpg"
+      },
+      {
+        "id": 3,
+        "quantidade": 1,
+        "nome": "Memória RAM 16GB DDR4 3200MHz",
+        "preco_unitario": 420,
+        "imagem": "src/imgs/produtos/Memoria Ram kllisre.webp"
+      },
+      {
+        "id": 7,
+        "quantidade": 1,
+        "nome": "HD Seagate Barracuda 1TB",
+        "preco_unitario": 250,
+        "imagem": "src/imgs/produtos/HD Seagate Barracuda 1TB.jpg"
+      },
+      {
+        "id": 10,
+        "quantidade": 1,
+        "nome": "Teclado Mecânico Redragon K552",
+        "preco_unitario": 250,
+        "imagem": "src/imgs/produtos/Teclado Mecânico Redragon K552.jpg"
+      },
+      {
+        "id": 8,
+        "quantidade": 1,
+        "nome": "Cooler Master Hyper 212 EVO",
+        "preco_unitario": 180,
+        "imagem": "src/imgs/produtos/Cooler Master Hyper 212 EVO.jpg"
+      }
+    ],
+    "nome": "Teste",
+    "email": "testar8161@gmail.com",
+    "cpf": "21423534645",
+    "senha": "12",
+    "plano": "sem-plano"
+  },
+  {
+    "id": 1762778482469,
+    "ativo": true,
+    "favoritos": [
+      3,
+      5
+    ],
+    "carrinho": [
+      {
+        "id": 3,
+        "quantidade": 1,
+        "nome": "Memória RAM 16GB DDR4 3200MHz",
+        "preco_unitario": 420,
+        "imagem": "src/imgs/produtos/Memoria Ram kllisre.webp"
+      }
+    ],
+    "nome": "Guilherme Guerino",
+    "email": "guerinomaster@gmail.com",
+    "cpf": "18263552136",
+    "senha": "123",
+    "plano": "sem-plano"
   }
 ]

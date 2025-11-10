@@ -529,6 +529,81 @@ function updateCartBadge() {
   }
 }
 
+// === FUNCIONALIDADE DA BARRA DE PESQUISA ===
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.querySelector('.search-bar input');
+  const searchButton = document.querySelector('.search-bar button');
+  const topbar = document.querySelector('.topbar'); // para anexar o dropdown fora da barra
+
+  if (!searchInput || !searchButton || !topbar) return;
+
+  // Cria o container de resultados e adiciona na topbar
+  const resultadosContainer = document.createElement('div');
+  resultadosContainer.classList.add('resultados-pesquisa');
+  resultadosContainer.style.display = 'none';
+  topbar.appendChild(resultadosContainer);
+
+  function mostrarResultados(resultados) {
+    resultadosContainer.innerHTML = ''; // limpa antes
+
+    resultados.forEach(produto => {
+      const item = document.createElement('div');
+      item.classList.add('resultado-item');
+      item.innerHTML = `
+        <img src="${produto.imagem}" alt="${produto.nome}">
+        <span>${produto.nome}</span>
+      `;
+      item.addEventListener('click', () => {
+        localStorage.setItem("produtoSelecionado", JSON.stringify(produto));
+        window.location.href = "produto.html";
+      });
+      resultadosContainer.appendChild(item);
+    });
+
+    resultadosContainer.style.display = 'block';
+  }
+
+  function buscarProduto() {
+    const termo = searchInput.value.trim().toLowerCase();
+    resultadosContainer.style.display = 'none';
+
+    if (!termo) return;
+
+    const produtoExato = produtos.find(p => p.nome.toLowerCase() === termo);
+
+    if (produtoExato) {
+      localStorage.setItem("produtoSelecionado", JSON.stringify(produtoExato));
+      window.location.href = "produto.html";
+      return;
+    }
+
+    const resultados = produtos.filter(p =>
+      p.nome.toLowerCase().includes(termo) ||
+      (p.descricao && p.descricao.toLowerCase().includes(termo))
+    );
+
+    if (resultados.length === 0) {
+      resultadosContainer.innerHTML = '<p class="sem-resultado">Nenhum produto encontrado 😕</p>';
+      resultadosContainer.style.display = 'block';
+      return;
+    }
+
+    if (resultados.length > 1) {
+      mostrarResultados(resultados);
+    } else {
+      localStorage.setItem("produtoSelecionado", JSON.stringify(resultados[0]));
+      window.location.href = "produto.html";
+    }
+  }
+
+  // Eventos
+  searchButton.addEventListener('click', buscarProduto);
+  searchInput.addEventListener('input', buscarProduto);
+});
+
+
+
+
 // CRÍTICO: Executa a função assim que a página estiver totalmente carregada
 document.addEventListener('DOMContentLoaded', updateCartBadge);
 

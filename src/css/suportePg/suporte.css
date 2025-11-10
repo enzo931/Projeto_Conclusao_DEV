@@ -201,154 +201,112 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ========================================================== */
-/* =================== SEÇÃO HERO (SUPORTE) ================= */
-/* ========================================================== */
+/* ======================= HERO SECTION ======================= */
 .hero-section {
-    background-color: #00aaff; /* Azul principal do seu tema */
+    background-color: #00aaff;
     color: white;
-    padding: 60px 20px; 
+    padding: 80px 20px 100px;
     text-align: center;
-}
-
-.hero-section .row {
-    justify-content: center;
 }
 
 .hero-section h1 {
     font-weight: 700;
-    font-size: 2.5rem; 
+    font-size: 2.3rem;
     margin-bottom: 20px;
 }
 
 .search-box {
-    max-width: 600px; 
-    margin: 20px auto 30px; 
+    max-width: 550px;
+    margin: 0 auto 40px;
 }
 
-/* ESTILO DA BARRA DE PESQUISA DENTRO DO HERO (diferente da Topbar) */
-.search-box input.form-control { 
-    border-radius: 25px; 
-    padding: 12px 20px;
+.search-box input {
+    width: 100%;
+    padding: 14px 20px;
     border: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
     font-size: 16px;
-    width: 100%; /* Garante que o input preencha o search-box */
-}
-.search-box input.form-control:focus {
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ========================================================== */
-/* =================== CARDS DE OPÇÃO (SUPORTE) ============== */
-/* ========================================================== */
+/* ===================== CARD OPTIONS ====================== */
 .card-option {
     background-color: #fff;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
     padding: 25px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    height: 100%; 
-    margin-bottom: 20px; 
+    width: 320px;
+    margin: 15px auto;
     text-align: left;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    transition: 0.2s;
 }
-
 .card-option:hover {
-    transform: translateY(-4px); 
+    transform: translateY(-4px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
-
-.card-content {
-    display: flex;
-    align-items: flex-start;
-}
-
 .card-option i {
-    font-size: 2.2rem;
-    color: #00aaff; 
-    margin-right: 20px;
-    margin-top: 5px; 
-    width: 40px; 
+    font-size: 2rem;
+    color: #00aaff;
+    margin-bottom: 10px;
 }
-
 .card-option h5 {
-    font-weight: 600; 
-    color: #333; 
     font-size: 1.1rem;
-    margin-bottom: 8px;
+    color: #333;
+    margin-bottom: 6px;
 }
-
 .card-option p {
-    margin: 0;
-    color: #666; 
+    color: #666;
     font-size: 0.95rem;
-    line-height: 1.5;
 }
 
-
-/* ========================================================== */
-/* ============== BASE DE CONHECIMENTO (SUPORTE) ============ */
-/* ========================================================== */
+/* =================== BASE DE CONHECIMENTO ================== */
 .knowledge-section {
+    background: #fff;
     text-align: center;
-    padding: 40px 0; 
-    background-color: #fff; 
-    margin-top: 40px;
+    padding: 60px 20px 100px;
 }
 
 .knowledge-section h3 {
     font-size: 1.8rem;
     font-weight: 700;
     color: #333;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-.knowledge-section .card { 
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    padding: 30px 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-color: #fff;
-    height: 100%; 
+.knowledge-section .row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
 }
 
+.knowledge-section .card {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    padding: 35px 25px;
+    transition: 0.3s;
+}
 .knowledge-section .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
-
 .knowledge-section .card i {
-    font-size: 2.5rem; 
-    color: #00aaff; 
+    font-size: 2.5rem;
+    color: #00aaff;
     margin-bottom: 15px;
 }
-
 .knowledge-section .card h5 {
-    font-weight: 600;
     font-size: 1.1rem;
     color: #333;
-    margin-top: 10px;
     margin-bottom: 10px;
 }
-
 .knowledge-section .card p {
-    color: #666;
     font-size: 0.9rem;
-    line-height: 1.4;
-    margin: 0;
-    text-align: center;
-    flex-grow: 1;
+    color: #666;
 }
+
 
 /* ========================================================== */
 /* ==================== AJUSTES DE GRID ===================== */
