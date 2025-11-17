@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="src/css/planosPg/planos.css">
+    <link rel="stylesheet" href="src/css/fotoUsuario/style.css">
 </head>
 
 <body>
@@ -57,93 +58,93 @@
   <div id="overlay" class="overlay"></div>
 
 
-   <div class="container mt-5">
-        <!-- Novo Elemento para exibir o status do plano -->
-        <h1 class="text-center mb-5">Escolha seu Plano de Assinatura</h1>
-        <div id="status-plano" class="alert alert-info text-center" role="alert">
-            <!-- O JS preencherá isso -->
-            Carregando status do plano...
-        </div>
-        <!-- Fim do Novo Elemento -->
-        
-        <div class="row justify-content-center">
-            
-            <!-- Planos com data-plan-id para identificação -->
-
-            <!-- Starter Tech Plan -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="plan-card" data-plan-id="starter-tech">
-                    <div class="plan-header">
-                        <h3>Plano Básico – Starter Tech</h3>
-                        <p class="plan-price">R$ 99,90 <small>/ mês</small></p>
-                    </div>
-                    <div>
-                        <p class="plan-description">Ideal para quem está começando a montar o setup e quer receber peças de
-                                forma gradual.</p>
-                        <ul class="plan-benefits">
-                            <li>Receba 1 componente ou periférico a cada mês</li>
-                            <li>Inclui itens como mouse, teclado, headset ou memória RAM</li>
-                            <li>Renovação automática mensal</li>
-                            <li>Acesso a tutoriais exclusivos</li>
-                        </ul>
-                    </div>
-                    <div class="plan-footer">
-                        <!-- O atributo data-plan-action será usado pelo JS -->
-                        <button class="btn-custom" data-plan-action="starter-tech">Assine Agora</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Gamer Upgrade Plan - DESTAQUE APLICADO AQUI -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="plan-card" data-plan-id="gamer-upgrade">
-                    <div class="plan-header">
-                        <h3>Plano Pro – Gamer Upgrade</h3>
-                        <p class="plan-price">R$ 199,90 <small>/ mês</small></p>
-                    </div>
-                    <div>
-                        <p class="plan-description">Perfeito para quem quer atualizar o setup com mais frequência e variedade.</p>
-                        <ul class="plan-benefits">
-                            <li>Receba 2 a 3 componentes ou periféricos a cada 2 meses</li>
-                            <li>Itens variados, como SSDs, fontes e periféricos gamer</li>
-                            <li>Renovação automática bimestral</li>
-                            <li>Suporte técnico prioritário 24/7</li>
-                        </ul>
-                    </div>
-                    <div class="plan-footer">
-                        <button class="btn-custom" data-plan-action="gamer-upgrade">Assine Agora</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Master Build Plan -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="plan-card" data-plan-id="master-build">
-                    <div class="plan-header">
-                        <h3>Plano Premium – Master Build</h3>
-                        <p class="plan-price">R$ 349,90 <small>/ mês</small></p>
-                    </div>
-                    <div>
-                        <p class="plan-description">Para quem busca evoluir o setup rapidamente e com componentes de alto
-                                desempenho.</p>
-                        <ul class="plan-benefits">
-                            <li>Receba 3 a 4 componentes ou periféricos a cada 3 meses</li>
-                            <li>Inclui upgrades maiores, como placa de vídeo, monitor, gabinete e peças de performance</li>
-                            <li>Renovação automática trimestral</li>
-                            <li>Consultoria de build com especialistas</li>
-                        </ul>
-                    </div>
-                    <div class="plan-footer">
-                        <button class="btn-custom" data-plan-action="master-build">Assine Agora</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Plano 'sem-plano' para o caso de usuário não ter escolhido nenhum -->
-            <div data-plan-id="sem-plano" style="display: none;"></div>
-
-        </div>
+  <div class="container mt-5">
+    <!-- Novo Elemento para exibir o status do plano -->
+    <h1 class="text-center mb-5">Escolha seu Plano de Assinatura</h1>
+    <div id="status-plano" class="alert alert-info text-center" role="alert">
+      <!-- O JS preencherá isso -->
+      Carregando status do plano...
     </div>
+    <!-- Fim do Novo Elemento -->
+
+    <div class="row justify-content-center">
+
+      <!-- Planos com data-plan-id para identificação -->
+
+      <!-- Starter Tech Plan -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="plan-card" data-plan-id="starter-tech">
+          <div class="plan-header">
+            <h3>Plano Básico – Starter Tech</h3>
+            <p class="plan-price">R$ 99,90 <small>/ mês</small></p>
+          </div>
+          <div>
+            <p class="plan-description">Ideal para quem está começando a montar o setup e quer receber peças de
+              forma gradual.</p>
+            <ul class="plan-benefits">
+              <li>Receba 1 componente ou periférico a cada mês</li>
+              <li>Inclui itens como mouse, teclado, headset ou memória RAM</li>
+              <li>Renovação automática mensal</li>
+              <li>Acesso a tutoriais exclusivos</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <!-- O atributo data-plan-action será usado pelo JS -->
+            <button class="btn-custom" data-plan-action="starter-tech">Assine Agora</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gamer Upgrade Plan - DESTAQUE APLICADO AQUI -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="plan-card" data-plan-id="gamer-upgrade">
+          <div class="plan-header">
+            <h3>Plano Pro – Gamer Upgrade</h3>
+            <p class="plan-price">R$ 199,90 <small>/ mês</small></p>
+          </div>
+          <div>
+            <p class="plan-description">Perfeito para quem quer atualizar o setup com mais frequência e variedade.</p>
+            <ul class="plan-benefits">
+              <li>Receba 2 a 3 componentes ou periféricos a cada 2 meses</li>
+              <li>Itens variados, como SSDs, fontes e periféricos gamer</li>
+              <li>Renovação automática bimestral</li>
+              <li>Suporte técnico prioritário 24/7</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button class="btn-custom" data-plan-action="gamer-upgrade">Assine Agora</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master Build Plan -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="plan-card" data-plan-id="master-build">
+          <div class="plan-header">
+            <h3>Plano Premium – Master Build</h3>
+            <p class="plan-price">R$ 349,90 <small>/ mês</small></p>
+          </div>
+          <div>
+            <p class="plan-description">Para quem busca evoluir o setup rapidamente e com componentes de alto
+              desempenho.</p>
+            <ul class="plan-benefits">
+              <li>Receba 3 a 4 componentes ou periféricos a cada 3 meses</li>
+              <li>Inclui upgrades maiores, como placa de vídeo, monitor, gabinete e peças de performance</li>
+              <li>Renovação automática trimestral</li>
+              <li>Consultoria de build com especialistas</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button class="btn-custom" data-plan-action="master-build">Assine Agora</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plano 'sem-plano' para o caso de usuário não ter escolhido nenhum -->
+      <div data-plan-id="sem-plano" style="display: none;"></div>
+
+    </div>
+  </div>
 
   <footer class="footer-wrapper">
     <div class="footer-container">
@@ -290,6 +291,7 @@
   </footer>
 
   <script src="src/js/planosPg/script.js"></script>
+  <script src="src/js/fotoUsuario/script.js"></script>
 </body>
 
 </html>

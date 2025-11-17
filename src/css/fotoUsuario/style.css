@@ -1,0 +1,7 @@
+.topbar .topbar-user-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}

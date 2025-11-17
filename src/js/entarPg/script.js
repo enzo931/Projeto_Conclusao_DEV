@@ -1,89 +1,113 @@
-// Captura o formulário e o botão
-const cadastroForm = document.getElementById("cadastroForm");
-const submitButton = document.getElementById("submitButton");
-const resultado = document.getElementById("resultado");
+document.addEventListener('DOMContentLoaded', () => {
+  const cadastroForm = document.getElementById("cadastroForm");
+  const submitButton = document.getElementById("submitButton");
+  const resultado = document.getElementById("resultado");
+  const fotoInput = document.getElementById("foto");
 
-// Função principal de cadastro
-cadastroForm.addEventListener("submit", async (e) => {
+  if (!cadastroForm) return;
+
+  // util: converte File -> dataURL (base64)
+  function fileToDataURL(file) {
+    return new Promise((resolve, reject) => {
+      if (!file) return resolve(null);
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  cadastroForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    // 1. Variáveis e UX inicial
-    submitButton.disabled = true;
-    submitButton.textContent = "Cadastrando...";
-    resultado.innerHTML = ""; 
-
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const cpf = document.getElementById("cpf").value.replace(/[^0-9]/g, ''); 
-    const senha = document.getElementById("senha").value;
-    const confirmaSenha = document.getElementById("confirmaSenha").value;
-
-    // 2. Validações
-    if (senha !== confirmaSenha) {
-        resultado.innerHTML = "<p style='color:red;'>❌ As senhas não coincidem!</p>";
-        submitButton.disabled = false;
-        submitButton.textContent = "Criar Conta";
-        return;
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Cadastrando...";
     }
-    
-    // 3. Cria o objeto do novo usuário (com o plano fixo)
+    if (resultado) resultado.innerHTML = "";
+
+    const nomeEl = document.getElementById("nome");
+    const emailEl = document.getElementById("email");
+    const cpfEl = document.getElementById("cpf");
+    const senhaEl = document.getElementById("senha");
+    const confirmaEl = document.getElementById("confirmaSenha");
+
+    const nome = nomeEl ? nomeEl.value.trim() : "";
+    const email = emailEl ? emailEl.value.trim() : "";
+    const cpf = cpfEl ? cpfEl.value.replace(/[^0-9]/g, '') : "";
+    const senha = senhaEl ? senhaEl.value : "";
+    const confirmaSenha = confirmaEl ? confirmaEl.value : "";
+
+    if (senha !== confirmaSenha) {
+      if (resultado) resultado.innerHTML = "<p style='color:red;'>❌ As senhas não coincidem!</p>";
+      if (submitButton) { submitButton.disabled = false; submitButton.textContent = "Criar Conta"; }
+      return;
+    }
+
+    // pega arquivo e converte para dataURL
+    const file = fotoInput && fotoInput.files && fotoInput.files[0] ? fotoInput.files[0] : null;
+    let fotoDataUrl = null;
+    try {
+      fotoDataUrl = await fileToDataURL(file);
+    } catch (err) {
+      console.error("Erro ao ler imagem:", err);
+      if (resultado) resultado.innerHTML = "<p style='color:red;'>Erro ao ler a imagem. Tente outro arquivo.</p>";
+      if (submitButton) { submitButton.disabled = false; submitButton.textContent = "Criar Conta"; }
+      return;
+    }
+
+    // monta objeto do novo usuário (inclui foto: dataURL ou null)
     const novoUsuarioParaEnvio = {
-        nome,
-        email,
-        cpf,
-        senha,
-        plano: 'sem-plano' // Valor inicial fixo
+      id: Date.now(),
+      nome,
+      email,
+      cpf,
+      senha,
+      plano: 'sem-plano',
+      ativo: true,
+      favoritos: [],
+      carrinho: [],
+      foto: fotoDataUrl // aqui vai o dataURL ou null
     };
 
-    // 4. Envio dos Dados
-    let sucesso = false;
     try {
-        resultado.innerHTML = "<p style='color:orange;'>⏳ Conectando ao servidor...</p>";
-        
-        const resposta = await fetch("http://localhost:3000/usuarios", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(novoUsuarioParaEnvio)
-        });
+      if (resultado) resultado.innerHTML = "<p style='color:orange;'>⏳ Conectando ao servidor...</p>";
 
-        const dados = await resposta.json();
+      const resposta = await fetch("http://localhost:3000/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novoUsuarioParaEnvio)
+      });
 
-        if (resposta.ok) {
-            sucesso = true;
+      const dados = await resposta.json().catch(() => ({}));
 
-            // *** MUDANÇA CRUCIAL: Iniciar Sessão Local ***
-            // O servidor deve retornar o objeto completo do usuário recém-criado (ex: dados.user ou apenas dados).
-            const usuarioCriado = dados.user || dados; 
-            
-            // VERIFICAÇÃO ADICIONAL: Garantir que o objeto do usuário é válido e possui o nome
-            if (usuarioCriado && usuarioCriado.nome) {
-                // 1. Garante que o array de favoritos exista (segue a lógica do seu código de referência)
-                usuarioCriado.favoritos = usuarioCriado.favoritos || []; 
-                
-                // 2. SALVA NO LOCALSTORAGE para que a topbar possa ler na próxima página
-                localStorage.setItem("usuarioLogado", JSON.stringify(usuarioCriado));
-                console.log("✅ Usuário logado com sucesso no localStorage:", usuarioCriado.nome.split(" ")[0]);
-            } else {
-                 console.error("❌ ERRO: O backend não retornou o objeto de usuário completo após o cadastro.");
-                 resultado.innerHTML = "<p style='color:red;'>❌ Erro interno: Usuário criado, mas dados de sessão incompletos.</p>";
-            }
-            // **********************************************
-            
-            resultado.innerHTML = `<p style='color:green;'>✅ ${dados.message || 'Usuário criado com sucesso.'}</p>`;
-            cadastroForm.reset();
+      if (resposta.ok) {
+        // se backend retornar o usuário criado, usa ele; se não, usa nosso objeto enviado
+        const usuarioCriado = dados.user || dados.usuario || dados || novoUsuarioParaEnvio;
 
-        } else {
-            resultado.innerHTML = `<p style='color:red;'>❌ Erro (${resposta.status}): ${dados.message || 'Falha no servidor.'}</p>`;
-        }
+        // garante campos mínimos e salva sessão local
+        usuarioCriado.favoritos = usuarioCriado.favoritos || [];
+        usuarioCriado.carrinho = usuarioCriado.carrinho || [];
+        usuarioCriado.foto = usuarioCriado.foto === undefined ? fotoDataUrl : usuarioCriado.foto;
 
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioCriado));
+
+        // atualiza topbar e badge, se as funções existirem
+        if (typeof atualizarIconeUsuario === "function") atualizarIconeUsuario();
+        if (typeof updateCartBadge === "function") updateCartBadge();
+
+        if (resultado) resultado.innerHTML = `<p style='color:green;'>✅ ${dados.message || 'Usuário criado com sucesso.'}</p>`;
+        cadastroForm.reset();
+
+        // redireciona para login
+        setTimeout(() => { window.location.href = "Login.html"; }, 900);
+      } else {
+        if (resultado) resultado.innerHTML = `<p style='color:red;'>❌ Erro (${resposta.status}): ${dados.message || 'Falha no servidor.'}</p>`;
+      }
     } catch (erro) {
-        resultado.innerHTML = `<p style='color:red;'>❌ Erro de Conexão. Verifique se o backend está ativo: ${erro.message}</p>`;
-        console.error("Erro de conexão/fetch:", erro);
+      if (resultado) resultado.innerHTML = `<p style='color:red;'>❌ Erro de conexão. Verifique o backend: ${erro.message}</p>`;
+      console.error("Erro de conexão/fetch:", erro);
     } finally {
-        // 5. Reabilitar botão se não houve sucesso
-        if (!sucesso) {
-            submitButton.disabled = false;
-            submitButton.textContent = "Criar Conta";
-        }
+      if (submitButton) { submitButton.disabled = false; submitButton.textContent = "Criar Conta"; }
     }
+  });
 });

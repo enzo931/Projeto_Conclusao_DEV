@@ -111,9 +111,22 @@ body {
   margin: 0;
 }
 
+.topbar .topbar-user-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  display: inline-block;
+}
 
-
-
+/* ajuste para mobile, se quiser */
+@media (max-width: 600px) {
+  .topbar .topbar-user-photo {
+    width: 34px;
+    height: 34px;
+  }
+}
 
 /* --- Icons e Navegação --- */
 .icons {
@@ -131,7 +144,7 @@ body {
 .icons i, .icons .user-nome {
     margin-left: 15px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 30px;
     color: #333;
 }
 .icons .user-nome {

@@ -13,13 +13,17 @@ const usuariosPath = path.join(__dirname, "usuarios.json");
 // Função utilitária para garantir o campo favoritos
 function garantirFavoritos(usuarios) {
   let alterado = false;
-  usuarios.forEach((u) => {
+  usuarios.forEach(u => {
     if (!Array.isArray(u.favoritos)) {
       u.favoritos = [];
       alterado = true;
     }
-    if (!Array.isArray(u.carrinho)) { // <-- garante o campo carrinho
+    if (!Array.isArray(u.carrinho)) {
       u.carrinho = [];
+      alterado = true;
+    }
+    if (typeof u.foto === "undefined") { // garante campo foto
+      u.foto = null;
       alterado = true;
     }
   });

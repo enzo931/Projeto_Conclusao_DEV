@@ -54,14 +54,19 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
-    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuario) {
-        window.location.href = "Login.html";
-        return;
-    }
+  const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+  if (!usuario) {
+    window.location.href = "Login.html";
+    return;
+  }
 
-    // Saudação dinâmica
-    document.querySelector(".greeting span").innerHTML = `Olá, ${usuario.nome.split(" ")[0]} <img src="src/imgs/icons/aceno.png" alt="Aceno">`;
+  // mostra foto + saudação
+  const greeting = document.querySelector(".greeting span");
+  if (usuario.foto) {
+    greeting.innerHTML = `<img src="${usuario.foto}" class="profile-photo" alt="${usuario.nome}" style="width:64px;height:64px;border-radius:50%;vertical-align:middle;margin-right:8px;"> ${usuario.nome.split(" ")[0]} <img src="src/imgs/icons/aceno.png" alt="Aceno">`;
+  } else {
+    greeting.innerHTML = `Olá, ${usuario.nome.split(" ")[0]} <img src="src/imgs/icons/aceno.png" alt="Aceno">`;
+  }
 
     // Exibir favoritos reais
     const produtos = [
@@ -133,6 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem("usuarioLogado");
         window.location.href = "index.html";
     });
+
+    // Atualiza topbar (foto/nome) e badge do carrinho se as funções existirem
+    if (typeof atualizarIconeUsuario === "function") {
+      atualizarIconeUsuario();
+    }
+    if (typeof updateCartBadge === "function") {
+      updateCartBadge();
+    }
 });
 
 // Função para atualizar o Badge do Carrinho com base nos dados do LocalStorage
