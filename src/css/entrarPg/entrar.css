@@ -19,7 +19,7 @@
       width: 800px;
       background-color: #fff;
       border-radius: 90px;
-      padding: 100px 20px;
+      padding: 70px 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
       text-align: center;
       color: white;
@@ -58,7 +58,7 @@
 
     /* Botão */
     .card button {
-      width: 100%;
+      width: 30%;
       padding: 12px;
       border: none;
       border-radius: 8px;

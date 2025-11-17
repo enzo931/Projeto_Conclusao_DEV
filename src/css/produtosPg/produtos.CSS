@@ -21,38 +21,7 @@
 }
 
 .logo img {
-    height: 60px;
-}
-
-/* --- Search Bar --- */
-.search-bar {
-    display: flex;
-    flex: 1;
-    margin: 0 20px;
-    max-width: 500px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 25px;
-    overflow: hidden;
-}
-
-.search-bar input {
-    flex: 1;
-    padding: 10px 15px;
-    border: none;
-    font-size: 16px;
-    outline: none;
-}
-
-.search-bar button {
-    padding: 10px 18px;
-    border: none;
-    background: #00aaff;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-.search-bar button:hover {
-    background: #0088cc;
+    height: 100px;
 }
 
 /* --- Icons e Navegação --- */
