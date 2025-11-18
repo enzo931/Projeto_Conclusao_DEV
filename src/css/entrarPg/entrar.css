@@ -84,22 +84,55 @@
       text-decoration: underline;
     }
 
+    /* 1. Esconde o Input Original */
+    .custom-file-upload input[type="file"] {
+      opacity: 0;
+      width: 0.1px;
+      height: 0.1px;
+      position: absolute;
+      z-index: -1;
+    }
+
+    /* 2. Estiliza o Label (Nosso Novo Botão) */
+    .custom-file-upload label {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-right: 10px;
+      /* Adicionado um pouco de espaço à direita */
+      border: 1px solid #007bff;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* 3. Estilo opcional para o nome do arquivo */
+    .custom-file-upload #nome-do-arquivo {
+      font-style: italic;
+      color: #555;
+    }
+
     /* Adicione ao final de: src/css/entrarPg/entrar.css */
-@media (max-width: 600px) {
-  .container {
-    width: 98%;
-    padding: 30px 5px;
-    border-radius: 30px;
-  }
-  .logo img {
-    width: 120px;
-  }
-  .card {
-    padding: 15px 5px;
-    border-radius: 18px;
-  }
-  .card button {
-    font-size: 15px;
-    padding: 10px;
-  }
-}
+    @media (max-width: 600px) {
+      .container {
+        width: 98%;
+        padding: 30px 5px;
+        border-radius: 30px;
+      }
+
+      .logo img {
+        width: 120px;
+      }
+
+      .card {
+        padding: 15px 5px;
+        border-radius: 18px;
+      }
+
+      .card button {
+        font-size: 15px;
+        padding: 10px;
+      }
+    }

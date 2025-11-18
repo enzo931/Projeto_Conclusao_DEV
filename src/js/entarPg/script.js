@@ -4,6 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultado = document.getElementById("resultado");
   const fotoInput = document.getElementById("foto");
 
+  const spanNomeArquivo = document.getElementById('nome-do-arquivo');
+
+  fotoInput.addEventListener('change', function () {
+
+    if (this.files && this.files.length > 0) {
+
+      spanNomeArquivo.textContent = this.files[0].name;
+
+    } else {
+     
+      spanNomeArquivo.textContent = 'Nenhum arquivo selecionado';
+    }
+  });
+
+
   if (!cadastroForm) return;
 
   // util: converte File -> dataURL (base64)

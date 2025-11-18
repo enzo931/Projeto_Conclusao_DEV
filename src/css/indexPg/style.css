@@ -358,14 +358,6 @@ body {
   transform: scale(1.01);
 }
 
-footer {
-  background: #222;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 20px;
-}
-
 /* Overlay escuro */
 .overlay {
   position: fixed;
@@ -391,6 +383,22 @@ h1 {
   margin-bottom: 30px;
 }
 
+h2 {
+  margin-left: 20px;
+}
+
+.titulos-ofertas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.titulos-ofertas img {
+  width: 50px;
+  height: 50px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -402,6 +410,7 @@ h1 {
 .card {
   background: white;
   border-radius: 12px;
+  border: 1px solid #ddd;
   padding: 15px;
   transition: transform 0.2s;
   display: flex;
@@ -409,10 +418,7 @@ h1 {
   align-items: center;
   justify-content: flex-start;
   position: relative;
-  /* Necessário para posicionar o botão favorito */
   cursor: pointer;
-  /* Para indicar que o card é clicável */
-
 }
 
 .card:hover {
