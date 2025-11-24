@@ -75,6 +75,7 @@ body {
   overflow-y: auto;
   display: none;
   z-index: 9999;
+  font-weight: bold;
 }
 
 /* Cada item do resultado */

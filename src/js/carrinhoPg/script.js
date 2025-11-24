@@ -393,11 +393,7 @@ function renderCarrinho() {
     const cartItemsEl = document.getElementById("cart-items");
     if (!cartItemsEl) return;
 
-    // Desanexa listeners antigos (para evitar duplicação)
-    // O ideal é usar `removeEventListener`, mas limpando o innerHTML resolve o problema de duplicação
     cartItemsEl.innerHTML = "";
-
-    // Sincroniza o estado global de cartItemsData
     cartItemsData = usuario.carrinho || [];
 
     if (cartItemsData.length === 0) {
@@ -413,9 +409,8 @@ function renderCarrinho() {
         const totalItem = produto.preco * item.quantidade;
         const div = document.createElement("div");
         div.className = "cart-item";
-        // CRÍTICO: Usamos o ID do produto, não o índice, para garantir que o listener aponte para o item correto.
         div.setAttribute('data-product-id', item.id);
-        div.setAttribute('data-index', idx); // Mantido o índice para debug e referência rápida, mas o ID é mais seguro.
+        div.setAttribute('data-index', idx);
 
         div.innerHTML = `
             <div class="product-info">
@@ -435,14 +430,15 @@ function renderCarrinho() {
                 <button class="menos" data-action="menos">-</button>
                 <input type="number" min="1" value="${item.quantidade}" data-action="input">
                 <button class="mais" data-action="mais">+</button>
+                <p>Qtd.</p>
             </div>
+            <!-- Botão Lixeira -->
+                <button class="remover-item" title="Remover item" data-action="remover" aria-label="Remover item">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
         `;
         cartItemsEl.appendChild(div);
     });
-
-    // ANEXA OS LISTENERS APÓS A RENDERIZAÇÃO
-    // É crucial que esta parte não seja chamada múltiplas vezes, mas apenas uma vez na inicialização.
-    // Vamos movê-la para a inicialização e usar Event Delegation (que já está sendo usada, mas precisa ser limpa).
 
     ShippingModule.recalculateFreights();
 }
@@ -452,30 +448,46 @@ function setupCartItemListeners() {
     const cartItemsEl = document.getElementById("cart-items");
     if (!cartItemsEl) return;
 
-    // Remove listener anterior (se existir) para evitar duplicação
-    // Esta é a forma mais segura de garantir que o listener seja único
-    const oldClickListener = cartItemsEl.onclick;
-    const oldChangeListener = cartItemsEl.onchange;
+    // remove listeners anteriores se houver (seguindo sua lógica)
+    cartItemsEl.replaceWith(cartItemsEl.cloneNode(true));
+    const newCartItemsEl = document.getElementById("cart-items");
 
-    if (oldClickListener) cartItemsEl.removeEventListener('click', oldClickListener);
-    if (oldChangeListener) cartItemsEl.removeEventListener('change', oldChangeListener);
-
-    // Event Delegation para BOTOES (+ e -)
-    cartItemsEl.addEventListener('click', (e) => {
+    // Event Delegation para cliques (mais, menos, remover)
+    newCartItemsEl.addEventListener('click', (e) => {
         const target = e.target;
-        if (target.tagName === 'BUTTON' && (target.classList.contains('menos') || target.classList.contains('mais'))) {
-            const itemElement = target.closest('.cart-item');
-            const idx = parseInt(itemElement.getAttribute('data-index'));
-            handleQuantityChange(idx, target.dataset.action);
+        const btn = target.closest('button');
+        if (!btn) return;
+
+        const itemElement = btn.closest('.cart-item');
+        if (!itemElement) return;
+        const idx = parseInt(itemElement.getAttribute('data-index'), 10);
+
+        // Remover item (lixeira)
+        if (btn.classList.contains('remover-item') || btn.dataset.action === 'remover') {
+            const produto = produtos.find(p => p.id === (usuario.carrinho[idx] && usuario.carrinho[idx].id));
+            const nomeProduto = produto ? produto.nome : 'este produto';
+            if (confirm(`Deseja remover ${nomeProduto} do carrinho?`)) {
+                usuario.carrinho.splice(idx, 1);
+                salvarCarrinho();
+                renderCarrinho();
+                if (typeof updateCartBadge === 'function') updateCartBadge();
+            }
+            return;
+        }
+
+        // Botões + / -
+        if (btn.classList.contains('mais') || btn.classList.contains('menos')) {
+            const action = btn.dataset.action;
+            handleQuantityChange(idx, action);
         }
     });
 
     // Event Delegation para INPUT (mudança manual)
-    cartItemsEl.addEventListener('change', (e) => {
+    newCartItemsEl.addEventListener('change', (e) => {
         const target = e.target;
         if (target.tagName === 'INPUT' && target.type === 'number') {
             const itemElement = target.closest('.cart-item');
-            const idx = parseInt(itemElement.getAttribute('data-index'));
+            const idx = parseInt(itemElement.getAttribute('data-index'), 10);
             handleQuantityChange(idx, 'input', target.value);
         }
     });

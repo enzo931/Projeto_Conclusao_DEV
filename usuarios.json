@@ -27,6 +27,13 @@
       {
         "id": 5,
         "quantidade": 1
+      },
+      {
+        "id": 24,
+        "quantidade": 1,
+        "nome": "Mini PC Compacto (HTPC)",
+        "preco_unitario": 1650,
+        "imagem": "src/imgs/produtos/pc_mini.jpg"
       }
     ],
     "foto": null
@@ -171,8 +178,27 @@
   {
     "id": 1763385061175,
     "ativo": true,
-    "favoritos": [],
-    "carrinho": [],
+    "favoritos": [
+      9,
+      4,
+      5
+    ],
+    "carrinho": [
+      {
+        "id": 4,
+        "quantidade": 1,
+        "nome": "Placa-mãe ASUS TUF B450M",
+        "preco_unitario": 550,
+        "imagem": "src/imgs/produtos/Placa-mãe ASUS TUF B450M.jpg"
+      },
+      {
+        "id": 5,
+        "quantidade": 1,
+        "nome": "Fonte Corsair CV550 80 Plus Bronze",
+        "preco_unitario": 300,
+        "imagem": "src/imgs/produtos/Fonte Corsair CV550 80 Plus Bronze.jpg"
+      }
+    ],
     "nome": "kaka",
     "email": "kaka@email.com",
     "cpf": "18263552136",
