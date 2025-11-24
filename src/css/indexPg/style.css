@@ -265,22 +265,18 @@ body {
     position: absolute;
     top: -5px; 
     right: -10px;
-
     /* Estilo visual */
     background-color: #e74c3c;
     color: white;
     font-size: 10px;
     font-weight: bold;
-    
     /* Forma, tamanho e centralização */
     min-width: 18px;
     height: 18px;
     border-radius: 50%;
-    padding: 3px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    
     z-index: 5;
     box-shadow: 0 0 0 2px white; /* Efeito de borda branca (3D sutil) */
 }
@@ -578,7 +574,7 @@ h2 {
 .footer-divider {
     width: 2.5rem; /* w-10 */
     height: 0.125rem; /* h-0.5 */
-    background-color: #ef4444; /* Vermelho */
+    background-color: #00aaff; /* Vermelho */
     margin-bottom: 1rem;
 }
 
@@ -601,7 +597,7 @@ h2 {
 }
 
 .footer-col ul li a:hover {
-    color: #f87171; /* Vermelho no hover */
+    color: #005fa3; /* Vermelho no hover */
 }
 
 /* 6. Mídias (App e Pagamento) */
@@ -639,7 +635,7 @@ h2 {
 }
 
 .social-icons a:hover {
-    color: #ef4444; /* Vermelho no hover */
+    color: #005fa3; /* Vermelho no hover */
 }
 
 /* 7. Newsletter (Apenas Estilização Visual) */
@@ -659,7 +655,7 @@ h2 {
 }
 
 .newsletter-button {
-    background-color: #ef4444;
+    background-color: #00aaff;
     color: #ffffff;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -670,7 +666,7 @@ h2 {
 }
 
 .newsletter-button:hover {
-    background-color: #dc2626;
+    background-color: #005fa3;
 }
 
 .text-small {

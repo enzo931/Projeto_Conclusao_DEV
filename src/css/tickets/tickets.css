@@ -1,0 +1,310 @@
+/* Estilo da página de Ticket - Epic Hardware */
+:root{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --accent: #0b76d1;
+  --muted: #6b7280;
+  --success: #16a34a;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg) 0%, #eef3f8 100%);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.075);
+}
+
+.menu-icon {
+    cursor: pointer;
+    font-size: 35px;
+    color: #333;
+    padding-right: 15px;
+}
+
+.logo img {
+    height: 100px;
+}
+
+/* --- Search Bar --- */
+.search-bar {
+    display: flex;
+    flex: 1;
+    margin: 0 20px;
+    max-width: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 18px;
+    border: none;
+    background: #00aaff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.search-bar button:hover {
+    background: #0088cc;
+}
+
+/* --- Icons e Navegação --- */
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #333;
+    /* Remover 'display: flex' daqui, pois o cart-container já lida com o alinhamento */
+}
+
+/* Estilos de ícones e nome de usuário, aplicados a todos os itens não-cart */
+.icons i, .icons .user-nome {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+}
+.icons .user-nome {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* ========================================================== */
+/* ========================= SIDEBAR ======================== */
+/* ========================================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 260px;
+    height: 100%;
+    background: #4aa8e5;
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    z-index: 20;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h3 {
+    margin-top: 25px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+.sidebar li a {
+    color: white;
+    text-decoration: none;
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-weight: normal;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    float: right;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    display: none;
+    transition: opacity 0.3s;
+}
+.overlay.active {
+    display: block;
+}
+
+/* ========================================================== */
+/* ========================= CARRINHO BADGE ================= */
+/* ========================================================== */
+
+/* 1. Contêiner para posicionamento relativo */
+.cart-container {
+    position: relative;
+    display: inline-block;
+    /* CRÍTICO: Usa a mesma margem do ícone normal para manter o espaçamento uniforme */
+    margin-left: 15px; 
+}
+
+/* CRÍTICO: Remove a margem extra do ícone fa-shopping-cart (que seria aplicada pelo .icons i) 
+   porque a margem está no .cart-container agora. */
+.cart-container .fa-shopping-cart { 
+    margin-left: 0; 
+}
+
+/* 2. Estilização e Posicionamento Absoluto do Badge */
+.badge {
+    position: absolute;
+    top: -5px; 
+    right: -10px;
+
+    /* Estilo visual */
+    background-color: #e74c3c;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    
+    /* Forma, tamanho e centralização */
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    padding: 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 5;
+    box-shadow: 0 0 0 2px white; /* Efeito de borda branca (3D sutil) */
+}
+
+/* Container principal */
+main{
+  padding:20px;
+  max-width:880px;
+  margin:20px auto;
+}
+
+/* Card do formulário */
+.ticket-card{
+  background:var(--card);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
+  border:1px solid rgba(15,23,42,0.04);
+}
+
+/* Header */
+.ticket-card h1{
+  margin:0 0 12px 0;
+  font-size:1.35rem;
+  color:#0f172a;
+}
+
+/* Form layout */
+#ticketForm{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+label{
+  font-size:13px;color:var(--muted);margin-bottom:6px;display:block;
+}
+input[type="text"],
+input[type="email"],
+textarea{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #000000;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+  transition:box-shadow .12s, border-color .12s;
+}
+input:focus, textarea:focus{
+  box-shadow:0 6px 18px rgba(11,118,209,0.06);
+  border-color:var(--accent);
+}
+
+/* textarea */
+textarea{min-height:140px;resize:vertical;line-height:1.5}
+
+/* botões */
+button[type="submit"]{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 16px;
+  font-weight:600;
+  border-radius:10px;
+  cursor:pointer;
+  transition:transform .08s ease,box-shadow .12s;
+  align-self:flex-start;
+}
+button[type="submit"]:hover{transform:translateY(-2px)}
+button[type="submit"]:active{transform:translateY(0)}
+
+#resultado{margin-top:8px;font-size:14px}
+
+/* mensagens */
+.success{color:var(--success)}
+.error{color:#dc2626}
+
+/* mobile adjustments */
+@media (max-width:600px){
+  .topbar .logo img{height:40px}
+  main{padding:14px;margin:12px}
+  .ticket-card{padding:16px}
+  .topbar .topbar-user-photo{width:34px;height:34px}
+  button[type="submit"]{width:100%}
+}

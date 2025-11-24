@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Enviar Ticket - Epic Hardware</title>
+  <link rel="stylesheet" href="src/css/fotoUsuario/style.css">
+  <link rel="stylesheet" href="src/css/tickets/tickets.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+ <!-- Top Bar -->
+  <header class="topbar">
+    <div class="menu-icon" id="openSidebar"><i class="fa fa-bars"></i></div>
+    <div class="logo">
+      <a href="index.html"><img src="src/imgs/logo/image.png" alt="Logo"></a>
+    </div>
+    <div class="icons">
+      <a href="Login.html"><i class="fa fa-user"></i></a>
+
+      <div class="cart-container">
+        <a href="carrinho.html"><i class="fa fa-shopping-cart"></i></a>
+        <span id="cart-badge" class="badge"></span>
+      </div>
+    </div>
+  </header>
+  <!-- Sidebar (oculta por padrão) -->
+  <aside class="sidebar" id="sidebar">
+    <button class="close-btn" id="closeSidebar"><i class="fa fa-times"></i></button>
+    <div class="sidebar-logo">
+      <img src="src/imgs/logo/image.png" alt="Epic Hardware" width="150">
+    </div>
+    <h3>Categorias</h3>
+    <ul>
+      <li><a href="categorias.html?categoria=computadores"><i class="fa fa-desktop"></i> Computadores</a></li>
+      <li><a href="categorias.html?categoria=monitores"><i class="fa fa-tv"></i> Monitores</a></li>
+      <li><a href="categorias.html?categoria=reutilizados"><i class="fa fa-recycle"></i> Produtos Reutilizados</a></li>
+      <li><a href="categorias.html?categoria=hardware"><i class="fa fa-microchip"></i> Hardware</a></li>
+      <li><a href="categorias.html?categoria=perifericos"><i class="fa fa-keyboard"></i> Periféricos</a></li>
+      <li><a href="categorias.html?categoria=certificados"><i class="fa fa-certificate"></i> Produtos Certificados</a>
+      </li>
+    </ul>
+    <h3>Ajuda</h3>
+    <ul>
+       <li><i class="fa fa-headset"><a href="suporte.html">Suporte</a></i></li>
+    </ul>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+
+  <main style="padding:1rem;max-width:700px;margin:0 auto;">
+    <h1>Enviar Ticket</h1>
+    <form action="https://formsubmit.co/enzo.manzoni2008@gmail.com" method="POST">
+      <input type="text" id="nome" name="nome" placeholder="Seu nome">
+      <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+      <input type="text" id="assunto" name="assunto" placeholder="Assunto">
+      <textarea id="mensagem" name="mensagem" placeholder="Mensagem" required></textarea>
+      
+      <!-- Redirect após envio -->
+      <input type="hidden" name="_next" value="http://localhost:3000/index.html">
+      
+      <button type="submit">Enviar Ticket</button>
+    </form>
+  </main>
+  <script src="src/js/ticket/script.js"></script>
+</body>
+</html>

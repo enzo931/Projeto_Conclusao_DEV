@@ -54,19 +54,19 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
-  const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-  if (!usuario) {
-    window.location.href = "Login.html";
-    return;
-  }
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuario) {
+        window.location.href = "Login.html";
+        return;
+    }
 
-  // mostra foto + saudação
-  const greeting = document.querySelector(".greeting span");
-  if (usuario.foto) {
-    greeting.innerHTML = `<img src="${usuario.foto}" class="profile-photo" alt="${usuario.nome}" style="width:64px;height:64px;border-radius:50%;vertical-align:middle;margin-right:8px;"> ${usuario.nome.split(" ")[0]} <img src="src/imgs/icons/aceno.png" alt="Aceno">`;
-  } else {
-    greeting.innerHTML = `Olá, ${usuario.nome.split(" ")[0]} <img src="src/imgs/icons/aceno.png" alt="Aceno">`;
-  }
+    // mostra foto + saudação
+    const greeting = document.querySelector(".greeting span");
+    if (usuario.foto) {
+        greeting.innerHTML = `<img src="${usuario.foto}" class="profile-photo" alt="${usuario.nome}" style="width: 70px; height:70px; border-radius: 50%; object-fit: cover; border: 2px solid #fff;"> ${usuario.nome.split(" ")[0]} <img src="src/imgs/icons/aceno.png" alt="Aceno">`;
+    } else {
+        greeting.innerHTML = `Olá, ${usuario.nome.split(" ")[0]} <img src="src/imgs/icons/aceno.png" alt="Aceno">`;
+    }
 
     // Exibir favoritos reais
     const produtos = [
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: 35, nome: "PC Escritório Básico (USADO) - Core i3 + 8GB RAM", preco: 1250, categoria: "Reutilizados", imagem: "src/imgs/produtos/usado_pc_escritorio.jpg" }
     ];
 
-    
+
     const favoritos = usuario.favoritos || [];
     const favoritosProdutos = produtos.filter(p => favoritos.includes(p.id));
 
@@ -141,10 +141,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Atualiza topbar (foto/nome) e badge do carrinho se as funções existirem
     if (typeof atualizarIconeUsuario === "function") {
-      atualizarIconeUsuario();
+        atualizarIconeUsuario();
     }
     if (typeof updateCartBadge === "function") {
-      updateCartBadge();
+        updateCartBadge();
     }
 });
 
@@ -152,27 +152,27 @@ document.addEventListener("DOMContentLoaded", function () {
 function updateCartBadge() {
     // 1. Tenta obter o usuário logado e o carrinho
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    
+
     let totalItems = 0;
-    
+
     // 2. Verifica se o usuário existe e se possui um carrinho válido
     if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
         // 3. Soma a quantidade de CADA item no carrinho
         // O .reduce() percorre a array e soma todos os valores de 'quantidade'
         totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
     }
-    
+
     const badge = document.getElementById('cart-badge');
 
     if (badge) {
         // 4. INSERE o valor no HTML
         if (totalItems > 0) {
             // Exibe a bolha e seta o valor
-            badge.style.display = 'flex'; 
-            badge.textContent = totalItems > 99 ? '99+' : totalItems; 
+            badge.style.display = 'flex';
+            badge.textContent = totalItems > 99 ? '99+' : totalItems;
         } else {
             // Se o carrinho estiver vazio ou a soma for 0
-            badge.style.display = 'none'; 
+            badge.style.display = 'none';
             badge.textContent = '';
         }
     }

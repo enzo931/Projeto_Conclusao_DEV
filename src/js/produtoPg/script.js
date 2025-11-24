@@ -1,4 +1,142 @@
 (() => {
+  // pega produto atual para gerar reviews determinísticas por produto
+  const produto = JSON.parse(localStorage.getItem("produtoSelecionado")) || {};
+  const seedSource = produto.id ? String(produto.id) : (produto.nome || String(Date.now()));
+
+  // hash simples para gerar seed numérico
+  function hashString(str) {
+    let h = 2166136261 >>> 0;
+    for (let i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    return h >>> 0;
+  }
+
+  // PRNG determinístico (mulberry32)
+  function mulberry32(a) {
+    return function () {
+      let t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  const rng = mulberry32(hashString(seedSource));
+
+  // listas separadas por sexo (nomes coerentes com foto)
+  const femaleNames = [
+    "Larissa","Mariana","Natália","Julia","Amanda",
+    "Helena","Beatriz","Marina","Sofia","Ana"
+  ];
+  const maleNames = [
+    "Thiago","Carlos","Rafael","Pedro","Bruno",
+    "Lucas","Gustavo","Felipe","Ricardo","Mateus"
+  ];
+
+  const textos = [
+    "Produto excelente, superou minhas expectativas.",
+    "Ótimo custo-benefício, recomendo para quem procura desempenho.",
+    "Entrega rápida e produto em perfeito estado. Muito satisfeito.",
+    "Funciona bem, porém esperava melhor acabamento.",
+    "Perfeito para quem joga e trabalha ao mesmo tempo.",
+    "Tá valendo cada centavo, muito satisfeito com a compra.",
+    "Velocidade incrível, montagem tranquila.",
+    "Não gostei do atendimento, mas o produto é bom.",
+    "Fácil instalação e funcionamento estável.",
+    "Bonito, potente e silencioso. Recomendo."
+  ];
+
+  // Funções para retornar avatar por sexo (IDs separados para evitar mistura)
+  function avatarUrlFemale(n) {
+    // ids 1..35 para "femininos"
+    const id = (Math.floor(n) % 35) + 1;
+    return `https://i.pravatar.cc/100?img=${id}`;
+  }
+  function avatarUrlMale(n) {
+    // ids 36..70 para "masculinos"
+    const id = 36 + (Math.floor(n) % 35);
+    return `https://i.pravatar.cc/100?img=${id}`;
+  }
+
+  const POOL_COUNT = 10;   // total de avaliações geradas por produto
+  const SHOW_COUNT = 3;    // avaliações mostradas na página (máx 3 por produto)
+
+  // seleciona container de reviews na página
+  const reviewsNodes = Array.from(document.querySelectorAll('.reviews'));
+  if (reviewsNodes.length === 0) return;
+
+  const firstContainer = reviewsNodes[0];
+  // remove containers extras se houver
+  for (let i = 1; i < reviewsNodes.length; i++) reviewsNodes[i].remove();
+
+  // função que cria pool de avaliações (determinística)
+  function buildReviewsPool() {
+    const pool = [];
+    for (let i = 0; i < POOL_COUNT; i++) {
+      const seedVal = Math.floor(rng() * 1000000) + i;
+      // decide sexo para esta avaliação de forma determinística
+      const isFemale = rng() > 0.45; // ligeira variação, determinística por rng
+      const nome = isFemale
+        ? femaleNames[Math.floor(rng() * femaleNames.length)]
+        : maleNames[Math.floor(rng() * maleNames.length)];
+      const texto = textos[Math.floor(rng() * textos.length)];
+      const estrelas = Math.floor(rng() * 5) + 1; // 1..5
+      const avatar = isFemale ? avatarUrlFemale(seedVal) : avatarUrlMale(seedVal);
+
+      pool.push({ nome, texto, estrelas, avatar, sexo: isFemale ? 'F' : 'M' });
+    }
+    return pool;
+  }
+
+  // embaralha array com RNG determinístico
+  function shuffleArray(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // renderiza apenas SHOW_COUNT avaliações a partir do pool
+  function renderReviews() {
+    firstContainer.innerHTML = '<h3>Avaliações de Usuários</h3>';
+    const pool = buildReviewsPool();
+    const shuffled = shuffleArray(pool);
+    const toShow = shuffled.slice(0, SHOW_COUNT);
+
+    toShow.forEach(review => {
+      const reviewEl = document.createElement('div');
+      reviewEl.className = 'review';
+      reviewEl.innerHTML = `
+        <img src="${review.avatar}" alt="Avatar de ${review.nome}" class="avatar">
+        <div class="review-content">
+          <p><strong>${review.nome}:</strong></p>
+          <p>${review.texto}</p>
+          <div class="stars" aria-hidden="true">
+            ${Array.from({ length: 5 }).map((_, idx) =>
+              `<i class="fas fa-star ${idx < review.estrelas ? 'filled' : ''}"></i>`
+            ).join('')}
+          </div>
+        </div>
+      `;
+      firstContainer.appendChild(reviewEl);
+    });
+
+    const footerNote = document.createElement('p');
+    footerNote.className = 'reviews-note';
+    footerNote.style.fontSize = '12px';
+    footerNote.style.color = '#666';
+    footerNote.style.marginTop = '12px';
+    firstContainer.appendChild(footerNote);
+  }
+
+  renderReviews();
+})();
+
+(() => {
   // elementos (tenta vários nomes/seletores possíveis)
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');

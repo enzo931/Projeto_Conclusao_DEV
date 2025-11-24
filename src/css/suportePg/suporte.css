@@ -74,7 +74,6 @@ body {
     min-width: 18px;
     height: 18px;
     border-radius: 50%;
-    padding: 3px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -353,7 +352,7 @@ body {
 .footer-divider {
     width: 2.5rem; /* w-10 */
     height: 0.125rem; /* h-0.5 */
-    background-color: #ef4444; /* Vermelho */
+    background-color: #00aaff; /* Vermelho */
     margin-bottom: 1rem;
 }
 
@@ -376,7 +375,7 @@ body {
 }
 
 .footer-col ul li a:hover {
-    color: #f87171; /* Vermelho no hover */
+    color: #0056b3; /* Vermelho no hover */
 }
 
 /* 6. Mídias (App e Pagamento) */
@@ -414,7 +413,7 @@ body {
 }
 
 .social-icons a:hover {
-    color: #ef4444; /* Vermelho no hover */
+    color: #0056b3; /* Vermelho no hover */
 }
 
 /* 7. Newsletter (Apenas Estilização Visual) */
@@ -434,7 +433,7 @@ body {
 }
 
 .newsletter-button {
-    background-color: #ef4444;
+    background-color: #00aaff;
     color: #ffffff;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -445,7 +444,7 @@ body {
 }
 
 .newsletter-button:hover {
-    background-color: #dc2626;
+    background-color: #0056b3;
 }
 
 .text-small {
@@ -467,24 +466,6 @@ body {
 }
 
 /* 9. Responsividade (Media Queries) */
-
-/* Layout para Telas Médias (Tablets e Desktops) - 768px e acima */
-@media (min-width: 768px) {
-    .footer-row {
-        gap: 3rem;
-    }
-    
-    .footer-col {
-        /* 4 Colunas */
-        width: calc(25% - 2.25rem); /* Cálculo para 4 colunas com espaçamento */
-        margin-bottom: 0; 
-    }
-
-    /* Ajuste para a segunda coluna (começa abaixo do título na primeira) */
-    .col-secondary {
-        margin-top: 2.75rem; /* Ajuste para alinhar com o próximo bloco de links na coluna 1 */
-    }
-}
 
 @media (max-width: 600px) {
 
