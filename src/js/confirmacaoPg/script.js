@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (usuarioLogado && usuarioLogado.email && emailDisplay) {
         // Exibe o email do usuário logado
         emailDisplay.textContent = usuarioLogado.email;
+        // limpa o carrinho do usuario do arquivo json tambem
+        fetch(`http://localhost:3000/usuarios/${usuarioLogado.id}/carrinho`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ carrinho: [] })
+        })
+        .then(response => response.json())
     } else if (emailDisplay) {
         // Caso não encontre o email (usuário deslogado, etc.)
         emailDisplay.textContent = "Não foi possível identificar o email.";

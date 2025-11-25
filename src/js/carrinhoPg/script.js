@@ -345,6 +345,13 @@ function salvarCarrinho() {
     });
     */
 }
+function limparCarrinho() {
+    if (usuario) {
+        usuario.carrinho = []; // Zera o array do carrinho
+        salvarCarrinho();      // Salva a mudança no LocalStorage
+        renderCarrinho();      // Atualiza a visualização do carrinho
+    }
+}
 
 /**
  * Lida com a mudança de quantidade de um item no carrinho.
