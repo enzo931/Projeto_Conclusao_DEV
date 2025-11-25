@@ -251,7 +251,7 @@ main{
 }
 
 /* Form layout */
-#ticketForm{
+Form{
   display:flex;
   flex-direction:column;
   gap:12px;

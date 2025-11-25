@@ -1,176 +1,153 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('ticketForm');
-  const resultado = document.getElementById('resultado');
-  if (!form) return;
+/*
+ * ====================================================================
+ * === CONFIGURAÇÕES EMAILJS (ATENÇÃO: SUBSTITUA OS VALORES ABAIXO) ===
+ * ====================================================================
+ */
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    resultado.textContent = 'Enviando...';
-    resultado.style.color = 'orange';
+const SERVICE_ID = 'service_6zc0c67';
+const TEMPLATE_ID = 'template_bxd1942';
+const PUBLIC_KEY = 'svuQqi7Iy-PmLdMjM'; // Seu User ID
 
-    const nome = document.getElementById('nome')?.value.trim() || '';
-    const email = document.getElementById('email')?.value.trim() || '';
-    const assunto = document.getElementById('assunto')?.value.trim() || 'Suporte';
-    const mensagem = document.getElementById('mensagem')?.value.trim() || '';
+// ====================================================================
+// === INICIALIZAÇÃO E FUNÇÃO PRINCIPAL DE ENVIO DE EMAIL ===
+// ====================================================================
 
-    if (!email || !mensagem) {
-      resultado.innerHTML = '<span style="color:red">❌ Email e mensagem são obrigatórios.</span>';
-      return;
-    }
-
-    try {
-      console.log('Enviando POST para http://localhost:3000/tickets...');
-      const payload = { nome, email, assunto, mensagem };
-      console.log('Payload:', payload);
-
-      const res = await fetch('http://localhost:3000/tickets', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      console.log('Status:', res.status);
-
-      if (!res.ok) {
-        const errorText = await res.text();
-        console.error('Resposta de erro:', errorText);
-        resultado.innerHTML = `<span style="color:red">❌ Erro ${res.status}: ${errorText || 'Desconhecido'}</span>`;
-        return;
-      }
-
-      const data = await res.json();
-      console.log('Sucesso:', data);
-
-      if (data && data.ticket) {
-        resultado.innerHTML = '<span style="color:green">✅ Ticket enviado com sucesso!</span>';
-        const body = `ID do ticket: ${data.ticket.id}\n\nAssunto: ${data.ticket.assunto}\n\nMensagem:\n${mensagem}`;
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent('Confirmação de ticket #' + data.ticket.id)}&body=${encodeURIComponent(body)}`;
-        setTimeout(() => window.open(gmailUrl, '_blank'), 500);
-        form.reset();
-      } else {
-        resultado.innerHTML = '<span style="color:orange">⚠️ Resposta inesperada do servidor.</span>';
-      }
-    } catch (err) {
-      console.error('Erro fetch:', err);
-      resultado.innerHTML = `<span style="color:red">❌ Erro de conexão: ${err.message}</span>`;
-    }
-  });
-});
-
-// Função para atualizar o Badge do Carrinho com base nos dados do LocalStorage
-function updateCartBadge() {
-    // 1. Tenta obter o usuário logado e o carrinho
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    let totalItems = 0;
-
-    // 2. Verifica se o usuário existe e se possui um carrinho válido
-    if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
-        // 3. Soma a quantidade de CADA item no carrinho
-        // O .reduce() percorre a array e soma todos os valores de 'quantidade'
-        totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
-    }
-
-    const badge = document.getElementById('cart-badge');
-
-    if (badge) {
-        // 4. INSERE o valor no HTML
-        if (totalItems > 0) {
-            // Exibe a bolha e seta o valor
-            badge.style.display = 'flex';
-            badge.textContent = totalItems > 99 ? '99+' : totalItems;
-        } else {
-            // Se o carrinho estiver vazio ou a soma for 0
-            badge.style.display = 'none';
-            badge.textContent = '';
-        }
-    }
+// 1. Inicializa o SDK do EmailJS
+// Esta verificação garante que a biblioteca foi carregada antes de inicializar.
+if (typeof window.emailjs === 'undefined') {
+  console.error('EmailJS SDK não encontrado. Certifique-se de que o CDN está no HTML.');
+} else {
+  // Inicializa o EmailJS com a Chave Pública (User ID)
+  emailjs.init(PUBLIC_KEY);
 }
 
-// CRÍTICO: Executa a função assim que a página estiver totalmente carregada
-document.addEventListener('DOMContentLoaded', updateCartBadge);
+/**
+ * Envia o formulário de ticket via EmailJS.
+ * @param {Event} e O evento de submissão do formulário.
+ * @param {HTMLFormElement} form O elemento do formulário.
+ * @param {HTMLElement} resultado O elemento de feedback.
+ */
+async function sendTicket(e, form, resultado) {
+    e.preventDefault();
+    resultado.textContent = '⏳ Enviando ticket...';
+    resultado.style.color = 'orange';
 
+    // Coleta e sanitiza os dados
+    const nome = document.getElementById('nome').value.trim() || 'Cliente';
+    const email = document.getElementById('email').value.trim();
+    const assunto = document.getElementById('assunto').value.trim() || 'Suporte Geral';
+    const mensagem = document.getElementById('mensagem').value.trim();
+
+    // Validação de campos obrigatórios
+    if (!email || !mensagem) {
+        resultado.innerHTML = '<span style="color:red">❌ Email e mensagem são obrigatórios.</span>';
+        return;
+    }
+    
+    // Validação de configuração
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY || typeof emailjs === 'undefined' ) {
+        resultado.innerHTML = '<span style="color:red">❌ Falha na configuração do EmailJS.</span>';
+        console.error('EmailJS não configurado (SERVICE_ID/TEMPLATE_ID/PUBLIC_KEY).');
+        return;
+    }
+
+
+    const ticketId = Date.now();
+    const templateParams = {
+        user_name: nome,
+        user_email: email,
+        subject: assunto,
+        message: mensagem,
+        ticket_id: ticketId,
+        date: new Date().toLocaleString('pt-BR'),
+        // Gera um link de visualização (se houver uma página para isso)
+        url: window.location.origin + '/ticket.html?id=' + ticketId, 
+        year: new Date().getFullYear()
+    };
+
+    try {
+        console.log('Enviando EmailJS:', templateParams);
+        
+        // Chama a função de envio do EmailJS
+        const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+
+        resultado.innerHTML = '<span style="color:green">✅ Ticket enviado! Um e‑mail de confirmação foi enviado.</span>';
+        form.reset();
+        
+        // Atualiza o badge do carrinho e redireciona (se a intenção é sair da página)
+        updateCartBadge();
+        setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+
+    } catch (err) {
+        console.error('❌ Erro no envio EmailJS:', err);
+        resultado.innerHTML = `<span style="color:red">❌ Falha ao enviar o ticket. Tente novamente: ${err.text || err.message || err}</span>`;
+    }
+}
+
+
+// ====================================================================
+// === EVENT LISTENERS (Ao carregar o DOM) ===
+// ====================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('ticketForm');
+    const resultado = document.getElementById('resultado');
+
+    if (form && resultado) {
+        // Usa a função dedicada como callback
+        form.addEventListener('submit', (e) => sendTicket(e, form, resultado));
+    }
+    
+    // Chama funções de utilidade
+    updateCartBadge(); 
+});
+
+
+// ====================================================================
+// === UTILIDADES (Funções de terceiros / utilidade) ===
+// ====================================================================
+
+// Funções de Sidebar e Topbar mantidas, mas idealmente estariam em outro arquivo (ex: 'utils.js')
+
+function updateCartBadge() {
+  const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+  let totalItems = 0;
+  if (usuarioLogado && usuarioLogado.carrinho && Array.isArray(usuarioLogado.carrinho)) {
+    totalItems = usuarioLogado.carrinho.reduce((sum, item) => sum + (item.quantidade || 0), 0);
+  }
+  const badge = document.getElementById('cart-badge');
+  if (badge) {
+    badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    badge.textContent = totalItems > 99 ? '99+' : totalItems;
+  }
+}
+
+// Sidebar (Módulo IIFE para encapsulamento)
 (() => {
-  // elementos (tenta vários nomes/seletores possíveis)
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('overlay');
-  const openBtn = document.getElementById('openSidebar')   // usado antes nos exemplos
-    || document.getElementById('menu-btn')    // alternativa do meu snippet
-    || document.querySelector('.menu-icon');  // caso só tenha classe
-  const closeBtn = document.getElementById('closeSidebar')
-    || (sidebar && sidebar.querySelector('.close-btn'));
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const openBtn = document.getElementById('openSidebar');
+  const closeBtn = document.getElementById('closeSidebar');
 
-  // helpers
-  const isEl = el => el !== null && el !== undefined;
-
-  function openMenu() {
-    if (isEl(sidebar)) sidebar.classList.add('active');
-    if (isEl(overlay)) overlay.classList.add('active');
-  }
-
-  function closeMenu() {
-    if (isEl(sidebar)) sidebar.classList.remove('active');
-    if (isEl(overlay)) overlay.classList.remove('active');
-  }
-
-  // liga os eventos (só se os elementos existirem)
-  if (isEl(openBtn)) {
-    openBtn.addEventListener('click', (e) => {
-      // se quiser comportamento toggle: toggleMenu();
-      openMenu();
-    });
-  } else {
-    console.warn('Botão de abrir menu não encontrado (procure por id="openSidebar" ou id="menu-btn" ou class="menu-icon").');
-  }
-
-  if (isEl(closeBtn)) {
-    closeBtn.addEventListener('click', closeMenu);
-  }
-
-  if (isEl(overlay)) {
-    overlay.addEventListener('click', closeMenu);
-  }
-
-  // fechar com ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
-
-  // sanity check no console para ajudar debug
-  console.log('Sidebar:', !!sidebar, 'Overlay:', !!overlay, 'OpenBtn:', !!openBtn, 'CloseBtn:', !!closeBtn);
+  if (openBtn) openBtn.addEventListener('click', () => {
+    sidebar.classList.add('active');
+    overlay.classList.add('active');
+  });
+  if (closeBtn) closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+  if (overlay) overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+  });
 })();
 
-// Detecta clique nas categorias da sidebar
-const categoriaLinks = document.querySelectorAll('#lista-categorias li');
-
-categoriaLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    const categoria = link.dataset.categoria;
-    // Redireciona para a página de categorias com a categoria na URL
-    window.location.href = `categorias.html?categoria=${encodeURIComponent(categoria)}`;
-  });
-});
-
-// -----------------------------------------------------------
-// Topbar: mostrar foto ou primeiro nome do usuário (único bloco)
-// -----------------------------------------------------------
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-const userLink = document.querySelector(".icons a");
-
-if (userLink) {
-  if (usuarioLogado) {
-    // se tiver foto, mostra imagem circular; se não, mostra primeiro nome
-    if (usuarioLogado.foto) {
-      userLink.innerHTML = `<img src="${usuarioLogado.foto}" class="topbar-user-photo" alt="${usuarioLogado.nome}">`;
-    } else {
-      userLink.innerHTML = `<span class="user-nome">${(usuarioLogado.nome || '').split(" ")[0] || 'Usuário'}</span>`;
-    }
-
-    userLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      window.location.href = "usuario.html";
-    });
-  } else {
-    userLink.innerHTML = `<i class="fa fa-user"></i>`;
-  }
-}
+// Topbar (Manter, se a função existir em outro lugar)
+if (typeof atualizarIconeUsuario === 'function') atualizarIconeUsuario();
