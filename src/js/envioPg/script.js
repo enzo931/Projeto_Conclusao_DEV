@@ -39,7 +39,7 @@ function calculateDistanceFactor(targetLatLng) {
         Math.pow(targetlat - sedelat, 2) + Math.pow(targetlng - sedelng, 2)
     );
     // Fator de multiplicação simples (ajuste conforme necessário)
-    const factor = Math.max(1.0, 1.0 + (distance * 20)); 
+    const factor = Math.max(1.0, 1.0 + (distance * 20));
     return factor;
 }
 
@@ -127,7 +127,7 @@ const ShippingModule = (function() {
         });
 
         // Força a atualização do resumo
-        updateShippingSummary(false); 
+        updateShippingSummary(false);
         SummaryModule.updateOrderSummary();
     }
 
@@ -159,8 +159,8 @@ const ShippingModule = (function() {
              if (mediumRadio) {
                  mediumRadio.checked = true;
                  // Recalcula para garantir que o resumo está certo
-                 recalculateAndDisplayOptions(); 
-                 return; 
+                 recalculateAndDisplayOptions();
+                 return;
              }
         }
         
@@ -178,7 +178,7 @@ const ShippingModule = (function() {
         init: function() {
             setupEventListeners();
             // Inicia o cálculo do frete com a localização inicial/padrão
-            recalculateAndDisplayOptions(); 
+            recalculateAndDisplayOptions();
         },
         recalculateFreights: recalculateAndDisplayOptions
     };
@@ -289,33 +289,16 @@ const MapModule = (function() {
             if (mapModal) mapModal.style.display = 'none';
         });
     }
+    
+    // Função adaptada para ser chamada APENAS DENTRO do Módulo
+    function setGeocoderInstance(geocoder) {
+        geocoderInstance = geocoder;
+    }
 
-    // Função global que a API do Google Maps chama quando está pronta
-    window.initMap = function() {
-        if (typeof google === 'undefined' || typeof google.maps === 'undefined') return;
-        geocoderInstance = new google.maps.Geocoder();
 
-        // Configuração do Autocomplete no campo de input
-        if (addressInput) {
-            const autocomplete = new google.maps.places.Autocomplete(addressInput, {
-                types: ['address'],
-                componentRestrictions: { country: 'br' }
-            });
+    function loadInitialAddress(geocoder) {
+        setGeocoderInstance(geocoder); // Salva o geocoder que veio da função global initMap
 
-            autocomplete.addListener('place_changed', function () {
-                const place = autocomplete.getPlace();
-                if (place.geometry) {
-                    const fullAddress = place.formatted_address || addressInput.value;
-                    updateSelectedAddress(fullAddress, place.geometry.location);
-                }
-            });
-        }
-        
-        // Se a API estiver pronta, tenta carregar o endereço que veio da página anterior
-        loadInitialAddress();
-    };
-
-    function loadInitialAddress() {
         const storedAddress = sessionStorage.getItem('enderecoEntrega');
         if (storedAddress && storedAddress !== 'Nenhum endereço selecionado.') {
              // Tenta geocodificar o endereço que veio do carrinho.html
@@ -339,13 +322,13 @@ const MapModule = (function() {
             e.preventDefault();
             if (mapModal) mapModal.style.display = 'flex';
             // Chama a inicialização do mapa com um pequeno delay para garantir que o modal esteja visível
-            setTimeout(initializeMapForManualSelection, 100); 
+            setTimeout(initializeMapForManualSelection, 100);
         });
 
         if (changeAddressBtn) changeAddressBtn.addEventListener('click', (e) => {
              e.preventDefault();
              if (mapModal) mapModal.style.display = 'flex';
-             setTimeout(initializeMapForManualSelection, 100); 
+             setTimeout(initializeMapForManualSelection, 100);
         });
 
 
@@ -358,10 +341,46 @@ const MapModule = (function() {
 
     return {
         init: setupEventListeners,
-        // initMap é global, chamado pela API do Google
-        // loadInitialAddress é chamado dentro do initMap
+        // Funções expostas para serem usadas pela função global initMap
+        updateSelectedAddress: updateSelectedAddress,
+        loadInitialAddress: loadInitialAddress
     };
 })();
+
+
+// ====================================================================
+// ========== FUNÇÃO GLOBAL initMap (PARA EVITAR O ERRO) ==============
+// ====================================================================
+
+// Esta função deve estar no escopo global para que a API do Google Maps a encontre.
+window.initMap = function() {
+    if (typeof google === 'undefined' || typeof google.maps === 'undefined') return;
+
+    // 1. Inicializa o Geocoder (instância local)
+    const geocoder = new google.maps.Geocoder();
+
+    const addressInput = document.getElementById('address-input');
+    
+    // 2. Configura o Autocomplete no campo de input
+    if (addressInput) {
+        const autocomplete = new google.maps.places.Autocomplete(addressInput, {
+            types: ['address'],
+            componentRestrictions: { country: 'br' }
+        });
+
+        autocomplete.addListener('place_changed', function () {
+            const place = autocomplete.getPlace();
+            if (place.geometry) {
+                const fullAddress = place.formatted_address || addressInput.value;
+                // Usa a função exposta do MapModule para atualizar o endereço
+                MapModule.updateSelectedAddress(fullAddress, place.geometry.location); 
+            }
+        });
+    }
+    
+    // 3. Tenta carregar o endereço inicial (passando o geocoder)
+    MapModule.loadInitialAddress(geocoder); 
+};
 
 
 // ====================================================================
@@ -390,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- 2. Inicialização dos Módulos ---
     // O MapModule.init apenas anexa os listeners de clique. 
     // O initMap é chamado pela API do Google Maps.
-    MapModule.init(); 
+    MapModule.init();
     ShippingModule.init();
 
     // --- 3. Lógica de Finalização da Compra (mantida) ---
@@ -409,7 +428,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             
             // Aqui você pode prosseguir para a página de Pagamento
-            window.location.href = 'pagamento.html'; 
+            window.location.href = 'pagamento.html';
         });
     }
 
@@ -473,11 +492,11 @@ function updateCartBadge() {
         // 4. INSERE o valor no HTML
         if (totalItems > 0) {
             // Exibe a bolha e seta o valor
-            badge.style.display = 'flex'; 
-            badge.textContent = totalItems > 99 ? '99+' : totalItems; 
+            badge.style.display = 'flex';
+            badge.textContent = totalItems > 99 ? '99+' : totalItems;
         } else {
             // Se o carrinho estiver vazio ou a soma for 0
-            badge.style.display = 'none'; 
+            badge.style.display = 'none';
             badge.textContent = '';
         }
     }
