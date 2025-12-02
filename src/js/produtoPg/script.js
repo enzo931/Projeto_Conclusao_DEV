@@ -248,7 +248,6 @@ document.querySelector(".buy-button").addEventListener("click", function () {
       preco_unitario: produto.preco, // Usando preco_unitario para maior clareza
       imagem: produto.imagem
     });
-    alert("Produto adicionado ao carrinho!");
   }
 
   // 5. Salva localmente e no backend
